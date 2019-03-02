@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -12,7 +12,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -27,35 +27,23 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
 
-    implementation libs.kotlinStdlib
-
+//    implementation libs.kotlinStdlib
     implementation libs.appcompat
-    implementation libs.design
-    implementation libs.supportAnnotations
-    implementation libs.designCardView
+    implementation libs.core
     implementation libs.constraintLayout
+    implementation libs.material
 
     implementation libs.dagger
-    annotationProcessor libs.daggerCompiler
-
-    implementation libs.butterknife
-    annotationProcessor libs.butterknifeCompiler
-
-    implementation libs.retrofit
-    implementation libs.retrofitGson
-    implementation libs.retrofitRx
-
-    implementation libs.okhttp
+    kapt libs.daggerCompiler
+    implementation libs.daggerAndroid
+    kapt libs.daggerAndroidProcessor
+    implementation libs.daggerSupport
 
     implementation libs.picasso
 
-    implementation libs.rxAndroid
-    implementation libs.rxJava
-
     implementation libs.timber
-
-    implementation libs.rxpermissions
+    implementation project(':model')
 }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    >
+
+  <androidx.appcompat.widget.Toolbar
+      android:id="@+id/add_article_toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:minHeight="?attr/actionBarSize"
+      style="@style/Reader.Toolbar"
+      />
+
+  <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/url_textinputlayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="16dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="32dp"
+      android:hint="Url"
+      app:helperText="@string/add_article_url_helpertext"
+      style="@style/Reader.TextInputLayout"
+      >
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="8dp"
+        android:drawableStart="@drawable/ic_insert_link_black_24dp"
+        />
+  </com.google.android.material.textfield.TextInputLayout>
+
+
+  <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/category_textinputlayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="16dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="32dp"
+      android:hint="Url"
+      app:helperText="@string/add_article_url_helpertext"
+      style="@style/Reader.TextInputLayout"
+      >
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="8dp"
+        android:drawableStart="@drawable/ic_insert_link_black_24dp"
+        />
+  </com.google.android.material.textfield.TextInputLayout>
+
+
+</LinearLayout>

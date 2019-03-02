@@ -10,7 +10,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:name=".ReaderApplication">
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.mainactivity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

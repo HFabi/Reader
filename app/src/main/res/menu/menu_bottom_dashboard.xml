@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <group android:id="@+id/nav_group_1">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/home"/>
+
+    <item
+        android:id="@+id/naventry"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Nav 1"/>
+
+    <item
+        android:id="@+id/naventrydsa"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Nav 2"/>
+  </group>
+  <group android:id="@+id/nav_group_2">
+    <item
+        android:id="@+id/action_bottom_settings"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/settings"/>
+
+
+    <item
+        android:id="@+id/action_bottom_about"
+        android:icon="@drawable/ic_info_outline_black_24dp"
+        android:title="@string/about"/>
+  </group>
+</menu>

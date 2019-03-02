@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Reader</string>
+  <string name="search">Suchen</string>
+  <string name="home">Home</string>
+  <string name="settings">Einstellungen</string>
+  <string name="title_add_article">Hinzufügen</string>
+  <string name="ok">Ok</string>
+  <string name="about">Impressum</string>
+  <string name="add_article_url_helpertext">Artikel wird heruntergeladen und in der App gespeichert</string>
 </resources>
