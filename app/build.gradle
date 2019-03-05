@@ -36,6 +36,9 @@ dependencies {
     implementation libs.constraintLayout
     implementation libs.material
 
+    implementation libs.rxJava
+    implementation libs.rxAndroid
+
     implementation libs.dagger
     kapt libs.daggerCompiler
     implementation libs.daggerAndroid

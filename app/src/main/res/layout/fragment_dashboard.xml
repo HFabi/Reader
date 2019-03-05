@@ -5,25 +5,216 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.mainactivity.MainActivity"
-    android:background="@android:color/holo_blue_bright"
+    android:background="@color/colorWhite"
     >
 
-  <FrameLayout
-      android:id="@+id/main_container_framelayout"
+
+  <com.google.android.material.appbar.AppBarLayout
+      android:id="@+id/dashboard_appbarlayout"
+      android:layout_width="match_parent"
+      android:layout_height="300dp"
+      android:background="@android:color/darker_gray"
+      >
+
+    <com.google.android.material.appbar.CollapsingToolbarLayout
+        android:id="@+id/dashboard_collapstingtoolbarlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:contentScrim="@color/colorWhite"
+        app:expandedTitleGravity="top"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+        >
+
+      <FrameLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          app:layout_collapseMode="parallax"
+          app:layout_collapseParallaxMultiplier="0.5"
+          >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/article_search"
+            app:boxBackgroundColor="@color/colorWhite"
+            app:boxBackgroundMode="filled"
+            style="@style/Reader.TextInputLayout"
+            >
+          <com.google.android.material.textfield.TextInputEditText
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:drawablePadding="8dp"
+              android:drawableStart="@drawable/ic_search_gray_24dp"
+              style="@style/Reader.TextInputEditText"
+              />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+      </FrameLayout>
+
+      <androidx.appcompat.widget.Toolbar
+          android:id="@+id/dashboard_toolbar"
+          android:layout_width="match_parent"
+          android:layout_height="?attr/actionBarSize"
+          app:layout_collapseMode="pin"
+          app:title="Reader"
+          />
+    </com.google.android.material.appbar.CollapsingToolbarLayout>
+  </com.google.android.material.appbar.AppBarLayout>
+
+  <androidx.core.widget.NestedScrollView
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      />
+      android:background="@color/colorGallery"
+      app:layout_behavior="@string/appbar_scrolling_view_behavior"
+      >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+      <TextView
+          android:id="@+id/dashboard_title_last_added_textview"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="32dp"
+          android:text="@string/last_added"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          style="@style/Reader.Title3"
+          />
+
+      <Button
+          android:layout_width="wrap_content"
+          android:layout_height="45dp"
+          android:layout_marginEnd="8dp"
+          android:text="@string/show_all"
+          app:layout_constraintBottom_toBottomOf="@+id/dashboard_title_last_added_textview"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="@+id/dashboard_title_last_added_textview"
+          style="@style/Reader.Button.TextButton"
+          />
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/dashboard_last_added_recycler"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:clipToPadding="false"
+          android:paddingStart="8dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/dashboard_title_last_added_textview"
+          />
+
+      <TextView
+          android:id="@+id/dashboard_title_favorites_textview"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="32dp"
+          android:text="@string/favorites"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/dashboard_last_added_recycler"
+          style="@style/Reader.Title3"
+          />
+
+      <Button
+          android:layout_width="wrap_content"
+          android:layout_height="45dp"
+          android:layout_marginEnd="8dp"
+          android:text="@string/show_all"
+          app:layout_constraintBottom_toBottomOf="@+id/dashboard_title_favorites_textview"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="@+id/dashboard_title_favorites_textview"
+          style="@style/Reader.Button.TextButton"
+          />
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/dashboard_favorites_recycler"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:clipToPadding="false"
+          android:paddingStart="8dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/dashboard_title_favorites_textview"
+          />
+
+      <TextView
+          android:id="@+id/dashboard_title_categories_textview"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="32dp"
+          android:text="@string/categories"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/dashboard_favorites_recycler"
+          style="@style/Reader.Title3"
+          />
+
+      <Button
+          android:layout_width="wrap_content"
+          android:layout_height="45dp"
+          android:layout_marginEnd="8dp"
+          android:text="@string/show_all"
+          app:layout_constraintBottom_toBottomOf="@+id/dashboard_title_categories_textview"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="@+id/dashboard_title_categories_textview"
+          style="@style/Reader.Button.TextButton"
+          />
+
+
+      <com.google.android.material.chip.ChipGroup
+          android:id="@+id/dashboard_chipgroup"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginEnd="16dp"
+          android:layout_marginTop="8dp"
+          app:chipSpacingHorizontal="8dp"
+          app:chipSpacingVertical="8dp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/dashboard_title_categories_textview"
+          />
+
+      <View
+          android:layout_width="match_parent"
+          android:layout_height="100dp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/dashboard_chipgroup"
+          />
+
+      <Button
+          android:id="@+id/dashboard_detail_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:text="Detail"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </androidx.core.widget.NestedScrollView>
+
 
   <com.google.android.material.bottomappbar.BottomAppBar
       android:id="@+id/dashboard_bottomappbar"
-      android:layout_gravity="bottom"
       android:layout_width="match_parent"
       android:layout_height="?attr/actionBarSize"
+      android:layout_gravity="bottom"
+      android:elevation="1dp"
       app:navigationIcon="@drawable/ic_menu_black_24dp"
       />
 

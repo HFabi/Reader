@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
+import com.example.lenovo.reader.activities.base.BaseActivity
 import com.example.lenovo.reader.annotations.Layout
 import dagger.android.support.DaggerFragment
 
@@ -41,6 +43,26 @@ abstract class BaseFragment : DaggerFragment() {
     providePresenter()?.let { lifecycle.removeObserver(it) }
   }
 
-  abstract fun providePresenter(): BasePresenter?
+  fun setUpToolbar(toolbar: Toolbar?, showUpNavigation: Boolean, hasOptionMenu: Boolean = true) {
+    (activity as BaseActivity).setSupportActionBar(toolbar)
+    (activity as BaseActivity).supportActionBar?.apply {
+      setDisplayHomeAsUpEnabled(showUpNavigation)
+      setDisplayShowHomeEnabled(showUpNavigation)
+    }
+    setHasOptionsMenu(hasOptionMenu)
+  }
+
+  fun setUpToolbar(toolbar: Toolbar?, upIndicatorRes: Int, titleRes: Int, hasOptionMenu: Boolean = true) {
+    (activity as BaseActivity).setSupportActionBar(toolbar)
+    (activity as BaseActivity).supportActionBar?.apply {
+      title  = getString(titleRes)
+      setDisplayHomeAsUpEnabled(true)
+      setDisplayShowHomeEnabled(true)
+      setHomeAsUpIndicator(upIndicatorRes)
+    }
+    setHasOptionsMenu(hasOptionMenu)
+  }
+
+  abstract fun providePresenter(): LifecycleObserverPresenter?
 
 }

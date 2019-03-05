@@ -63,9 +63,9 @@ class RouterImpl @Inject constructor(var baseActivity: BaseActivity) : Router {
 
   fun transit(
     fragment: Fragment,
-    addToBackstack: Boolean = true,
     enterAnimation: Int,
-    exitAnimation: Int
+    exitAnimation: Int,
+    addToBackstack: Boolean = true
   ) {
     var transaction: FragmentTransaction = baseActivity.supportFragmentManager.beginTransaction();
 

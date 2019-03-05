@@ -4,20 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     android:orientation="vertical"
     >
 
   <com.google.android.material.appbar.AppBarLayout
+      android:id="@+id/article_appbarlayout"
       android:layout_width="match_parent"
       android:layout_height="200dp"
       >
 
     <com.google.android.material.appbar.CollapsingToolbarLayout
+        android:id="@+id/article_collapstingtoolbarlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:contentScrim="?attr/colorPrimary"
+        app:contentScrim="@color/colorWhite"
         app:expandedTitleGravity="top"
         app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+        app:titleEnabled="false"
         >
 
       <ImageView
@@ -28,40 +32,61 @@
           />
 
       <androidx.appcompat.widget.Toolbar
+          android:id="@+id/article_toolbar"
           android:layout_width="match_parent"
           android:layout_height="?attr/actionBarSize"
+          app:layout_collapseMode="pin"
+          app:title=""
           />
     </com.google.android.material.appbar.CollapsingToolbarLayout>
 
   </com.google.android.material.appbar.AppBarLayout>
 
-  <LinearLayout
+  <androidx.core.widget.NestedScrollView
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="16dp"
-      android:layout_marginStart="16dp"
-      android:layout_marginTop="16dp"
-      android:orientation="vertical"
+      android:layout_height="match_parent"
       app:layout_behavior="@string/appbar_scrolling_view_behavior"
       >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Title"
-        />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Subtitle"
-        />
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Text"
-        />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          tools:text="Title"
+          />
 
-  </LinearLayout>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          tools:text="Subtitle"
+          />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          tools:text="Text"
+          />
+
+    </LinearLayout>
+
+  </androidx.core.widget.NestedScrollView>
+
+
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="16dp"
+      android:src="@drawable/ic_favorite_border_white_24dp"
+      app:layout_anchor="@id/article_appbarlayout"
+      app:layout_anchorGravity="bottom|end"
+      />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

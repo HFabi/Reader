@@ -21,4 +21,29 @@
 
   </style>
 
+  <style name="Reader.TextInputEditText" parent="Base.Widget.MaterialComponents.TextInputEditText">
+
+  </style>
+
+  <style name="Reader.Title1" >
+
+  </style>
+
+  <style name="Reader.Title2">
+
+  </style>
+
+  <style name="Reader.Title3">
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@android:color/black</item>
+  </style>
+
+  <style name="Reader.Button">
+
+  </style>
+
+  <style name="Reader.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+
+  </style>
+
 </resources>
