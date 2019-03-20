@@ -14,5 +14,6 @@
 *.apk
 *.ap_
 *.aab
+output.json 
 # Java class files
 *.class

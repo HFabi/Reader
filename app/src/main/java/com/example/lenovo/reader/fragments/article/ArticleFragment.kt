@@ -42,6 +42,7 @@ class ArticleFragment : BaseFragment(), ArticleView {
   fun setUp() {
     //Collapsing Tollbar
     // article_appbarlayout.totalScrollRange
+    // Test
 
     article_appbarlayout.addOnOffsetChangedListener(
         AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
