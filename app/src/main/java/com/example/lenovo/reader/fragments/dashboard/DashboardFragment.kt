@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.activities.base.BaseActivity
 import com.example.lenovo.reader.annotations.Layout
@@ -34,8 +35,6 @@ class DashboardFragment : BaseFragment(), DashboardView {
   lateinit var dashboardPresenter: DashboardPresenter
   @Inject
   lateinit var router: Router
-//    @Inject
-//    lateinit var bottomNavigationFragment: BottomNavigationFragment
 
   lateinit var lastAddedArticleAdapter: LastAddedArticleAdapter
   lateinit var favoriteArticleAdapter: FavoriteArticleAdapter
@@ -46,7 +45,6 @@ class DashboardFragment : BaseFragment(), DashboardView {
     savedInstanceState: Bundle?
   ) {
     super.onViewCreated(view, savedInstanceState)
-    Log.d("LOGT", "Dashboardfragment onViewCreated")
     (activity as BaseActivity).setSupportActionBar(dashboard_bottomappbar)
     setHasOptionsMenu(true)
     setUp()
@@ -64,11 +62,17 @@ class DashboardFragment : BaseFragment(), DashboardView {
     dashboard_last_added_recycler.isNestedScrollingEnabled = false
     lastAddedArticleAdapter.addListener { router.goToArticle(this) }
 
+    val snapHelperLastArticle = LinearSnapHelper()
+    snapHelperLastArticle.attachToRecyclerView(dashboard_last_added_recycler)
+
     favoriteArticleAdapter = FavoriteArticleAdapter()
     dashboard_favorites_recycler.adapter = favoriteArticleAdapter
     dashboard_favorites_recycler.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false)
     dashboard_favorites_recycler.isNestedScrollingEnabled = false
     favoriteArticleAdapter.addListener { router.goToArticle(this) }
+
+    val snapHelperFavorite = LinearSnapHelper()
+    snapHelperFavorite.attachToRecyclerView(dashboard_favorites_recycler)
 
     categoriesAdapter =
       CategoriesAdapter(

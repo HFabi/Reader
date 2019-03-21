@@ -30,11 +30,11 @@ class RouterImpl @Inject constructor(var baseActivity: BaseActivity) : Router {
 
   override fun goToAddArticle(currentFragment: Fragment) {
     NavHostFragment.findNavController(currentFragment).navigate(R.id.addArticleFragment)
-
   }
 
   override fun goToSearch(currentFragment: Fragment) {
-    NavHostFragment.findNavController(currentFragment).navigate(R.id.searchFragment)
+//    NavHostFragment.findNavController(currentFragment).navigate(R.id.searchFragment)
+    NavHostFragment.findNavController(currentFragment).navigate(R.id.action_dashboardFragment_to_searchFragment)
   }
 
   override fun goToAbout(currentFragment: Fragment) {
