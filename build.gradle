@@ -30,6 +30,12 @@ task clean(type: Delete) {
 
 
 ext {
+    //Android
+    androidCompileSDKVersion = 28
+    androidMinSDKVersion = 19
+    androidTargetSDKVersion = androidCompileSDKVersion
+
+    //Library versions
     constraintLayoutVersion = '1.1.3'
     daggerVersion = '2.16'
     coreVersion = '1.1.0-alpha04'
@@ -42,6 +48,11 @@ ext {
     picassoVersion = '2.71828'
     timberVersion = '4.7.1'
     navigationVersion = '2.1.0-alpha01'
+
+    //Test library versions
+    junitVersion = '4.12'
+    testRunnerVersion = '1.1.0-alpha4'
+    expressonVersion = '3.1.0-alpha4'
 
     libs = [
             kotlinStdlib          : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
@@ -71,5 +82,11 @@ ext {
             picasso               : "com.squareup.picasso:picasso:$picassoVersion",
 
             timber                : "com.jakewharton.timber:timber:$timberVersion",
+    ]
+
+    testLibs = [
+            junit     : "junit:junit:$junitVersion",
+            testRunner: "androidx.test:runner:$testRunnerVersion",
+            expresso  : "androidx.test.espresso:espresso-core:$expressonVersion"
     ]
 }

@@ -10,9 +10,6 @@ import javax.inject.Inject
 
 class RouterImpl @Inject constructor(var baseActivity: BaseActivity) : Router {
 
-//  @Inject
-//  lateinit var bottomNavigationFragment: BottomNavigationFragment
-
   override fun goBack() {
     //todo: adapt
     baseActivity.onBackPressed()
@@ -45,47 +42,8 @@ class RouterImpl @Inject constructor(var baseActivity: BaseActivity) : Router {
   }
 
   override fun showBottomNavigation() {
-//    bottomNavigationFragment.show(baseActivity.supportFragmentManager, bottomNavigationFragment.javaClass.simpleName)
     with(BottomNavigationFragment()) {
       show(baseActivity.supportFragmentManager, javaClass.simpleName)
     }
   }
-
-
-//  private fun transit(
-//    fragment: Fragment,
-//    addToBackstack: Boolean = true
-//  ) {
-//    if (addToBackstack) {
-//      baseActivity.supportFragmentManager
-//          .beginTransaction()
-//          .replace(baseActivity.provideContainerId(), fragment)
-//          .addToBackStack(fragment.javaClass.simpleName)
-//          .commit()
-//    } else {
-//      baseActivity.supportFragmentManager
-//          .beginTransaction()
-//          .replace(baseActivity.provideContainerId(), fragment)
-//          .commit()
-//    }
-//  }
-//
-//  fun transit(
-//    fragment: Fragment,
-//    enterAnimation: Int,
-//    exitAnimation: Int,
-//    addToBackstack: Boolean = true
-//  ) {
-//    var transaction: FragmentTransaction = baseActivity.supportFragmentManager.beginTransaction();
-//
-//    if (enterAnimation != null && exitAnimation != null) {
-//      transaction.setCustomAnimations(enterAnimation, exitAnimation)
-//    }
-//    transaction.replace(baseActivity.provideContainerId(), fragment)
-//    if (addToBackstack) {
-//      transaction.addToBackStack(fragment.javaClass.simpleName);
-//    }
-//    transaction.commitAllowingStateLoss();
-//  }
-
 }

@@ -8,8 +8,12 @@ import com.example.lenovo.reader.fragments.base.BaseAdapter
 import com.example.lenovo.reader.fragments.base.BaseViewHolder
 import com.example.lenovo.reader.fragments.dashboard.adapters.FavoriteArticleAdapter.FavoriteArticleViewHolder
 import com.example.model.models.FavoriteArticle
+import kotlinx.android.synthetic.main.item_favorite_article.view.item_favorite_subtile_textview
+import kotlinx.android.synthetic.main.item_favorite_article.view.item_favorite_title_textview
 
 class FavoriteArticleAdapter() : BaseAdapter<FavoriteArticle, FavoriteArticleViewHolder>() {
+
+  private var onClickListener: ((FavoriteArticle) -> Unit)? = null
 
   override fun onCreateViewHolder(
     parent: ViewGroup,
@@ -20,14 +24,23 @@ class FavoriteArticleAdapter() : BaseAdapter<FavoriteArticle, FavoriteArticleVie
       )
   )
 
+  fun addListener(listener: (FavoriteArticle) -> Unit) {
+    onClickListener = listener
+  }
+
   override fun onBindViewHolder(
     holder: FavoriteArticleViewHolder,
     position: Int
   ) = holder.bindTo(itemList[position])
 
-  class FavoriteArticleViewHolder(item: View) : BaseViewHolder<FavoriteArticle>(item) {
+  inner class FavoriteArticleViewHolder(var view: View) : BaseViewHolder<FavoriteArticle>(view) {
     override fun bindTo(item: FavoriteArticle) {
-
+      //item_favorite_imageview
+      view.item_favorite_title_textview.text = item.title
+      view.item_favorite_subtile_textview.text = item.subtitle
+      view.setOnClickListener {
+        onClickListener?.invoke(item)
+      }
     }
   }
 }

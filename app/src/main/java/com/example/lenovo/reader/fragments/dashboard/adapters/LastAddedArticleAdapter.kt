@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.item_last_added_article.view.item_last_add
 
 class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleViewHolder>() {
 
+  private var onClickListener: ((LastAddedArticle) -> Unit)? = null
+
   override fun onCreateViewHolder(
     parent: ViewGroup,
     viewType: Int
@@ -25,8 +27,6 @@ class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleVi
     position: Int
   ) = holder.bindTo(itemList[position])
 
-  private var onClickListener: ((LastAddedArticle) -> Unit)? = null
-
   fun addListener(listener:(LastAddedArticle) -> Unit) {
     onClickListener = listener
   }
@@ -37,11 +37,8 @@ class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleVi
 //      Picasso.get().load(item.imagePath).into(view.item_last_added_imageview)
       view.item_last_added_date_textView.text = item.date.toString()
       view.item_last_added_subtitle_textView.text = item.title
-
       view.setOnClickListener {
-        if(onClickListener != null) {
           onClickListener?.invoke(item)
-        }
       }
     }
   }

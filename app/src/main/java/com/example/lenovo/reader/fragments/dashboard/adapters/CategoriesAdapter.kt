@@ -25,6 +25,8 @@ class CategoriesAdapter(
         setRippleColorResource(R.color.colorAccent)
         setChipBackgroundColorResource(R.color.colorWhite)
         setChipStrokeColorResource(R.color.colorPrimaryDark)
+//        chipStartPadding = 2.0f
+//        chipEndPadding = 2.0f
       }
       chip.setOnClickListener(onClickListener)
       chipGroup.addView(chip)
