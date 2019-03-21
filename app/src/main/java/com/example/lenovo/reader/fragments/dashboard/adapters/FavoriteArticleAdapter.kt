@@ -1,4 +1,4 @@
-package com.example.lenovo.reader.fragments.dashboard
+package com.example.lenovo.reader.fragments.dashboard.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.fragments.base.BaseAdapter
 import com.example.lenovo.reader.fragments.base.BaseViewHolder
-import com.example.lenovo.reader.fragments.dashboard.FavoriteArticleAdapter.FavoriteArticleViewHolder
+import com.example.lenovo.reader.fragments.dashboard.adapters.FavoriteArticleAdapter.FavoriteArticleViewHolder
 import com.example.model.models.FavoriteArticle
 
 class FavoriteArticleAdapter() : BaseAdapter<FavoriteArticle, FavoriteArticleViewHolder>() {

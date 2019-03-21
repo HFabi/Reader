@@ -7,12 +7,15 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.activities.base.BaseActivity
 import com.example.lenovo.reader.annotations.Layout
 import com.example.lenovo.reader.fragments.base.BaseFragment
 import com.example.lenovo.reader.fragments.base.LifecycleObserverPresenter
+import com.example.lenovo.reader.fragments.bottomnavigation.BottomNavigationFragment
+import com.example.lenovo.reader.fragments.dashboard.adapters.CategoriesAdapter
+import com.example.lenovo.reader.fragments.dashboard.adapters.FavoriteArticleAdapter
+import com.example.lenovo.reader.fragments.dashboard.adapters.LastAddedArticleAdapter
 import com.example.lenovo.reader.navigation.Router
 import com.example.model.models.Category
 import com.example.model.models.FavoriteArticle
@@ -27,8 +30,8 @@ class DashboardFragment : BaseFragment(), DashboardView {
     lateinit var dashboardPresenter: DashboardPresenter
     @Inject
     lateinit var router: Router
-    @Inject
-    lateinit var bottomNavigationFragment: BottomNavigationFragment
+//    @Inject
+//    lateinit var bottomNavigationFragment: BottomNavigationFragment
 
     lateinit var lastAddedArticleAdapter: LastAddedArticleAdapter
     lateinit var favoriteArticleAdapter: FavoriteArticleAdapter
@@ -47,12 +50,12 @@ class DashboardFragment : BaseFragment(), DashboardView {
 
     private fun setUp() {
         dashboard_floatingactionbutton.setOnClickListener {
-            router.goToAddArticle()
+            router.goToAddArticle(this)
         }
 
         //TODO: Remove this
         dashboard_detail_button.setOnClickListener {
-            router.goToArticle()
+            router.goToArticle(this)
         }
 
         lastAddedArticleAdapter = LastAddedArticleAdapter()
@@ -68,7 +71,10 @@ class DashboardFragment : BaseFragment(), DashboardView {
         dashboard_favorites_recycler.isNestedScrollingEnabled = false
 
         categoriesAdapter =
-            CategoriesAdapter(dashboard_chipgroup, context, { s -> Log.d("TAG", "NOT IMPLEMENTED") })
+            CategoriesAdapter(
+                dashboard_chipgroup,
+                context,
+                { s -> Log.d("TAG", "NOT IMPLEMENTED") })
     }
 
     override fun providePresenter(): LifecycleObserverPresenter = dashboardPresenter
@@ -85,14 +91,11 @@ class DashboardFragment : BaseFragment(), DashboardView {
         when (item.itemId) {
             R.id.action_main_search -> {
                 Log.d("CLICK", "onOptionsItemSelected:: Search")
-                router.goToSearch()
+                router.goToSearch(this)
             }
             android.R.id.home -> {
                 Log.d("CLICK", "onOptionsItemSelected:: Navi")
-                bottomNavigationFragment.show(
-                    (activity as BaseActivity).supportFragmentManager,
-                    bottomNavigationFragment.javaClass.simpleName
-                )
+                router.showBottomNavigation()
             }
         }
         return super.onOptionsItemSelected(item)

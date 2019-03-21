@@ -1,9 +1,7 @@
-package com.example.lenovo.reader.fragments.dashboard
+package com.example.lenovo.reader.fragments.dashboard.adapters
 
 import android.content.Context
-import android.content.res.Resources.Theme
 import android.view.View
-import androidx.core.content.ContextCompat
 import com.example.lenovo.reader.R
 import com.example.model.models.Category
 import com.google.android.material.chip.Chip

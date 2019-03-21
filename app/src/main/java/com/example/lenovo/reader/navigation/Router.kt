@@ -1,18 +1,22 @@
 package com.example.lenovo.reader.navigation
 
+import androidx.fragment.app.Fragment
+
 interface Router {
 
   fun goBack()
 
-  fun goToDashboard()
+  fun goToDashboard(currentFragment: Fragment)
 
-  fun goToSettings()
+  fun goToSettings(currentFragment: Fragment)
 
-  fun goToArticle()
+  fun goToArticle(currentFragment: Fragment)
 
-  fun goToAddArticle()
+  fun goToAddArticle(currentFragment: Fragment)
 
-  fun goToSearch()
+  fun goToSearch(currentFragment: Fragment)
 
-  fun goToAbout()
+  fun goToAbout(currentFragment: Fragment)
+
+  fun showBottomNavigation()
 }

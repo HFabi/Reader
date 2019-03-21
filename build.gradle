@@ -9,6 +9,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.1.0-alpha01"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -40,6 +41,7 @@ ext {
     okHttpVersion = '3.12.0'
     picassoVersion = '2.71828'
     timberVersion = '4.7.1'
+    navigationVersion = '2.1.0-alpha01'
 
     libs = [
             kotlinStdlib          : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
@@ -48,6 +50,9 @@ ext {
 
             core                  : "androidx.core:core-ktx:$coreVersion",
             appcompat             : "androidx.appcompat:appcompat:$appcompatVersion",
+
+            navFragment           : "androidx.navigation:navigation-fragment-ktx:$navigationVersion",
+            navUi                 : "androidx.navigation:navigation-ui-ktx:$navigationVersion",
 
             dagger                : "com.google.dagger:dagger:$daggerVersion",
             daggerCompiler        : "com.google.dagger:dagger-compiler:$daggerVersion",

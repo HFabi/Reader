@@ -12,11 +12,10 @@ class MainActivity : BaseActivity() {
 
   @Inject lateinit var router: Router
 
-  override fun provideContainerId(): Int = R.id.main_container_framelayout
+  override fun provideContainerId(): Int = R.id.nav_host_fragment //TODO: this is not correct
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    router.goToDashboard()
   }
 
 }
