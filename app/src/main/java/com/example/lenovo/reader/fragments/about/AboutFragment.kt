@@ -6,7 +6,7 @@ import android.view.View
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.annotations.Layout
 import com.example.lenovo.reader.fragments.base.BaseFragment
-import com.example.lenovo.reader.fragments.base.LifecycleObserverPresenter
+import com.example.lenovo.reader.fragments.base.BasePresenter
 import com.example.lenovo.reader.navigation.Router
 import kotlinx.android.synthetic.main.fragment_about.about_toolbar
 import javax.inject.Inject
@@ -17,7 +17,7 @@ class AboutFragment: BaseFragment() {
   @Inject
   lateinit var router: Router
 
-  override fun providePresenter(): LifecycleObserverPresenter? = null
+  override fun providePresenter(): BasePresenter? = null
 
   override fun onViewCreated(
     view: View,

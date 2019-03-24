@@ -7,12 +7,11 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.activities.base.BaseActivity
 import com.example.lenovo.reader.annotations.Layout
 import com.example.lenovo.reader.fragments.base.BaseFragment
-import com.example.lenovo.reader.fragments.base.LifecycleObserverPresenter
+import com.example.lenovo.reader.fragments.base.BasePresenter
 import com.example.lenovo.reader.navigation.Router
 import com.example.model.models.Category
 import com.example.model.models.FavoriteArticle
@@ -71,7 +70,7 @@ class DashboardFragment : BaseFragment(), DashboardView {
             CategoriesAdapter(dashboard_chipgroup, context, { s -> Log.d("TAG", "NOT IMPLEMENTED") })
     }
 
-    override fun providePresenter(): LifecycleObserverPresenter = dashboardPresenter
+    override fun providePresenter(): BasePresenter = dashboardPresenter
 
     override fun onCreateOptionsMenu(
         menu: Menu,

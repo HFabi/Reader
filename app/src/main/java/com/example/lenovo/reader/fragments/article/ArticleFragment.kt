@@ -10,7 +10,7 @@ import android.view.View
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.annotations.Layout
 import com.example.lenovo.reader.fragments.base.BaseFragment
-import com.example.lenovo.reader.fragments.base.LifecycleObserverPresenter
+import com.example.lenovo.reader.fragments.base.BasePresenter
 import com.example.lenovo.reader.navigation.Router
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.fragment_article.article_appbarlayout
@@ -25,7 +25,7 @@ class ArticleFragment : BaseFragment(), ArticleView {
   @Inject
   lateinit var router: Router
 
-  override fun providePresenter(): LifecycleObserverPresenter = articlePresenter
+  override fun providePresenter(): BasePresenter = articlePresenter
 
   override fun onViewCreated(
     view: View,

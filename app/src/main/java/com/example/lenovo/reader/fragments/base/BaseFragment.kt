@@ -63,6 +63,6 @@ abstract class BaseFragment : DaggerFragment() {
     setHasOptionsMenu(hasOptionMenu)
   }
 
-  abstract fun providePresenter(): LifecycleObserverPresenter?
+  abstract fun providePresenter(): BasePresenter?
 
 }

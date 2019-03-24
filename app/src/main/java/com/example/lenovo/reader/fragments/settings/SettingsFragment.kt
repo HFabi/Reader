@@ -6,9 +6,8 @@ import android.view.View
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.annotations.Layout
 import com.example.lenovo.reader.fragments.base.BaseFragment
-import com.example.lenovo.reader.fragments.base.LifecycleObserverPresenter
+import com.example.lenovo.reader.fragments.base.BasePresenter
 import com.example.lenovo.reader.navigation.Router
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_settings.settings_toolbar
 import javax.inject.Inject
 
@@ -20,7 +19,7 @@ class SettingsFragment : BaseFragment(), SettingsView {
   @Inject
   lateinit var router: Router
 
-  override fun providePresenter(): LifecycleObserverPresenter = presenter
+  override fun providePresenter(): BasePresenter = presenter
 
   override fun onViewCreated(
     view: View,

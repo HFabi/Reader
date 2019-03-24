@@ -1,19 +1,15 @@
 package com.example.lenovo.reader.fragments.dashboard
 
 import android.util.Log
-import com.example.lenovo.reader.fragments.base.BasePresenter
+import com.example.lenovo.reader.fragments.base.BasePresenterImpl
 import com.example.lenovo.reader.fragments.dashboard.interactors.GetCategoriesInteractor
 import com.example.lenovo.reader.fragments.dashboard.interactors.GetFavoriteArticlesInteractor
 import com.example.lenovo.reader.fragments.dashboard.interactors.GetLastAddedArticlesInteractor
-import com.example.model.models.Category
-import com.example.model.models.FavoriteArticle
-import com.example.model.models.LastAddedArticle
 import com.example.model.rx.bind
 import com.example.model.rx.schedule
-import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-class DashboardPresenterImpl @Inject constructor() : BasePresenter(), DashboardPresenter {
+class DashboardPresenterImpl @Inject constructor() : BasePresenterImpl(), DashboardPresenter {
 
     @Inject
     lateinit var view: DashboardView
@@ -25,7 +21,7 @@ class DashboardPresenterImpl @Inject constructor() : BasePresenter(), DashboardP
     lateinit var getCategoriesInteractor: GetCategoriesInteractor
 
     override fun onCreate() {
-        super.onCreate()
+        super<BasePresenterImpl>.onCreate()
         Log.d("LOG", "DashboardPresenter onCreate")
         initializeView()
     }
@@ -51,5 +47,4 @@ class DashboardPresenterImpl @Inject constructor() : BasePresenter(), DashboardP
                 categories -> view.updateCategories(categories)
             }
     }
-
 }

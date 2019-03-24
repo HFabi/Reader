@@ -1,11 +1,11 @@
 package com.example.lenovo.reader.fragments.search
 
-import com.example.lenovo.reader.fragments.base.LifecycleObserverPresenter
+import com.example.lenovo.reader.fragments.base.BasePresenter
 
 interface SearchView {
 
 }
 
-interface SearchPresenter: LifecycleObserverPresenter {
+interface SearchPresenter: BasePresenter {
 
 }

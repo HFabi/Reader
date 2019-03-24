@@ -1,11 +1,11 @@
 package com.example.lenovo.reader.fragments.settings
 
-import com.example.lenovo.reader.fragments.base.LifecycleObserverPresenter
+import com.example.lenovo.reader.fragments.base.BasePresenter
 
 interface SettingsView {
 
 }
 
-interface SettingsPresenter : LifecycleObserverPresenter{
+interface SettingsPresenter : BasePresenter{
 
 }

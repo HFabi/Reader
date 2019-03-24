@@ -1,11 +1,11 @@
 package com.example.lenovo.reader.fragments.article
 
-import com.example.lenovo.reader.fragments.base.LifecycleObserverPresenter
+import com.example.lenovo.reader.fragments.base.BasePresenter
 
 interface ArticleView {
 
 }
 
-interface ArticlePresenter : LifecycleObserverPresenter {
+interface ArticlePresenter : BasePresenter {
 
 }
