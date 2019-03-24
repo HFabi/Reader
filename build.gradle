@@ -42,7 +42,7 @@ ext {
     appcompatVersion = '1.1.0-alpha02'
     rxJavaVersion = '2.2.6'
     rxAndroidVersion = '2.1.1'
-    materialVersion = '1.1.0-alpha04'
+    materialVersion = '1.0.0-alpha01'
     retrofitVersion = '2.5.0'
     okHttpVersion = '3.12.0'
     picassoVersion = '2.71828'
