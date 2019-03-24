@@ -1,4 +1,4 @@
-package com.example.lenovo.reader.fragments.dashboard
+package com.example.lenovo.reader.fragments.dashboard.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,12 +6,14 @@ import android.view.ViewGroup
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.fragments.base.BaseAdapter
 import com.example.lenovo.reader.fragments.base.BaseViewHolder
-import com.example.lenovo.reader.fragments.dashboard.LastAddedArticleAdapter.LastAddedArticleViewHolder
+import com.example.lenovo.reader.fragments.dashboard.adapters.LastAddedArticleAdapter.LastAddedArticleViewHolder
 import com.example.model.models.LastAddedArticle
 import kotlinx.android.synthetic.main.item_last_added_article.view.item_last_added_date_textView
 import kotlinx.android.synthetic.main.item_last_added_article.view.item_last_added_subtitle_textView
 
 class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleViewHolder>() {
+
+  private var onClickListener: ((LastAddedArticle) -> Unit)? = null
 
   override fun onCreateViewHolder(
     parent: ViewGroup,
@@ -25,8 +27,6 @@ class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleVi
     position: Int
   ) = holder.bindTo(itemList[position])
 
-  private var onClickListener: ((LastAddedArticle) -> Unit)? = null
-
   fun addListener(listener:(LastAddedArticle) -> Unit) {
     onClickListener = listener
   }
@@ -37,11 +37,8 @@ class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleVi
 //      Picasso.get().load(item.imagePath).into(view.item_last_added_imageview)
       view.item_last_added_date_textView.text = item.date.toString()
       view.item_last_added_subtitle_textView.text = item.title
-
       view.setOnClickListener {
-        if(onClickListener != null) {
           onClickListener?.invoke(item)
-        }
       }
     }
   }

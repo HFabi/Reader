@@ -10,16 +10,15 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:name=".ReaderApplication">
-        <activity android:name=".activities.mainactivity.MainActivity">
+        <activity android:name=".activities.mainactivity.MainActivity"
+        android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activities.base.BaseActivity">
 
-        </activity>
     </application>
 
 </manifest>

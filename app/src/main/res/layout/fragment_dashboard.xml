@@ -177,8 +177,8 @@
           android:id="@+id/dashboard_chipgroup"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginStart="16dp"
-          android:layout_marginEnd="16dp"
+          android:paddingStart="16dp"
+          android:paddingEnd="16dp"
           android:layout_marginTop="8dp"
           app:chipSpacingHorizontal="8dp"
           app:chipSpacingVertical="8dp"
@@ -191,17 +191,6 @@
           android:layout_height="100dp"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/dashboard_chipgroup"
-          />
-
-      <Button
-          android:id="@+id/dashboard_detail_button"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="8dp"
-          android:layout_marginTop="8dp"
-          android:text="Detail"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent"
           />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

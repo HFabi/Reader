@@ -5,19 +5,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.mainactivity.MainActivity"
     android:background="@android:color/holo_blue_bright"
+    tools:context=".activities.mainactivity.MainActivity"
     >
 
-  <FrameLayout
-      android:id="@+id/main_container_framelayout"
+  <!--<FrameLayout-->
+  <!--android:id="@+id/main_container_framelayout"-->
+  <!--android:layout_width="match_parent"-->
+  <!--android:layout_height="match_parent"-->
+  <!--app:layout_constraintBottom_toBottomOf="parent"-->
+  <!--app:layout_constraintEnd_toEndOf="parent"-->
+  <!--app:layout_constraintStart_toStartOf="parent"-->
+  <!--app:layout_constraintTop_toTopOf="parent"-->
+  <!--/>-->
+
+  <fragment
+      android:id="@+id/nav_host_fragment"
+      android:name="androidx.navigation.fragment.NavHostFragment"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
+      app:defaultNavHost="true"
+      app:navGraph="@navigation/navigation_graph"
       />
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

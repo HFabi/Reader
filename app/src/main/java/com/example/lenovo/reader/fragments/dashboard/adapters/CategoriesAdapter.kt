@@ -1,9 +1,7 @@
-package com.example.lenovo.reader.fragments.dashboard
+package com.example.lenovo.reader.fragments.dashboard.adapters
 
 import android.content.Context
-import android.content.res.Resources.Theme
 import android.view.View
-import androidx.core.content.ContextCompat
 import com.example.lenovo.reader.R
 import com.example.model.models.Category
 import com.google.android.material.chip.Chip
@@ -27,6 +25,8 @@ class CategoriesAdapter(
         setRippleColorResource(R.color.colorAccent)
         setChipBackgroundColorResource(R.color.colorWhite)
         setChipStrokeColorResource(R.color.colorPrimaryDark)
+//        chipStartPadding = 2.0f
+//        chipEndPadding = 2.0f
       }
       chip.setOnClickListener(onClickListener)
       chipGroup.addView(chip)

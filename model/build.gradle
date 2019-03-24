@@ -5,13 +5,13 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion androidCompileSDKVersion
 
 
 
     defaultConfig {
-        minSdkVersion 22
-        targetSdkVersion 28
+        minSdkVersion androidMinSDKVersion
+        targetSdkVersion androidTargetSDKVersion
         versionCode 1
         versionName "1.0"
 
@@ -31,23 +31,23 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     def libs = rootProject.ext.libs
+    def testLibs = rootProject.ext.testLibs
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+    testImplementation testLibs.junit
+    androidTestImplementation testLibs.junit
+    androidTestImplementation testLibs.expresso
 
-    implementation libs.appcompat
     implementation libs.retrofit
     implementation libs.retrofitGson
 
-    implementation libs.dagger
+    api libs.dagger
     kapt libs.daggerCompiler
-    implementation libs.daggerAndroid
+    api libs.daggerAndroid
     kapt libs.daggerAndroidProcessor
-    implementation libs.daggerSupport
+    api libs.daggerSupport
 
-    implementation libs.rxJava
-    implementation libs.rxAndroid
+    api libs.rxJava
+    api libs.rxAndroid
 
-    implementation libs.kotlinStdlib
+    api libs.kotlinStdlib
 }

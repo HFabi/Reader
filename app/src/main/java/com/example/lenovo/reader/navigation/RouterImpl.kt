@@ -2,81 +2,48 @@ package com.example.lenovo.reader.navigation
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.fragment.NavHostFragment
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.activities.base.BaseActivity
-import com.example.lenovo.reader.activities.mainactivity.MainActivity
-import com.example.lenovo.reader.fragments.about.AboutFragment
-import com.example.lenovo.reader.fragments.addarticle.AddArticleFragment
-import com.example.lenovo.reader.fragments.article.ArticleFragment
-import com.example.lenovo.reader.fragments.dashboard.DashboardBuilder
-import com.example.lenovo.reader.fragments.search.SearchFragment
-import com.example.lenovo.reader.fragments.settings.SettingsFragment
+import com.example.lenovo.reader.fragments.bottomnavigation.BottomNavigationFragment
 import javax.inject.Inject
 
 class RouterImpl @Inject constructor(var baseActivity: BaseActivity) : Router {
 
   override fun goBack() {
+    //todo: adapt
     baseActivity.onBackPressed()
   }
 
-  override fun goToDashboard() {
-    transit(DashboardBuilder().build())
+  override fun goToDashboard(currentFragment: Fragment) {
+    NavHostFragment.findNavController(currentFragment).navigate(R.id.dashboardFragment)
+
   }
 
-  override fun goToSettings() {
-    transit(SettingsFragment())
+  override fun goToSettings(currentFragment: Fragment) {
+    NavHostFragment.findNavController(currentFragment).navigate(R.id.settingsFragment)
   }
 
-  override fun goToArticle() {
-    transit(ArticleFragment())
+  override fun goToArticle(currentFragment: Fragment) {
+    NavHostFragment.findNavController(currentFragment).navigate(R.id.articleFragment)
   }
 
-  override fun goToAddArticle() {
-    transit(AddArticleFragment())
+  override fun goToAddArticle(currentFragment: Fragment) {
+    NavHostFragment.findNavController(currentFragment).navigate(R.id.addArticleFragment)
   }
 
-  override fun goToSearch() {
-    transit(SearchFragment())
+  override fun goToSearch(currentFragment: Fragment) {
+//    NavHostFragment.findNavController(currentFragment).navigate(R.id.searchFragment)
+    NavHostFragment.findNavController(currentFragment).navigate(R.id.action_dashboardFragment_to_searchFragment)
   }
 
-  override fun goToAbout() {
-    transit(AboutFragment())
+  override fun goToAbout(currentFragment: Fragment) {
+    NavHostFragment.findNavController(currentFragment).navigate(R.id.aboutFragment)
   }
 
-  private fun transit(
-    fragment: Fragment,
-    addToBackstack: Boolean = true
-  ) {
-    if (addToBackstack) {
-      baseActivity.supportFragmentManager
-          .beginTransaction()
-          .replace(baseActivity.provideContainerId(), fragment)
-          .addToBackStack(fragment.javaClass.simpleName)
-          .commit()
-    } else {
-      baseActivity.supportFragmentManager
-          .beginTransaction()
-          .replace(baseActivity.provideContainerId(), fragment)
-          .commit()
+  override fun showBottomNavigation() {
+    with(BottomNavigationFragment()) {
+      show(baseActivity.supportFragmentManager, javaClass.simpleName)
     }
   }
-
-  fun transit(
-    fragment: Fragment,
-    enterAnimation: Int,
-    exitAnimation: Int,
-    addToBackstack: Boolean = true
-  ) {
-    var transaction: FragmentTransaction = baseActivity.supportFragmentManager.beginTransaction();
-
-    if (enterAnimation != null && exitAnimation != null) {
-      transaction.setCustomAnimations(enterAnimation, exitAnimation)
-    }
-    transaction.replace(baseActivity.provideContainerId(), fragment)
-    if (addToBackstack) {
-      transaction.addToBackStack(fragment.javaClass.simpleName);
-    }
-    transaction.commitAllowingStateLoss();
-  }
-
 }

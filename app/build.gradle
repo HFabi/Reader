@@ -4,12 +4,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
 android {
-    compileSdkVersion 28
+    compileSdkVersion androidCompileSDKVersion
     defaultConfig {
         applicationId "com.example.lenovo.reader"
-        minSdkVersion 22
-        targetSdkVersion 28
+        minSdkVersion androidMinSDKVersion
+        targetSdkVersion androidTargetSDKVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -23,30 +25,28 @@ android {
 }
 
 dependencies {
+    implementation project(':model')
     def libs = rootProject.ext.libs
+    def testLibs = rootProject.ext.testLibs
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+    testImplementation testLibs.junit
+    androidTestImplementation testLibs.junit
+    androidTestImplementation testLibs.expresso
 
-//    implementation libs.kotlinStdlib
     implementation libs.appcompat
     implementation libs.core
     implementation libs.constraintLayout
     implementation libs.material
 
-    implementation libs.rxJava
-    implementation libs.rxAndroid
+    implementation libs.navFragment
+    implementation libs.navUi
 
-    implementation libs.dagger
     kapt libs.daggerCompiler
-    implementation libs.daggerAndroid
     kapt libs.daggerAndroidProcessor
-    implementation libs.daggerSupport
 
     implementation libs.picasso
 
     implementation libs.timber
-    implementation project(':model')
+
 }
