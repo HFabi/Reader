@@ -1,10 +1,10 @@
 package com.example.model.models
 
-import java.util.Date
+import java.util.*
 
 data class LastAddedArticle(
-  var id: Int,
-  var title: String,
-  var date: Date,
-  var imagePath: String
+    var id: Int,
+    var title: String,
+    var addedAt: Date,
+    var imagePath: String
 )

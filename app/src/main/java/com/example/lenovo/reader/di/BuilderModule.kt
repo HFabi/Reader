@@ -24,9 +24,8 @@ import dagger.android.ContributesAndroidInjector
 abstract class ActivityBuilder {
 
   @ActivityScope
-  @ContributesAndroidInjector(modules = [MainModule::class])
+  @ContributesAndroidInjector(modules = [MainModule::class, ControllerModule::class, FragmentBuilder::class])
   abstract fun mainInjector(): MainActivity
-
 }
 
 @Module

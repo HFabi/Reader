@@ -37,7 +37,7 @@ class FavoriteArticleAdapter() : BaseAdapter<FavoriteArticle, FavoriteArticleVie
     override fun bindTo(item: FavoriteArticle) {
       //item_favorite_imageview
       view.item_favorite_title_textview.text = item.title
-      view.item_favorite_subtile_textview.text = item.subtitle
+      view.item_favorite_subtile_textview.text = item.excerpt
       view.setOnClickListener {
         onClickListener?.invoke(item)
       }

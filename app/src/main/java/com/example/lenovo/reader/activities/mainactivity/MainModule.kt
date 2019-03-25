@@ -11,7 +11,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 
-@Module(includes = [ControllerModule::class, FragmentBuilder::class])
+@Module()
 abstract class MainModule {
 
   @Binds
