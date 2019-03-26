@@ -2,18 +2,17 @@ package com.example.model.datastores
 
 import com.example.model.models.LastAddedArticle
 import io.reactivex.Single
-import java.util.*
 
 interface ArticlesDataStore {
 
-    fun getLastAddedArticles(count: Int): Single<List<LastAddedArticle>>
+  fun getLastAddedArticles(count: Int): Single<List<LastAddedArticle>>
 
-    fun getFavoriteArticles()
+  fun getFavoriteArticles()
 
-    fun getCategories()
+  fun getCategories()
 
-    fun getArticles(count: Int)
+  fun getArticles(count: Int)
 
-    fun getArticle(id: Int)
+  fun getArticle(id: Int)
 
 }

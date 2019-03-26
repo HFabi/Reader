@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_about.about_toolbar
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_about)
-class AboutFragment: BaseFragment() {
+class AboutFragment : BaseFragment() {
 
   @Inject
   lateinit var router: Router
@@ -28,7 +28,7 @@ class AboutFragment: BaseFragment() {
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    when(item.itemId) {
+    when (item.itemId) {
       android.R.id.home -> router.goBack()
     }
     return super.onOptionsItemSelected(item)

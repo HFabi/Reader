@@ -4,6 +4,6 @@ import dagger.android.support.DaggerAppCompatActivity
 
 abstract class BaseActivity : DaggerAppCompatActivity() {
 
-    abstract fun provideContainerId(): Int
+  abstract fun provideContainerId(): Int
 
 }

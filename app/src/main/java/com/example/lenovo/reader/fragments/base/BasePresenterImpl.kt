@@ -4,6 +4,6 @@ import io.reactivex.disposables.CompositeDisposable
 
 open class BasePresenterImpl : BasePresenter {
 
-    var compositeDisposable: CompositeDisposable = CompositeDisposable()
+  var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
 }

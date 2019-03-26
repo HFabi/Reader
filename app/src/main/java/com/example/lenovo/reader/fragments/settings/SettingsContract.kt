@@ -6,6 +6,6 @@ interface SettingsView {
 
 }
 
-interface SettingsPresenter : BasePresenter{
+interface SettingsPresenter : BasePresenter {
 
 }

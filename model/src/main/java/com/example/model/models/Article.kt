@@ -15,6 +15,4 @@ class Article(
   var addedAt: Date,
   var isRead: Boolean,
   var isFavorite: Boolean
-) {
-
-}
+)

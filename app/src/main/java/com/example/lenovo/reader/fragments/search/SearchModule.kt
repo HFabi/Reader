@@ -11,10 +11,8 @@ abstract class SearchModule {
   @FragmentScope
   abstract fun provideSearchPresenter(searchPresenterImpl: SearchPresenterImpl): SearchPresenter
 
-
   @Binds
   @FragmentScope
   abstract fun provideSearchView(searchFragment: SearchFragment): SearchView
-
 
 }

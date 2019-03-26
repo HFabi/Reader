@@ -43,7 +43,11 @@ abstract class BaseFragment : DaggerFragment() {
     providePresenter()?.let { lifecycle.removeObserver(it) }
   }
 
-  fun setUpToolbar(toolbar: Toolbar?, showUpNavigation: Boolean, hasOptionMenu: Boolean = true) {
+  fun setUpToolbar(
+    toolbar: Toolbar?,
+    showUpNavigation: Boolean,
+    hasOptionMenu: Boolean = true
+  ) {
     (activity as BaseActivity).setSupportActionBar(toolbar)
     (activity as BaseActivity).supportActionBar?.apply {
       setDisplayHomeAsUpEnabled(showUpNavigation)
@@ -52,10 +56,15 @@ abstract class BaseFragment : DaggerFragment() {
     setHasOptionsMenu(hasOptionMenu)
   }
 
-  fun setUpToolbar(toolbar: Toolbar?, upIndicatorRes: Int, titleRes: Int, hasOptionMenu: Boolean = true) {
+  fun setUpToolbar(
+    toolbar: Toolbar?,
+    upIndicatorRes: Int,
+    titleRes: Int,
+    hasOptionMenu: Boolean = true
+  ) {
     (activity as BaseActivity).setSupportActionBar(toolbar)
     (activity as BaseActivity).supportActionBar?.apply {
-      title  = getString(titleRes)
+      title = getString(titleRes)
       setDisplayHomeAsUpEnabled(true)
       setDisplayShowHomeEnabled(true)
       setHomeAsUpIndicator(upIndicatorRes)

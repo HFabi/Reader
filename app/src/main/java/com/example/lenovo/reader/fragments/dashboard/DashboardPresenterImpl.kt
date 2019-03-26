@@ -11,40 +11,39 @@ import javax.inject.Inject
 
 class DashboardPresenterImpl @Inject constructor() : BasePresenterImpl(), DashboardPresenter {
 
-    @Inject
-    lateinit var view: DashboardView
-    @Inject
-    lateinit var getLastAddedArticlesInteractor: GetLastAddedArticlesInteractor
-    @Inject
-    lateinit var getFavoriteArticlesInteractor: GetFavoriteArticlesInteractor
-    @Inject
-    lateinit var getCategoriesInteractor: GetCategoriesInteractor
+  @Inject
+  lateinit var view: DashboardView
+  @Inject
+  lateinit var getLastAddedArticlesInteractor: GetLastAddedArticlesInteractor
+  @Inject
+  lateinit var getFavoriteArticlesInteractor: GetFavoriteArticlesInteractor
+  @Inject
+  lateinit var getCategoriesInteractor: GetCategoriesInteractor
 
-    override fun onCreate() {
-        super<BasePresenterImpl>.onCreate()
-        Log.d("LOG", "DashboardPresenter onCreate")
-        initializeView()
-    }
+  override fun onCreate() {
+    super<BasePresenterImpl>.onCreate()
+    Log.d("LOG", "DashboardPresenter onCreate")
+    initializeView()
+  }
 
-
-    fun initializeView() {
-        getLastAddedArticlesInteractor.execute()
-            .schedule()
-            .bind(compositeDisposable)
-            .subscribe{
-                articles -> view.updateLastAddedArticles(articles)
-            }
-        getFavoriteArticlesInteractor.execute()
-            .schedule()
-            .bind(compositeDisposable)
-            .subscribe{
-                favorites -> view.updateFavoriteArticles(favorites)
-            }
-        getCategoriesInteractor.execute()
-            .schedule()
-            .bind(compositeDisposable)
-            .subscribe{
-                categories -> view.updateCategories(categories)
-            }
-    }
+  fun initializeView() {
+    getLastAddedArticlesInteractor.execute()
+        .schedule()
+        .bind(compositeDisposable)
+        .subscribe { articles ->
+          view.updateLastAddedArticles(articles)
+        }
+    getFavoriteArticlesInteractor.execute()
+        .schedule()
+        .bind(compositeDisposable)
+        .subscribe { favorites ->
+          view.updateFavoriteArticles(favorites)
+        }
+    getCategoriesInteractor.execute()
+        .schedule()
+        .bind(compositeDisposable)
+        .subscribe { categories ->
+          view.updateCategories(categories)
+        }
+  }
 }

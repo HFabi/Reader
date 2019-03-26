@@ -14,8 +14,4 @@ class MainActivity : BaseActivity() {
 
   override fun provideContainerId(): Int = R.id.nav_host_fragment //TODO: this is not correct
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-  }
-
 }

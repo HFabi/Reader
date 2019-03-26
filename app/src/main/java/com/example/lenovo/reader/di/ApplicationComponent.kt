@@ -7,7 +7,6 @@ import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
-
 @Component(
     modules = [AndroidInjectionModule::class, ApplicationModule::class, ActivityBuilder::class, DataModule::class]
 )

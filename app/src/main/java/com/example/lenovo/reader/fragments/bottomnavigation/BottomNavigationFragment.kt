@@ -10,54 +10,52 @@ import com.example.lenovo.reader.R
 import com.example.lenovo.reader.navigation.Router
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.fragment_bottomsheet.*
+import kotlinx.android.synthetic.main.fragment_bottomsheet.dashboard_navigationview
 import javax.inject.Inject
 
 class BottomNavigationFragment @Inject constructor() : BottomSheetDialogFragment() {
 
+  @Inject
+  lateinit var router: Router
 
-    @Inject
-    lateinit var router: Router
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    return inflater.inflate(R.layout.fragment_bottomsheet, container, false)
+  }
 
+  override fun onCancel(dialog: DialogInterface) {
+    super.onCancel(dialog)
+  }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_bottomsheet, container, false)
-    }
+  override fun onDismiss(dialog: DialogInterface) {
+    super.onDismiss(dialog)
+  }
 
-    override fun onCancel(dialog: DialogInterface) {
-        super.onCancel(dialog)
-    }
-
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-    }
-
-    override fun onViewCreated(
-        view: View,
-        savedInstanceState: Bundle?
-    ) {
-        super.onViewCreated(view, savedInstanceState)
-        dashboard_navigationview.setNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.action_bottom_settings -> {
-                    router.goToSettings(this)
-                    dismiss()
-                }
-                R.id.action_bottom_about -> {
-                    router.goToAbout(this)
-                    dismiss()
-                }
-            }
-            true
+  override fun onViewCreated(
+    view: View,
+    savedInstanceState: Bundle?
+  ) {
+    super.onViewCreated(view, savedInstanceState)
+    dashboard_navigationview.setNavigationItemSelectedListener {
+      when (it.itemId) {
+        R.id.action_bottom_settings -> {
+          router.goToSettings(this)
+          dismiss()
         }
+        R.id.action_bottom_about -> {
+          router.goToAbout(this)
+          dismiss()
+        }
+      }
+      true
     }
+  }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        AndroidSupportInjection.inject(this)
-    }
+  override fun onAttach(context: Context) {
+    super.onAttach(context)
+    AndroidSupportInjection.inject(this)
+  }
 }

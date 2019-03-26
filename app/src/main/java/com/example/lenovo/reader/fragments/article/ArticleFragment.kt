@@ -46,12 +46,12 @@ class ArticleFragment : BaseFragment(), ArticleView {
 
     article_appbarlayout.addOnOffsetChangedListener(
         AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-          if (verticalOffset == -1*article_appbarlayout.totalScrollRange && !showActionFavorite) {
+          if (verticalOffset == -1 * article_appbarlayout.totalScrollRange && !showActionFavorite) {
             showActionFavorite = true
             activity?.invalidateOptionsMenu()
             Log.d("off", "invalidate MENU")
           }
-          if (verticalOffset != -1*article_appbarlayout.totalScrollRange && showActionFavorite) {
+          if (verticalOffset != -1 * article_appbarlayout.totalScrollRange && showActionFavorite) {
             showActionFavorite = false
             activity?.invalidateOptionsMenu()
             Log.d("off", "invalidate MENU")
@@ -91,8 +91,8 @@ class ArticleFragment : BaseFragment(), ArticleView {
     when (item.itemId) {
       android.R.id.home -> router.goBack()
       R.id.action_article_favorite -> onFavoriteButtonClicked()
-      R.id.action_article_share -> Log.d("TODO","NOT IMPLEMENTED") //TODO
-      R.id.action_article_delete -> Log.d("TODO","NOT IMPLEMENTED") //TODO
+      R.id.action_article_share -> Log.d("TODO", "NOT IMPLEMENTED") //TODO
+      R.id.action_article_delete -> Log.d("TODO", "NOT IMPLEMENTED") //TODO
     }
     return super.onOptionsItemSelected(item)
   }

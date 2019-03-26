@@ -7,23 +7,18 @@ import timber.log.Timber
 
 class ReaderApplication : DaggerApplication() {
 
-    override fun onCreate() {
-        super.onCreate()
-        setUpTimber()
-    }
+  override fun onCreate() {
+    super.onCreate()
+    setUpTimber()
+  }
 
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        return DaggerApplicationComponent.builder().create(this)
-    }
+  override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
+    DaggerApplicationComponent.builder().create(this)
 
-    private fun setUpTimber() {
-        Timber.plant(object : Timber.DebugTree() {
-            override fun createStackElementTag(element: StackTraceElement): String? {
-                return super.createStackElementTag(element) + ", " +
-                        element.className + ", " +
-                        element.methodName + ", " +
-                        element.lineNumber
-            }
-        })
-    }
+  private fun setUpTimber() {
+    Timber.plant(object : Timber.DebugTree() {
+      override fun createStackElementTag(element: StackTraceElement): String? =
+        "${super.createStackElementTag(element)}, ${element.methodName}:: ${element.lineNumber}"
+    })
+  }
 }

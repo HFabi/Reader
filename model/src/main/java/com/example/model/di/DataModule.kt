@@ -9,8 +9,8 @@ import javax.inject.Singleton
 @Module
 abstract class DataModule {
 
-    @Binds
-    @Singleton
-    abstract fun provideArticlesDataStore(articlesDataStoreImpl: ArticlesDataStoreImpl): ArticlesDataStore
+  @Binds
+  @Singleton
+  abstract fun provideArticlesDataStore(articlesDataStoreImpl: ArticlesDataStoreImpl): ArticlesDataStore
 
 }

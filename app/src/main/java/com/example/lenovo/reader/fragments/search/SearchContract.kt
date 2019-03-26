@@ -6,6 +6,6 @@ interface SearchView {
 
 }
 
-interface SearchPresenter: BasePresenter {
+interface SearchPresenter : BasePresenter {
 
 }

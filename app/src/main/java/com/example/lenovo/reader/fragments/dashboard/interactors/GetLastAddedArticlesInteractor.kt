@@ -4,5 +4,5 @@ import com.example.model.models.LastAddedArticle
 import io.reactivex.Single
 
 interface GetLastAddedArticlesInteractor {
-    fun execute(): Single<List<LastAddedArticle>>
+  fun execute(): Single<List<LastAddedArticle>>
 }

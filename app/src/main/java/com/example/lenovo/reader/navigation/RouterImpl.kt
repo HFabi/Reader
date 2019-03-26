@@ -1,7 +1,6 @@
 package com.example.lenovo.reader.navigation
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.NavHostFragment
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.activities.base.BaseActivity
@@ -16,29 +15,35 @@ class RouterImpl @Inject constructor(var baseActivity: BaseActivity) : Router {
   }
 
   override fun goToDashboard(currentFragment: Fragment) {
-    NavHostFragment.findNavController(currentFragment).navigate(R.id.dashboardFragment)
+    NavHostFragment.findNavController(currentFragment)
+        .navigate(R.id.dashboardFragment)
 
   }
 
   override fun goToSettings(currentFragment: Fragment) {
-    NavHostFragment.findNavController(currentFragment).navigate(R.id.settingsFragment)
+    NavHostFragment.findNavController(currentFragment)
+        .navigate(R.id.settingsFragment)
   }
 
   override fun goToArticle(currentFragment: Fragment) {
-    NavHostFragment.findNavController(currentFragment).navigate(R.id.articleFragment)
+    NavHostFragment.findNavController(currentFragment)
+        .navigate(R.id.articleFragment)
   }
 
   override fun goToAddArticle(currentFragment: Fragment) {
-    NavHostFragment.findNavController(currentFragment).navigate(R.id.addArticleFragment)
+    NavHostFragment.findNavController(currentFragment)
+        .navigate(R.id.addArticleFragment)
   }
 
   override fun goToSearch(currentFragment: Fragment) {
 //    NavHostFragment.findNavController(currentFragment).navigate(R.id.searchFragment)
-    NavHostFragment.findNavController(currentFragment).navigate(R.id.action_dashboardFragment_to_searchFragment)
+    NavHostFragment.findNavController(currentFragment)
+        .navigate(R.id.action_dashboardFragment_to_searchFragment)
   }
 
   override fun goToAbout(currentFragment: Fragment) {
-    NavHostFragment.findNavController(currentFragment).navigate(R.id.aboutFragment)
+    NavHostFragment.findNavController(currentFragment)
+        .navigate(R.id.aboutFragment)
   }
 
   override fun showBottomNavigation() {

@@ -9,12 +9,8 @@ import javax.inject.Singleton
 @Module()
 abstract class ApplicationModule {
 
-    @Binds
-    @Singleton
-    abstract fun provideApplicationContext(application: ReaderApplication): Context
-
-    @Binds
-    @Singleton
-    abstract fun provideMyClass(mc: MyClass): MyClassInterface
+  @Binds
+  @Singleton
+  abstract fun provideApplicationContext(application: ReaderApplication): Context
 
 }

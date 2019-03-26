@@ -6,22 +6,17 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import androidx.annotation.ContentView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import androidx.recyclerview.widget.LinearSnapHelper
-
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.activities.base.BaseActivity
 import com.example.lenovo.reader.annotations.Layout
 import com.example.lenovo.reader.fragments.base.BaseFragment
-
 import com.example.lenovo.reader.fragments.base.BasePresenter
 import com.example.lenovo.reader.fragments.dashboard.adapters.CategoriesAdapter
 import com.example.lenovo.reader.fragments.dashboard.adapters.FavoriteArticleAdapter
 import com.example.lenovo.reader.fragments.dashboard.adapters.LastAddedArticleAdapter
-
 import com.example.lenovo.reader.navigation.Router
 import com.example.model.models.Category
 import com.example.model.models.FavoriteArticle
@@ -33,8 +28,8 @@ import kotlinx.android.synthetic.main.fragment_dashboard.dashboard_floatingactio
 import kotlinx.android.synthetic.main.fragment_dashboard.dashboard_last_added_recycler
 import javax.inject.Inject
 
-//@Layout(R.layout.fragment_dashboard)
-@ContentView(R.layout.fragment_dashboard)
+@Layout(R.layout.fragment_dashboard)
+//@ContentView(R.layout.fragment_dashboard)
 class DashboardFragment : BaseFragment(), DashboardView {
 
   @Inject
@@ -73,7 +68,8 @@ class DashboardFragment : BaseFragment(), DashboardView {
 
     favoriteArticleAdapter = FavoriteArticleAdapter()
     dashboard_favorites_recycler.adapter = favoriteArticleAdapter
-    dashboard_favorites_recycler.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false)
+    dashboard_favorites_recycler.layoutManager =
+      GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false)
     dashboard_favorites_recycler.isNestedScrollingEnabled = false
     favoriteArticleAdapter.addListener { router.goToArticle(this) }
 

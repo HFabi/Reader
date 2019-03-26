@@ -25,11 +25,11 @@ fun Completable.schedule(scheduler: Scheduler = Schedulers.io()): Completable {
 }
 
 fun <T> Single<T>.bind(compositeDisposable: CompositeDisposable): Single<T> {
-  return doOnSubscribe{disposable -> compositeDisposable.add(disposable)}
+  return doOnSubscribe { disposable -> compositeDisposable.add(disposable) }
 }
 
 fun <T> Observable<T>.bind(compositeDisposable: CompositeDisposable): Observable<T> {
-  return doOnSubscribe{disposable -> compositeDisposable.add(disposable)}
+  return doOnSubscribe { disposable -> compositeDisposable.add(disposable) }
 }
 
 //fun <T> Flowable<T>.bind(compositeDisposable: CompositeDisposable): Flowable<T> {
@@ -37,5 +37,5 @@ fun <T> Observable<T>.bind(compositeDisposable: CompositeDisposable): Observable
 //}
 
 fun Completable.bind(compositeDisposable: CompositeDisposable): Completable {
-  return doOnSubscribe{disposable -> compositeDisposable.add(disposable)}
+  return doOnSubscribe { disposable -> compositeDisposable.add(disposable) }
 }

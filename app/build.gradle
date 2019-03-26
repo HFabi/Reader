@@ -1,56 +1,53 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
-    compileSdkVersion androidCompileSDKVersion
-    defaultConfig {
-        applicationId "com.example.lenovo.reader"
-        minSdkVersion androidMinSDKVersion
-        targetSdkVersion androidTargetSDKVersion
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  compileSdkVersion androidCompileSDKVersion
+
+  defaultConfig {
+    applicationId "com.example.lenovo.reader"
+    minSdkVersion androidMinSDKVersion
+    targetSdkVersion androidTargetSDKVersion
+    versionCode appVersionCode
+    versionName appVersionName
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+  }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
 }
 
 dependencies {
-    implementation project(':model')
-    def libs = rootProject.ext.libs
-    def testLibs = rootProject.ext.testLibs
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation project(':model')
+  def libs = rootProject.ext.libs
+  def testLibs = rootProject.ext.testLibs
 
-    testImplementation testLibs.junit
-    androidTestImplementation testLibs.junit
-    androidTestImplementation testLibs.expresso
+  testImplementation testLibs.junit
+  androidTestImplementation testLibs.junit
+  androidTestImplementation testLibs.expresso
 
-    implementation libs.appcompat
-    implementation libs.core
-    implementation libs.constraintLayout
-    implementation libs.material
+  implementation libs.appcompat
+  implementation libs.coreKtx
+  implementation libs.constraintLayout
+  implementation libs.material
 
-    implementation libs.navFragment
-    implementation libs.navUi
+  implementation libs.navFragment
+  implementation libs.navUi
 
-    kapt libs.daggerCompiler
-    kapt libs.daggerAndroidProcessor
+  kapt libs.daggerCompiler
+  kapt libs.daggerAndroidProcessor
 
-    implementation libs.picasso
+  implementation libs.picasso
 
-    implementation libs.timber
-
+  implementation libs.timber
 }

@@ -4,5 +4,5 @@ import com.example.model.models.FavoriteArticle
 import io.reactivex.Single
 
 interface GetFavoriteArticlesInteractor {
-    fun execute(): Single<List<FavoriteArticle>>
+  fun execute(): Single<List<FavoriteArticle>>
 }

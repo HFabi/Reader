@@ -3,7 +3,6 @@ package com.example.lenovo.reader.fragments.article
 import com.example.lenovo.reader.annotations.FragmentScope
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 
 @Module
 abstract class ArticleModule {

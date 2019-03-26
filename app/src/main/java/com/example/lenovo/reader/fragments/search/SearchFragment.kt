@@ -7,7 +7,7 @@ import com.example.lenovo.reader.fragments.base.BasePresenter
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_search)
-class SearchFragment: BaseFragment(), SearchView {
+class SearchFragment : BaseFragment(), SearchView {
 
   @Inject
   lateinit var searchPresenter: SearchPresenter

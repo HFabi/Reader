@@ -4,5 +4,5 @@ import com.example.model.models.Category
 import io.reactivex.Single
 
 interface GetCategoriesInteractor {
-    fun execute(): Single<List<Category>>
+  fun execute(): Single<List<Category>>
 }
