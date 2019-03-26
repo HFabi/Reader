@@ -17,6 +17,7 @@
       android:background="@android:color/darker_gray"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
+      android:foreground="?attr/selectableItemBackground"
       />
 
   <TextView
@@ -37,6 +38,7 @@
       android:id="@+id/item_last_added_subtitle_textView"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:maxWidth="156dp"
       android:layout_marginStart="16dp"
       android:layout_marginTop="2dp"
       android:ellipsize="end"

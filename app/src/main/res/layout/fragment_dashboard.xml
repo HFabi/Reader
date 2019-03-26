@@ -105,7 +105,7 @@
       <androidx.recyclerview.widget.RecyclerView
           android:id="@+id/dashboard_last_added_recycler"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
+          android:layout_height="168dp"
           android:layout_marginTop="8dp"
           android:clipToPadding="false"
           android:paddingStart="8dp"
@@ -140,7 +140,7 @@
       <androidx.recyclerview.widget.RecyclerView
           android:id="@+id/dashboard_favorites_recycler"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
+          android:layout_height="146dp"
           android:layout_marginTop="8dp"
           android:clipToPadding="false"
           android:paddingStart="8dp"
@@ -179,7 +179,7 @@
           android:layout_height="wrap_content"
           android:paddingStart="16dp"
           android:paddingEnd="16dp"
-          android:layout_marginTop="8dp"
+          android:layout_marginTop="16dp"
           app:chipSpacingHorizontal="8dp"
           app:chipSpacingVertical="8dp"
           app:layout_constraintStart_toStartOf="parent"

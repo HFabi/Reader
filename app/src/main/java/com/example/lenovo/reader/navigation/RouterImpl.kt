@@ -1,6 +1,8 @@
 package com.example.lenovo.reader.navigation
 
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
+import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.fragment.NavHostFragment
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.activities.base.BaseActivity

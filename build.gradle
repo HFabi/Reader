@@ -33,7 +33,7 @@ ext {
 
   //Android
   androidCompileSDKVersion = 28
-  androidMinSDKVersion = 19
+  androidMinSDKVersion = 21
   androidTargetSDKVersion = androidCompileSDKVersion
 
   //Library versions

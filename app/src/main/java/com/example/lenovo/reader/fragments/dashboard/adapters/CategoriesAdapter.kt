@@ -1,6 +1,7 @@
 package com.example.lenovo.reader.fragments.dashboard.adapters
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import com.example.lenovo.reader.R
 import com.example.model.models.Category
@@ -18,19 +19,15 @@ class CategoriesAdapter(
     onChipClicked((it as Chip).text as String)
   }
 
-  fun updateViews() {
+  private fun updateViews() {
     itemList.forEach {
-      val chip: Chip = Chip(context).apply {
+      (LayoutInflater.from(context).inflate(
+          R.layout.chip_category, chipGroup, false
+      ) as Chip).apply {
         text = it.name
-        setRippleColorResource(R.color.colorAccent)
-        chipStrokeWidth = 1.0f
-        setChipBackgroundColorResource(R.color.colorWhite)
-        setChipStrokeColorResource(R.color.colorPrimaryDark)
-//        chipStartPadding = 2.0f
-//        chipEndPadding = 2.0f
+        setOnClickListener(onClickListener)
+        chipGroup.addView(this)
       }
-      chip.setOnClickListener(onClickListener)
-      chipGroup.addView(chip)
     }
   }
 
