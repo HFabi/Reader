@@ -5,5 +5,5 @@ import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy
 
 @Scope
-@Retention(RetentionPolicy.RUNTIME)
+@kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
 annotation class FragmentScope

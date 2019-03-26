@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Reader</string>
+  <string name="app_name">Reader</string>
   <string name="search">Suchen</string>
   <string name="home">Home</string>
   <string name="settings">Einstellungen</string>
@@ -15,5 +15,5 @@
   <string name="favorites">Favoriten</string>
   <string name="categories">Kategorien</string>
   <string name="show_all">Alle anzeigen</string>
-    <string name="category">Kategorie</string>
+  <string name="category">Kategorie</string>
 </resources>
