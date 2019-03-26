@@ -1,18 +1,17 @@
 package com.example.lenovo.reader.di
 
 import com.example.lenovo.reader.ReaderApplication
-import com.example.lenovo.reader.annotations.ApplicationScope
-import com.example.model.di.DataComponent
 import com.example.model.di.DataModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
+
 @Component(
     modules = [AndroidInjectionModule::class, ApplicationModule::class, ActivityBuilder::class, DataModule::class]
 )
-@ApplicationScope
+@Singleton
 interface ApplicationComponent : AndroidInjector<ReaderApplication> {
 
   @Component.Builder
