@@ -49,5 +49,4 @@ dependencies {
 
   implementation libs.picasso
 
-  implementation libs.timber
 }

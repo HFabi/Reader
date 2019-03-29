@@ -28,9 +28,6 @@ dependencies {
   androidTestImplementation testLibs.junit
   androidTestImplementation testLibs.expresso
 
-  implementation libs.retrofit
-  implementation libs.retrofitGson
-
   api libs.dagger
   kapt libs.daggerCompiler
   api libs.daggerAndroid
@@ -39,6 +36,16 @@ dependencies {
 
   api libs.rxJava
   api libs.rxAndroid
+
+  api libs.retrofit
+  api libs.retrofitRxAdapter
+  api libs.retrofitMoshiAdapter
+  api libs.okHttp
+  api libs.okHttpLogging
+  api libs.moshi
+  kapt libs.moshiCodegen
+
+  implementation libs.timber
 
   api libs.kotlinStdlib
 }

@@ -19,3 +19,15 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+### Retrofit
+# R8 rules are already included
+
+### OkHttp
+# R8 rules are already included
+
+### Okio
+# R8 rules are already included
+
+### Moshi
+# R8 rules are already included

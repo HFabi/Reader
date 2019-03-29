@@ -49,6 +49,11 @@ ext {
   picassoVersion = '2.71828'
   timberVersion = '4.7.1'
   navigationVersion = '2.1.0-alpha01'
+  retrofitVersion = '2.5.0'
+  moshiVersion = '1.8.0'
+  okHttpVersion = '3.14.0'
+  retrofitMoshiAdapterVersion = '2.5.0'
+  okHttpLoggingVersion = '3.14.0'
 
   //Test library versions
   junitVersion = '4.12'
@@ -75,14 +80,17 @@ ext {
       rxJava: "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
       rxAndroid: "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
 
-      retrofit: "com.squareup.retrofit2:retrofit:$retrofitVersion",
-      retrofitGson: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
-
-      okhttp: "com.squareup.okhttp3:okhttp:$okHttpVersion",
-
       picasso: "com.squareup.picasso:picasso:$picassoVersion",
 
       timber: "com.jakewharton.timber:timber:$timberVersion",
+
+      retrofit: "com.squareup.retrofit2:retrofit:$retrofitVersion",
+      retrofitRxAdapter : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
+      retrofitMoshiAdapter : "com.squareup.retrofit2:converter-moshi:$retrofitMoshiAdapterVersion",
+      okHttp :  "com.squareup.okhttp3:okhttp:$okHttpVersion",
+      okHttpLogging :  "com.squareup.okhttp3:logging-interceptor:$okHttpLoggingVersion",
+      moshi : "com.squareup.moshi:moshi-kotlin:$moshiVersion",
+      moshiCodegen : "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion",
   ]
 
   testLibs = [
