@@ -10,7 +10,7 @@ interface Router {
 
   fun goToSettings(currentFragment: Fragment)
 
-  fun goToArticle(currentFragment: Fragment)
+  fun goToArticle(currentFragment: Fragment, id: Int)
 
   fun goToAddArticle(currentFragment: Fragment)
 

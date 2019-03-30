@@ -9,13 +9,15 @@ class ReaderApplication : DaggerApplication() {
 
   override fun onCreate() {
     super.onCreate()
-    setUpTimber()
+    if (BuildConfig.DEBUG) {
+      plantTimber()
+    }
   }
 
   override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
     DaggerApplicationComponent.builder().create(this)
 
-  private fun setUpTimber() {
+  private fun plantTimber() {
     Timber.plant(object : Timber.DebugTree() {
       override fun createStackElementTag(element: StackTraceElement): String? =
         "${super.createStackElementTag(element)}, ${element.methodName}:: ${element.lineNumber}"

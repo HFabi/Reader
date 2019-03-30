@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
   compileSdkVersion androidCompileSDKVersion
@@ -45,7 +46,7 @@ dependencies {
   api libs.moshi
   kapt libs.moshiCodegen
 
-  implementation libs.timber
+  api libs.timber
 
   api libs.kotlinStdlib
 }

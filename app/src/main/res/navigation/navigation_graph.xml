@@ -12,7 +12,8 @@
       tools:layout="@layout/fragment_dashboard">
     <action
         android:id="@+id/action_dashboardFragment_to_articleFragment"
-        app:destination="@id/articleFragment"/>
+        app:destination="@id/articleFragment">
+    </action>
     <action
         android:id="@+id/action_dashboardFragment_to_addArticleFragment"
         app:destination="@id/addArticleFragment"
@@ -53,5 +54,11 @@
       android:id="@+id/articleFragment"
       android:name="com.example.lenovo.reader.fragments.article.ArticleFragment"
       android:label="ArticleFragment"
-      tools:layout="@layout/fragment_article"/>
+      tools:layout="@layout/fragment_article">
+    <argument
+        android:name="articleId"
+        android:defaultValue="0"
+        app:argType="integer"
+        />
+  </fragment>
 </navigation>

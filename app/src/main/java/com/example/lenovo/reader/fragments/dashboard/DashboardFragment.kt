@@ -61,7 +61,7 @@ class DashboardFragment : BaseFragment(), DashboardView {
     dashboard_last_added_recycler.layoutManager =
       LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
     dashboard_last_added_recycler.isNestedScrollingEnabled = false
-    lastAddedArticleAdapter.addListener { router.goToArticle(this) }
+    lastAddedArticleAdapter.addListener { article -> router.goToArticle(this, article.id) }
 
     val snapHelperLastArticle = LinearSnapHelper()
     snapHelperLastArticle.attachToRecyclerView(dashboard_last_added_recycler)
@@ -71,7 +71,7 @@ class DashboardFragment : BaseFragment(), DashboardView {
     dashboard_favorites_recycler.layoutManager =
       GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false)
     dashboard_favorites_recycler.isNestedScrollingEnabled = false
-    favoriteArticleAdapter.addListener { router.goToArticle(this) }
+    favoriteArticleAdapter.addListener { article -> router.goToArticle(this, article.id)}
 
     val snapHelperFavorite = LinearSnapHelper()
     snapHelperFavorite.attachToRecyclerView(dashboard_favorites_recycler)
