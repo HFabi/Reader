@@ -46,6 +46,10 @@ dependencies {
   api libs.moshi
   kapt libs.moshiCodegen
 
+  api libs.room
+  kapt libs.roomProcessor
+  api libs.roomRxJava
+
   api libs.timber
 
   api libs.kotlinStdlib
