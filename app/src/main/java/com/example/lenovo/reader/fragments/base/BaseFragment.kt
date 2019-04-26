@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
+import androidx.transition.ChangeBounds
+import androidx.transition.TransitionInflater
+import com.example.lenovo.reader.R
 import com.example.lenovo.reader.activities.base.BaseActivity
 import com.example.lenovo.reader.annotations.Layout
 import dagger.android.support.DaggerFragment
@@ -26,6 +29,10 @@ abstract class BaseFragment : DaggerFragment() {
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
+    var transition = TransitionInflater.from(this.context)
+      .inflateTransition(R.transition.change_image_transition)
+    sharedElementEnterTransition = transition
+    sharedElementReturnTransition= transition
     val view = inflater.inflate(layoutResId, container, false)
     return view
   }

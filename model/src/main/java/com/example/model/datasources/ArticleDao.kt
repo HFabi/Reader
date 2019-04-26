@@ -18,6 +18,12 @@ interface ArticleDao {
   @Query("SELECT * FROM articles WHERE id = (:id)")
   fun getArticle(id: Int): Single<ArticleEntity>
 
+  @Query("SELECT * FROM articles ORDER BY addedAt DESC LIMIT 4")
+  fun getLastAddedArticles(): Single<List<ArticleEntity>>
+
+  @Query("SELECT * FROM articles WHERE isFavorite = 1 ORDER BY addedAt LIMIT 8")
+  fun getFavoriteArticles(): Single<List<ArticleEntity>>
+
   @Insert(onConflict = OnConflictStrategy.ABORT)
   fun addArticle(article:ArticleEntity): Completable
 

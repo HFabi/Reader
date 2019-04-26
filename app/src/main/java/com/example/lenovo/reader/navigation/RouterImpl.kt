@@ -1,6 +1,9 @@
 package com.example.lenovo.reader.navigation
 
+import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.NavHostFragment
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.activities.base.BaseActivity
@@ -34,10 +37,25 @@ class RouterImpl @Inject constructor(var baseActivity: BaseActivity) : Router {
 //      .navigate(R.id.action_dashboardFragment_to_articleFragment)
   }
 
+  override fun goToArticle(currentFragment: Fragment, id: Int, view: View) {
+
+//    val extras = FragmentNavigatorExtras(
+//      imageView to "header_image",
+//      titleView to "header_title")
+
+    val extras = FragmentNavigator.Extras.Builder()
+      .addSharedElement(view, "secondTransitionName").build()
+    val action = DashboardFragmentDirections.actionDashboardFragmentToArticleFragment(id)
+    NavHostFragment.findNavController(currentFragment)
+      .navigate(action, extras)
+  }
+
   override fun goToAddArticle(currentFragment: Fragment) {
     NavHostFragment.findNavController(currentFragment)
       .navigate(R.id.addArticleFragment)
   }
+
+
 
   override fun goToSearch(currentFragment: Fragment) {
 //    NavHostFragment.findNavController(currentFragment).navigate(R.id.searchFragment)

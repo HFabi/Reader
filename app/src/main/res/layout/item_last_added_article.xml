@@ -11,13 +11,14 @@
       android:id="@+id/item_last_added_imageview"
       android:layout_width="200dp"
       android:layout_height="160dp"
-      android:layout_marginStart="8dp"
+      android:layout_marginEnd="4dp"
+      android:layout_marginStart="4dp"
       android:layout_marginTop="4dp"
-      android:layout_marginBottom="4dp"
       android:background="@android:color/darker_gray"
+      android:foreground="?attr/selectableItemBackground"
+      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      android:foreground="?attr/selectableItemBackground"
       />
 
   <TextView

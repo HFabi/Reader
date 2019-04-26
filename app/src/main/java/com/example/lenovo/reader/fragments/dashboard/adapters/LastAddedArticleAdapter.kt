@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat
 
 class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleViewHolder>() {
 
-  private var onClickListener: ((LastAddedArticle) -> Unit)? = null
+  private var onClickListener: ((LastAddedArticle, View) -> Unit)? = null
 
   override fun onCreateViewHolder(
     parent: ViewGroup,
@@ -33,17 +33,17 @@ class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleVi
     holder.bindTo(itemList[position])
   }
 
-  fun addListener(listener: (LastAddedArticle) -> Unit) {
+  fun addListener(listener: (LastAddedArticle, View) -> Unit) {
     onClickListener = listener
   }
 
   inner class LastAddedArticleViewHolder(var view: View) : BaseViewHolder<LastAddedArticle>(view) {
 
     override fun bindTo(item: LastAddedArticle) {
-      view.item_last_added_date_textView.text = SimpleDateFormat("MMMM YY").format(item.addedAt)
+      view.item_last_added_date_textView.text = SimpleDateFormat("MMMM yy").format(item.addedAt)
       view.item_last_added_subtitle_textView.text = item.title
       view.setOnClickListener {
-        onClickListener?.invoke(item)
+        onClickListener?.invoke(item, view.item_last_added_imageview)
       }
       if (!item.imagePath.isEmpty()) {
         Picasso.get()
@@ -53,6 +53,7 @@ class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleVi
           .centerCrop()
           .into(view.item_last_added_imageview)
       }
+      view.item_last_added_imageview.transitionName="transition"+item.id
     }
   }
 }

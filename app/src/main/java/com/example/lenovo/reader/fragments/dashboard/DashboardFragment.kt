@@ -18,6 +18,7 @@ import com.example.lenovo.reader.fragments.dashboard.adapters.CategoriesAdapter
 import com.example.lenovo.reader.fragments.dashboard.adapters.FavoriteArticleAdapter
 import com.example.lenovo.reader.fragments.dashboard.adapters.LastAddedArticleAdapter
 import com.example.lenovo.reader.navigation.Router
+import com.example.lenovo.reader.utils.StartSnapHelper
 import com.example.model.models.Category
 import com.example.model.models.FavoriteArticle
 import com.example.model.models.LastAddedArticle
@@ -29,7 +30,6 @@ import kotlinx.android.synthetic.main.fragment_dashboard.dashboard_last_added_re
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_dashboard)
-//@ContentView(R.layout.fragment_dashboard)
 class DashboardFragment : BaseFragment(), DashboardView {
 
   @Inject
@@ -61,9 +61,9 @@ class DashboardFragment : BaseFragment(), DashboardView {
     dashboard_last_added_recycler.layoutManager =
       LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
     dashboard_last_added_recycler.isNestedScrollingEnabled = false
-    lastAddedArticleAdapter.addListener { article -> router.goToArticle(this, article.id) }
+    lastAddedArticleAdapter.addListener { article, view -> router.goToArticle(this, article.id, view) }
 
-    val snapHelperLastArticle = LinearSnapHelper()
+    val snapHelperLastArticle = StartSnapHelper()
     snapHelperLastArticle.attachToRecyclerView(dashboard_last_added_recycler)
 
     favoriteArticleAdapter = FavoriteArticleAdapter()
@@ -73,7 +73,7 @@ class DashboardFragment : BaseFragment(), DashboardView {
     dashboard_favorites_recycler.isNestedScrollingEnabled = false
     favoriteArticleAdapter.addListener { article -> router.goToArticle(this, article.id)}
 
-    val snapHelperFavorite = LinearSnapHelper()
+    val snapHelperFavorite = StartSnapHelper()
     snapHelperFavorite.attachToRecyclerView(dashboard_favorites_recycler)
 
     categoriesAdapter =
@@ -106,6 +106,8 @@ class DashboardFragment : BaseFragment(), DashboardView {
     }
     return super.onOptionsItemSelected(item)
   }
+
+
 
   override fun updateCategories(categories: List<Category>) {
     categoriesAdapter.replaceAll(categories)

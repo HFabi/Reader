@@ -44,10 +44,13 @@ class AddArticleFragment : BaseFragment(), AddArticleView {
       android.R.id.home -> router.goBack()
       R.id.action_add_article_submit -> {
         //Todo: validate Input
+        addArticlePresenter.onSubmitClicked()
         router.goToDashboard(this)
       }
     }
     return super.onOptionsItemSelected(item)
   }
+
+
 
 }

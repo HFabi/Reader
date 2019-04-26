@@ -3,6 +3,7 @@ package com.example.model.datastores
 import com.example.model.models.Article
 import com.example.model.models.FavoriteArticle
 import com.example.model.models.LastAddedArticle
+import io.reactivex.Completable
 import io.reactivex.Single
 
 interface ArticlesDataStore {
@@ -16,5 +17,7 @@ interface ArticlesDataStore {
   fun getArticles(count: Int)
 
   fun getArticle(id: Int): Single<Article>
+
+  fun addArticle(url: String, categroy: String): Completable
 
 }

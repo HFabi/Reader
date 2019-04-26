@@ -5,10 +5,14 @@ import androidx.room.Room
 import com.example.model.BuildConfig
 import com.example.model.api.baseUrl
 import com.example.model.api.databaseName
+import com.example.model.datasources.ArticleCategoryDao
 import com.example.model.datasources.ArticleDao
-import com.example.model.datasources.ArticleDatabase
+import com.example.model.datasources.CategoryDao
+import com.example.model.datasources.ReaderDatabase
 import com.example.model.datastores.ArticlesDataStore
 import com.example.model.datastores.ArticlesDataStoreImpl
+import com.example.model.transformers.Transformer
+import com.example.model.transformers.TransformerImpl
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -54,14 +58,32 @@ class DataModule {
 
   @Provides
   @Singleton
-  fun provideArticleDao(articleDatabase: ArticleDatabase): ArticleDao {
-    return articleDatabase.ArticleDao()
+  fun provideArticleDao(readerDatabase: ReaderDatabase): ArticleDao {
+    return readerDatabase.articleDao()
   }
 
   @Provides
   @Singleton
-  fun provideArticleDatabase(@Named("Application") context: Context): ArticleDatabase {
-    return Room.databaseBuilder(context, ArticleDatabase::class.java, databaseName).build()
+  fun provideCategoryDao(readerDatabase: ReaderDatabase): CategoryDao {
+    return readerDatabase.categoryDao()
+  }
+
+  @Provides
+  @Singleton
+  fun provideArticleCategoryDao(readerDatabase: ReaderDatabase): ArticleCategoryDao {
+    return readerDatabase.articleCategoryDao()
+  }
+
+  @Provides
+  @Singleton
+  fun provideArticleDatabase(@Named("Application") context: Context): ReaderDatabase {
+    return Room.databaseBuilder(context, ReaderDatabase::class.java, databaseName).build()
+  }
+
+  @Provides
+  @Singleton
+  fun provideTransformer(transformerImpl: TransformerImpl): Transformer {
+    return transformerImpl
   }
 
 }

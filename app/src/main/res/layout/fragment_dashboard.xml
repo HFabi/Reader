@@ -108,7 +108,7 @@
           android:layout_height="168dp"
           android:layout_marginTop="8dp"
           android:clipToPadding="false"
-          android:paddingStart="8dp"
+          android:paddingStart="12dp"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/dashboard_title_last_added_textview"
