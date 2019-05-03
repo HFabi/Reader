@@ -5,6 +5,8 @@ import androidx.room.Room
 import com.example.model.BuildConfig
 import com.example.model.api.baseUrl
 import com.example.model.api.databaseName
+import com.example.model.controllers.DownloadController
+import com.example.model.controllers.DownloadControllerImpl
 import com.example.model.datasources.ArticleCategoryDao
 import com.example.model.datasources.ArticleDao
 import com.example.model.datasources.CategoryDao
@@ -84,6 +86,12 @@ class DataModule {
   @Singleton
   fun provideTransformer(transformerImpl: TransformerImpl): Transformer {
     return transformerImpl
+  }
+
+  @Provides
+  @Singleton
+  fun provideDownloadController(downloadControllerImpl: DownloadControllerImpl): DownloadController {
+    return downloadControllerImpl
   }
 
 }
