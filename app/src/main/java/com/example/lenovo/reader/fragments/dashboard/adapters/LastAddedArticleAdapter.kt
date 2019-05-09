@@ -1,5 +1,6 @@
 package com.example.lenovo.reader.fragments.dashboard.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,8 +47,10 @@ class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleVi
         onClickListener?.invoke(item, view.item_last_added_imageview)
       }
       if (!item.imagePath.isEmpty()) {
+        Log.d("ViewHolder","Path in bind to   "+item.imagePath)
+        // file://
         Picasso.get()
-          .load(item.imagePath)
+          .load("file://" + item.imagePath)
           .resize(pxFromDp(200.0f, view.context).toInt(), pxFromDp(160.0f, view.context).toInt())
 //          .resize(view.item_last_added_imageview.measuredWidth, view.item_last_added_imageview.measuredHeight)
           .centerCrop()

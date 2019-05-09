@@ -3,7 +3,7 @@ package com.example.lenovo.reader.fragments.addarticle
 import com.example.lenovo.reader.fragments.base.BasePresenter
 
 interface AddArticlePresenter : BasePresenter {
-  fun onSubmitClicked()
+  fun onSubmitClicked(url: String)
 }
 
 interface AddArticleView {

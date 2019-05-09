@@ -5,16 +5,24 @@ import androidx.room.Room
 import com.example.model.BuildConfig
 import com.example.model.api.baseUrl
 import com.example.model.api.databaseName
+import com.example.model.controllers.ArticleController
+import com.example.model.controllers.ArticleControllerImpl
 import com.example.model.controllers.DownloadController
 import com.example.model.controllers.DownloadControllerImpl
-import com.example.model.datasources.ArticleCategoryDao
-import com.example.model.datasources.ArticleDao
-import com.example.model.datasources.CategoryDao
-import com.example.model.datasources.ReaderDatabase
+import com.example.model.controllers.HtmlParser
+import com.example.model.controllers.HtmlParserImpl
+import com.example.model.datasources.db.ArticleCategoryDao
+import com.example.model.datasources.db.ArticleDao
+import com.example.model.datasources.db.ArticlesDbDataSource
+import com.example.model.datasources.db.ArticlesDbDataSourceImpl
+import com.example.model.datasources.db.CategoryDao
+import com.example.model.datasources.db.ReaderDatabase
+import com.example.model.datasources.web.ArticlesWebDataSource
+import com.example.model.datasources.web.ArticlesWebDataSourceImpl
 import com.example.model.datastores.ArticlesDataStore
 import com.example.model.datastores.ArticlesDataStoreImpl
-import com.example.model.transformers.Transformer
-import com.example.model.transformers.TransformerImpl
+import com.example.model.transformers.ArticleTransformer
+import com.example.model.transformers.ArticleTransformerImpl
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -84,14 +92,37 @@ class DataModule {
 
   @Provides
   @Singleton
-  fun provideTransformer(transformerImpl: TransformerImpl): Transformer {
-    return transformerImpl
-  }
-
-  @Provides
-  @Singleton
   fun provideDownloadController(downloadControllerImpl: DownloadControllerImpl): DownloadController {
     return downloadControllerImpl
   }
 
+  @Provides
+  @Singleton
+  fun provideArticleParser(articleParserImpl: ArticleControllerImpl): ArticleController {
+    return articleParserImpl
+  }
+
+  @Provides
+  @Singleton
+  fun provideArticleTransformer(articleTransformerImpl: ArticleTransformerImpl): ArticleTransformer {
+    return articleTransformerImpl
+  }
+
+  @Provides
+  @Singleton
+  fun provideArticlesWebDataSource(articlesWebDataSourceImpl: ArticlesWebDataSourceImpl): ArticlesWebDataSource {
+    return articlesWebDataSourceImpl
+  }
+
+  @Provides
+  @Singleton
+  fun provideArticlesDbDataSource(articlesDbDataSourceImpl: ArticlesDbDataSourceImpl): ArticlesDbDataSource {
+    return articlesDbDataSourceImpl
+  }
+
+  @Provides
+  @Singleton
+  fun provideHtmlParser(htmlParserImpl: HtmlParserImpl): HtmlParser {
+    return htmlParserImpl
+  }
 }

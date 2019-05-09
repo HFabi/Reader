@@ -14,11 +14,13 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
 import java.net.URL
+import javax.inject.Inject
+import javax.inject.Named
 
 /**
  * @author appcom interactive GmbH on 2019-05-03
  */
-class DownloadControllerImpl(var context: Context) : DownloadController {
+class DownloadControllerImpl @Inject constructor(@Named("Application")var context: Context ) : DownloadController {
 
   private val quality: Int = 100
 
@@ -31,13 +33,13 @@ class DownloadControllerImpl(var context: Context) : DownloadController {
       .flatMapSingle { (url, localPath) -> downloadAndSaveImage(url, localPath) }
   }
 
-  private fun downloadAndSaveImage(imagePath: String, url: String): Single<DownloadResult> {
+  private fun downloadAndSaveImage(url: String, imagePath: String): Single<DownloadResult> {
     return Single.create { emitter ->
       if (!isValidUrl(url)) {
         emitter.onError(Throwable("Url is not Valid"))
         return@create
       }
-      if (isExternalStorageWritable()) {
+      if (!isExternalStorageWritable()) {
         emitter.onError(Throwable("No access to storage"))
         return@create
       }
@@ -57,7 +59,7 @@ class DownloadControllerImpl(var context: Context) : DownloadController {
 
   fun deleteAlbum(albumName: String): Completable {
     return Completable.create { emitter ->
-      if (isExternalStorageWritable()) {
+      if (!isExternalStorageWritable()) {
         emitter.onError(Throwable("No access to storage"))
         return@create
       }

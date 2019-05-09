@@ -1,4 +1,4 @@
-package com.example.model.entities
+package com.example.model.entities.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
 @Entity(
   tableName = "category"
 )
-data class CategoryEntity(
+data class CategoryDbEntity(
   @PrimaryKey(autoGenerate = false) var id: Int,
   var name: String
 )

@@ -2,7 +2,6 @@ package com.example.lenovo.reader.fragments.article
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Base64
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
@@ -148,11 +147,16 @@ class ArticleFragment : BaseFragment(), ArticleView {
   override fun showArticle(article: Article) {
     article_title.text = article.title
     article_subtitle.text = article.author
-    val encodedHtml = Base64.encodeToString(article.content.toByteArray(), Base64.NO_PADDING)
-    article_webview.loadData(encodedHtml, "text/html", "base64")
-    article_webview.setVerticalScrollBarEnabled(false);
+
+//    val encodedHtml = Base64.encodeToString(article.content.toByteArray(), Base64.NO_PADDING)
+//    article_webview.loadData(encodedHtml, "text/html", "base64")
+
+    val encodedHtml = article.content
+    article_webview.loadDataWithBaseURL("file:///", encodedHtml, "text/html", "UTF-8", null)
+
+    article_webview.setVerticalScrollBarEnabled(false)
     Picasso.get()
-      .load(article.leadImageUrl)
+      .load("file://" + article.leadImagePath)
       .resize(article_iamgeview.measuredWidth, article_iamgeview.measuredHeight)
       .centerCrop()
       .into(article_iamgeview)

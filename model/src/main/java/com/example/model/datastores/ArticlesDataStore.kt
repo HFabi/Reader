@@ -14,10 +14,10 @@ interface ArticlesDataStore {
 
   fun getCategories()
 
-  fun getArticles(count: Int)
+  fun getArticles(count: Int, skip: Int): Single<List<Article>>
 
   fun getArticle(id: Int): Single<Article>
 
-  fun addArticle(url: String, categroy: String): Completable
+  fun addArticle(url: String, categroy: String = ""): Completable
 
 }

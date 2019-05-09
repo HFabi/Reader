@@ -1,8 +1,11 @@
-package com.example.model.models
+package com.example.model.entities.web
 
 import java.util.Date
 
-data class Article(
+/**
+ * @author appcom interactive GmbH on 2019-05-09
+ */
+data class ArticleWebEntity(
   var id: Int,
   var author: String = "",
   var title: String,
@@ -14,7 +17,5 @@ data class Article(
   var leadImageUrl: String,
   var leadImagePath: String = "",
   var nextPageUrl: String,
-  var addedAt: Date,
-  var isRead: Boolean,
-  var isFavorite: Boolean
+  var addedAt: Date
 )

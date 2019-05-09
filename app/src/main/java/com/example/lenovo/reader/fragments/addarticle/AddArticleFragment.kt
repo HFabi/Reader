@@ -1,20 +1,17 @@
 package com.example.lenovo.reader.fragments.addarticle
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.annotations.Layout
-import com.example.lenovo.reader.controllers.ImageController
 import com.example.lenovo.reader.fragments.base.BaseFragment
 import com.example.lenovo.reader.fragments.base.BasePresenter
 import com.example.lenovo.reader.navigation.Router
-import com.example.model.bind
-import com.example.model.schedule
 import kotlinx.android.synthetic.main.fragment_add_article.add_article_toolbar
+import kotlinx.android.synthetic.main.fragment_add_article.add_article_url_textinputedittext
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_add_article)
@@ -48,32 +45,10 @@ class AddArticleFragment : BaseFragment(), AddArticleView {
       android.R.id.home -> router.goBack()
       R.id.action_add_article_submit -> {
         //Todo: validate Input
-        addArticlePresenter.onSubmitClicked()
-
-        var albumName= "myalbum"
-        var imageName = "myImage.png"
-        var url ="https://postlight.com/wp-content/uploads/2016/10/03-building-awesome-cms-0.png"
-        var imageController = ImageController(this.context!!);
-
-//        imageController.downloadAndSaveImage(albumName, imageName, url)
-//          .schedule()
-//          .subscribe(
-//            { path -> Log.d("TAGs","Download Image success" + path)},
-//            { error -> error.printStackTrace()}
-//          )
-
-        imageController.testErrorHandling(listOf("a","b","c","d"))
-          .schedule()
-          .subscribe(
-            { Log.d("TTT","")},
-            { error-> error.printStackTrace()}
-          )
-//        router.goToDashboard(this)
+        addArticlePresenter.onSubmitClicked(add_article_url_textinputedittext.text.toString())
+        router.goToDashboard(this)
       }
     }
     return super.onOptionsItemSelected(item)
   }
-
-
-
 }

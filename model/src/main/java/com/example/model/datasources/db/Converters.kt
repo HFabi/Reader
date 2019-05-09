@@ -1,4 +1,4 @@
-package com.example.model.datasources
+package com.example.model.datasources.db
 
 import androidx.room.TypeConverter
 import java.util.Date

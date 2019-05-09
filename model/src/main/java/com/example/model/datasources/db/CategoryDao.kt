@@ -1,10 +1,10 @@
-package com.example.model.datasources
+package com.example.model.datasources.db
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import com.example.model.entities.CategoryEntity
+import com.example.model.entities.db.CategoryDbEntity
 import io.reactivex.Completable
 
 /**
@@ -14,9 +14,9 @@ import io.reactivex.Completable
 interface CategoryDao {
 
   @Insert(onConflict = OnConflictStrategy.ABORT)
-  fun addCategory(category: CategoryEntity): Completable
+  fun addCategory(categoryDb: CategoryDbEntity): Completable
 
   @Delete
-  fun remove(category: CategoryEntity): Completable
+  fun remove(categoryDb: CategoryDbEntity): Completable
 
 }
