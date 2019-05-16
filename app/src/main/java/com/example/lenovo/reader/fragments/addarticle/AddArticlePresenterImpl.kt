@@ -12,7 +12,7 @@ class AddArticlePresenterImpl @Inject constructor() : BasePresenterImpl(), AddAr
   @Inject
   lateinit var addArticleInteractor: AddArticleInteractor
 
-  fun inputIsValid(url: String, category: String): Boolean = !url.isEmpty()
+//  fun inputIsValid(url: String, category: String): Boolean = !url.isEmpty()
 
   override fun onSubmitClicked(url: String) {
     addArticleInteractor.execute(url)

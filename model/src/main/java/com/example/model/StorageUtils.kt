@@ -12,7 +12,6 @@ fun generateUniqueFileName(url: String, localPath: String): String {
   return "$localPath/$date.$type"
 }
 
-
 fun generateUniqueDirectoryName(): String {
   // domain uebergeben?
 //  val type = domain.substringBefore(".")

@@ -53,7 +53,7 @@ class ArticlesDataStoreImpl @Inject constructor() : ArticlesDataStore {
            .andThen(downloadController.load(downloadTaskList))
       }
       .map { downloadResult -> Log.d("DOWNLOAD", downloadResult.toString())  }
-      .flatMapCompletable { e -> Completable.complete() }
+      .flatMapCompletable {Completable.complete() }
   }
 }
 

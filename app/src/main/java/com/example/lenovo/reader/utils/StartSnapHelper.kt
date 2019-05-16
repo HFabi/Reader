@@ -36,21 +36,20 @@ class StartSnapHelper : LinearSnapHelper() {
     return out
   }
 
-  fun distanceToStart(layoutManager: RecyclerView.LayoutManager, targetView: View, helper: OrientationHelper): Int {
+  private fun distanceToStart(layoutManager: RecyclerView.LayoutManager, targetView: View, helper: OrientationHelper): Int {
     val childStart = helper.getDecoratedStart(targetView)
-    val containerStart: Int
-    containerStart = helper.startAfterPadding
+    val containerStart = helper.startAfterPadding
     return childStart - containerStart
   }
 
-  fun getHorizontalHelper(layoutManager: RecyclerView.LayoutManager): OrientationHelper {
+  private fun getHorizontalHelper(layoutManager: RecyclerView.LayoutManager): OrientationHelper {
     if (mHorizontalHelper == null) {
       mHorizontalHelper = OrientationHelper.createHorizontalHelper(layoutManager)
     }
     return mHorizontalHelper ?: OrientationHelper.createHorizontalHelper(layoutManager)
   }
 
-  fun getVerticalHelper(layoutManager: RecyclerView.LayoutManager): OrientationHelper {
+  private fun getVerticalHelper(layoutManager: RecyclerView.LayoutManager): OrientationHelper {
     if (mVerticalHelper == null) {
       mVerticalHelper = OrientationHelper.createVerticalHelper(layoutManager)
     }

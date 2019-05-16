@@ -14,6 +14,13 @@ android {
     versionName appVersionName
 
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    javaCompileOptions {
+      annotationProcessorOptions {
+        arguments = ["room.schemaLocation":
+            "$projectDir/schemas".toString()]
+      }
+    }
   }
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_8
@@ -26,6 +33,8 @@ dependencies {
   def testLibs = rootProject.ext.testLibs
 
   testImplementation testLibs.junit
+  testImplementation testLibs.mockito
+  testImplementation testLibs.mockitoInline
   androidTestImplementation testLibs.junit
   androidTestImplementation testLibs.expresso
 
@@ -52,5 +61,6 @@ dependencies {
 
   api libs.timber
 
+  api libs.kotlinReflect
   api libs.kotlinStdlib
 }

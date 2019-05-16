@@ -7,7 +7,7 @@ import android.view.WindowManager
 fun getDisplayMetrics(context: Context): DisplayMetrics {
   val displayMetrics = DisplayMetrics()
   val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-  windowManager?.defaultDisplay?.getMetrics(displayMetrics)
+  windowManager.defaultDisplay?.getMetrics(displayMetrics)
   return displayMetrics
 }
 

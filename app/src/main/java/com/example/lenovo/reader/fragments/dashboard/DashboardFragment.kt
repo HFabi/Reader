@@ -80,7 +80,7 @@ class DashboardFragment : BaseFragment(), DashboardView {
       CategoriesAdapter(
           dashboard_chipgroup,
           context,
-          { s -> Log.d("TAG", "NOT IMPLEMENTED") })
+          { Log.d("TAG", "NOT IMPLEMENTED") })
   }
 
   override fun providePresenter(): BasePresenter = dashboardPresenter
