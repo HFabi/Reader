@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <item
+      android:id="@+id/action_article_fontsize"
+      android:icon="@drawable/baseline_text_fields_24"
+      android:title="@string/article_action_fontsize"
+      app:showAsAction="always"/>
+
+  <item
       android:id="@+id/action_article_favorite"
       android:icon="@drawable/ic_favorite_border_white_24dp"
       android:title="@string/article_action_favorite"

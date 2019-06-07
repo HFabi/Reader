@@ -3,7 +3,7 @@
   <!-- Base application theme. -->
   <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
     <!-- Customize your theme here. -->
-    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimary">@color/colorPrimaryDark</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
   </style>
@@ -17,7 +17,7 @@
     <item name="android:elevation">3dp</item>
   </style>
 
-  <style name="Reader.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+  <style name="Reader.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
   </style>
 
@@ -30,7 +30,7 @@
   </style>
 
   <style name="Reader.Title2">
-    <item name="android:textSize">24sp</item>
+    <item name="android:textSize">@dimen/fontsize_title_2</item>
     <item name="android:textStyle">bold</item>
     <item name="android:textColor">@android:color/black</item>
   </style>
@@ -47,5 +47,8 @@
   <style name="Reader.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
 
   </style>
+
+
+
 
 </resources>

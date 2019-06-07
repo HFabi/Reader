@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="articleFontSizeDefault">16sp</dimen>
+
+
+  <!-- Fontsize -->
+  <dimen name="fontsize_small">12sp</dimen>
+
+  <dimen name="fontsize_title_1"></dimen>
+  <dimen name="fontsize_title_2">18sp</dimen>
+  <dimen name="fontsize_title_3">20sp</dimen>
+
+
+  <!-- Card -->
+  <dimen name="item_last_added_radius">10dp</dimen>
+  <dimen name="item_last_added_width">160dp</dimen>
+  <dimen name="item_last_added_height">200dp</dimen>
+
+  <!-- Chip -->
+  <dimen name="chip_corner_radius">10dp</dimen>
+</resources>

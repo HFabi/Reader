@@ -14,10 +14,10 @@ fun getDisplayMetrics(context: Context): DisplayMetrics {
 fun getStatusBarHeight(context: Context): Int {
   var statusBarHeight = 0
   val resourceId = context.getResources()
-      .getIdentifier("status_bar_height", "dimen", "android")
+    .getIdentifier("status_bar_height", "dimen", "android")
   if (resourceId > 0) {
     statusBarHeight = context.getResources()
-        .getDimensionPixelSize(resourceId)
+      .getDimensionPixelSize(resourceId)
   }
   return statusBarHeight
 }
@@ -27,4 +27,14 @@ fun pxFromDp(
   context: Context
 ): Float {
   return dp * context.getResources().getDisplayMetrics().density
+}
+
+fun getActionBarHeight(context: Context): Int {
+  var actionBarHeight = 0
+  val styledAttributes = context.getTheme().obtainStyledAttributes(
+    intArrayOf(android.R.attr.actionBarSize)
+  )
+  actionBarHeight = styledAttributes.getDimension(0, 0f).toInt()
+  styledAttributes.recycle()
+  return actionBarHeight
 }

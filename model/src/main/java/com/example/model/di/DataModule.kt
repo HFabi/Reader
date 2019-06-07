@@ -1,6 +1,7 @@
 package com.example.model.di
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.example.model.BuildConfig
 import com.example.model.api.baseUrl
@@ -17,6 +18,8 @@ import com.example.model.datasources.db.ArticlesDbDataSource
 import com.example.model.datasources.db.ArticlesDbDataSourceImpl
 import com.example.model.datasources.db.CategoryDao
 import com.example.model.datasources.db.ReaderDatabase
+import com.example.model.datasources.local.SharedPreferencesDataSource
+import com.example.model.datasources.local.SharedPreferencesDataSourceImpl
 import com.example.model.datasources.web.ArticlesWebDataSource
 import com.example.model.datasources.web.ArticlesWebDataSourceImpl
 import com.example.model.datastores.ArticlesDataStore
@@ -124,5 +127,17 @@ class DataModule {
   @Singleton
   fun provideHtmlParser(htmlParserImpl: HtmlParserImpl): HtmlParser {
     return htmlParserImpl
+  }
+
+  @Provides
+  @Singleton
+  fun provideSharedPreferences(@Named("Application") context: Context): SharedPreferences {
+    return context.getSharedPreferences("com.example.reader", Context.MODE_PRIVATE)
+  }
+
+  @Provides
+  @Singleton
+  fun provideSharedPreferencesDataSource(sharedPreferencesDataSourceImpl: SharedPreferencesDataSourceImpl): SharedPreferencesDataSource {
+    return sharedPreferencesDataSourceImpl
   }
 }

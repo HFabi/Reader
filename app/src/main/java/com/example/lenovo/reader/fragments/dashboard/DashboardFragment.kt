@@ -6,25 +6,21 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.activities.base.BaseActivity
 import com.example.lenovo.reader.annotations.Layout
 import com.example.lenovo.reader.fragments.base.BaseFragment
 import com.example.lenovo.reader.fragments.base.BasePresenter
-import com.example.lenovo.reader.fragments.dashboard.adapters.CategoriesAdapter
-import com.example.lenovo.reader.fragments.dashboard.adapters.FavoriteArticleAdapter
 import com.example.lenovo.reader.fragments.dashboard.adapters.LastAddedArticleAdapter
 import com.example.lenovo.reader.navigation.Router
+import com.example.lenovo.reader.pxFromDp
 import com.example.lenovo.reader.utils.StartSnapHelper
 import com.example.model.models.Category
 import com.example.model.models.FavoriteArticle
 import com.example.model.models.LastAddedArticle
 import kotlinx.android.synthetic.main.fragment_dashboard.dashboard_bottomappbar
-import kotlinx.android.synthetic.main.fragment_dashboard.dashboard_chipgroup
-import kotlinx.android.synthetic.main.fragment_dashboard.dashboard_favorites_recycler
 import kotlinx.android.synthetic.main.fragment_dashboard.dashboard_floatingactionbutton
 import kotlinx.android.synthetic.main.fragment_dashboard.dashboard_last_added_recycler
 import javax.inject.Inject
@@ -38,8 +34,6 @@ class DashboardFragment : BaseFragment(), DashboardView {
   lateinit var router: Router
 
   lateinit var lastAddedArticleAdapter: LastAddedArticleAdapter
-  lateinit var favoriteArticleAdapter: FavoriteArticleAdapter
-  lateinit var categoriesAdapter: CategoriesAdapter
 
   override fun onViewCreated(
     view: View,
@@ -63,24 +57,12 @@ class DashboardFragment : BaseFragment(), DashboardView {
     dashboard_last_added_recycler.isNestedScrollingEnabled = false
     lastAddedArticleAdapter.addListener { article, view -> router.goToArticle(this, article.id, view) }
 
+//    val decoration = ArticleItemDecorator()
+    dashboard_last_added_recycler.addItemDecoration(ArticleItemDecorator(pxFromDp(8.0f, context!!).toInt()))
+
     val snapHelperLastArticle = StartSnapHelper()
     snapHelperLastArticle.attachToRecyclerView(dashboard_last_added_recycler)
 
-    favoriteArticleAdapter = FavoriteArticleAdapter()
-    dashboard_favorites_recycler.adapter = favoriteArticleAdapter
-    dashboard_favorites_recycler.layoutManager =
-      GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false)
-    dashboard_favorites_recycler.isNestedScrollingEnabled = false
-    favoriteArticleAdapter.addListener { article -> router.goToArticle(this, article.id)}
-
-    val snapHelperFavorite = StartSnapHelper()
-    snapHelperFavorite.attachToRecyclerView(dashboard_favorites_recycler)
-
-    categoriesAdapter =
-      CategoriesAdapter(
-          dashboard_chipgroup,
-          context,
-          { Log.d("TAG", "NOT IMPLEMENTED") })
   }
 
   override fun providePresenter(): BasePresenter = dashboardPresenter
@@ -107,14 +89,12 @@ class DashboardFragment : BaseFragment(), DashboardView {
     return super.onOptionsItemSelected(item)
   }
 
-
-
   override fun updateCategories(categories: List<Category>) {
-    categoriesAdapter.replaceAll(categories)
+//    categoriesAdapter.replaceAll(categories)
   }
 
   override fun updateFavoriteArticles(favoriteArticles: List<FavoriteArticle>) {
-    favoriteArticleAdapter.replace(favoriteArticles)
+//    favoriteArticleAdapter.replace(favoriteArticles)
   }
 
   override fun updateLastAddedArticles(lastAddedArticles: List<LastAddedArticle>) {

@@ -20,4 +20,8 @@ interface ArticlesDataStore {
 
   fun addArticle(url: String, categroy: String = ""): Completable
 
+  fun setArticleFontSizeIndex(value: Int): Completable
+
+  fun getArticleFontSizeIndex(): Single<Int>
+
 }

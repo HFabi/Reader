@@ -4,9 +4,9 @@ import android.util.Log
 import com.example.model.controllers.ArticleController
 import com.example.model.controllers.DownloadController
 import com.example.model.datasources.db.ArticlesDbDataSource
+import com.example.model.datasources.local.SharedPreferencesDataSource
 import com.example.model.datasources.web.ArticlesWebDataSource
 import com.example.model.models.Article
-import com.example.model.models.DownloadResult
 import com.example.model.models.FavoriteArticle
 import com.example.model.models.LastAddedArticle
 import io.reactivex.Completable
@@ -23,7 +23,8 @@ class ArticlesDataStoreImpl @Inject constructor() : ArticlesDataStore {
   lateinit var articlesDbDataSource: ArticlesDbDataSource
   @Inject
   lateinit var articleController: ArticleController
-
+  @Inject
+  lateinit var sharedPreferencesDataSource: SharedPreferencesDataSource
 
   override fun getFavoriteArticles(): Single<List<FavoriteArticle>> {
     return articlesDbDataSource.getFavoriteArticles()
@@ -47,19 +48,21 @@ class ArticlesDataStoreImpl @Inject constructor() : ArticlesDataStore {
 
   override fun addArticle(url: String, categroy: String): Completable {
     return articlesWebDataSource.parseHtmlFromUrl(url)
-      .flatMap{ article ->  articleController.parse(article)}
-      .flatMapObservable{ (article, downloadTaskList) ->
-         articlesDbDataSource.addArticle(article)
-           .andThen(downloadController.load(downloadTaskList))
+      .flatMap { article -> articleController.parse(article) }
+      .flatMapObservable { (article, downloadTaskList) ->
+        articlesDbDataSource.addArticle(article)
+          .andThen(downloadController.load(downloadTaskList))
       }
-      .map { downloadResult -> Log.d("DOWNLOAD", downloadResult.toString())  }
-      .flatMapCompletable {Completable.complete() }
+      .map { downloadResult -> Log.d("DOWNLOAD", downloadResult.toString()) }
+      .flatMapCompletable { Completable.complete() }
   }
+
+  override fun setArticleFontSizeIndex(value: Int): Completable {
+    return sharedPreferencesDataSource.setArticleFontSizeIndex(value)
+  }
+
+  override fun getArticleFontSizeIndex(): Single<Int> {
+    return sharedPreferencesDataSource.getArticleFontSizeIndex()
+  }
+
 }
-
-
-//  override fun addArticle(url: String, categroy: String): Completable {
-//    return articlesWebDataSource.parseHtmlFromUrl(url)
-//      .flatMap{ article ->  articleController.parse(article)}
-//      .flatMapCompletable { article -> articlesDbDataSource.addArticle(article) }
-//  }

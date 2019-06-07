@@ -7,8 +7,8 @@ import com.example.lenovo.reader.activities.base.BaseActivity
 import com.example.lenovo.reader.navigation.Router
 import javax.inject.Inject
 
-@ContentView(R.layout.activity_main)
-class MainActivity : BaseActivity() {
+//@ContentView(R.layout.activity_main)
+class MainActivity : BaseActivity(R.layout.activity_main) {
 
   @Inject lateinit var router: Router
 

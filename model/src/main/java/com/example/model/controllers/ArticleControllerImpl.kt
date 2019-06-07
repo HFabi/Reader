@@ -35,8 +35,6 @@ class ArticleControllerImpl @Inject constructor() : ArticleController {
       article.leadImagePath = generateUniqueFileName(article.leadImageUrl, article.localPath)
       downloadTaskList.add(DownloadTask(article.leadImageUrl, article.leadImagePath))
 
-      Timber.d("--" + article.toString())
-
       Pair(article, downloadTaskList)
     }
   }
