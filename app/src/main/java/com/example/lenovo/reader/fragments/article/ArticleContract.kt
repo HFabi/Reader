@@ -6,7 +6,7 @@ import com.example.model.models.Article
 interface ArticleView {
   fun showArticle(article: Article)
   fun articleId(): Int
-  fun setContentFontSize(fontSize: Float)
+  fun setContentFontSize(index: Int)
 }
 
 interface ArticlePresenter : BasePresenter {

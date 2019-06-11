@@ -11,10 +11,6 @@ interface DashboardPresenter : BasePresenter {
 
 interface DashboardView {
 
-  fun updateCategories(categories: List<Category>)
-
-  fun updateFavoriteArticles(favoriteArticles: List<FavoriteArticle>)
-
   fun updateLastAddedArticles(lastAddedArticles: List<LastAddedArticle>)
 
 }

@@ -4,13 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import android.widget.HorizontalScrollView
+import android.widget.ScrollView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.widget.NestedScrollView
 import androidx.transition.ChangeBounds
 import androidx.transition.TransitionInflater
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.activities.base.BaseActivity
 import com.example.lenovo.reader.annotations.Layout
+import com.example.lenovo.reader.getActionBarHeight
+import com.example.lenovo.reader.pxFromDp
+import com.google.android.material.appbar.AppBarLayout
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.fragment_article.article_appbarlayout
+import kotlinx.android.synthetic.main.fragment_article.article_nestedscrollview
 
 abstract class BaseFragment : DaggerFragment() {
 
@@ -53,12 +62,16 @@ abstract class BaseFragment : DaggerFragment() {
   fun setUpToolbar(
     toolbar: Toolbar?,
     showUpNavigation: Boolean,
-    hasOptionMenu: Boolean = true
+    hasOptionMenu: Boolean = true,
+    titleRes: Int = 0
   ) {
     (activity as BaseActivity).setSupportActionBar(toolbar)
     (activity as BaseActivity).supportActionBar?.apply {
       setDisplayHomeAsUpEnabled(showUpNavigation)
       setDisplayShowHomeEnabled(showUpNavigation)
+      if(titleRes != 0) {
+        title = getString(titleRes)
+      }
     }
     setHasOptionsMenu(hasOptionMenu)
   }

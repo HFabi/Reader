@@ -61,4 +61,15 @@
         app:argType="integer"
         />
   </fragment>
+  <fragment
+      android:id="@+id/articleListFragment"
+      android:name="com.example.lenovo.reader.fragments.articlelist.ArticleListFragment"
+      android:label="ArticleListFragment"
+      tools:layout="@layout/fragment_article_list">
+    <action
+        android:id="@+id/action_articleListFragment_to_searchFragment"
+        app:destination="@id/searchFragment"
+        app:enterAnim="@anim/slide_up"
+        app:exitAnim="@anim/slide_down"/>
+  </fragment>
 </navigation>

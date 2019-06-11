@@ -39,19 +39,19 @@ class BottomNavigationFragment @Inject constructor() : BottomSheetDialogFragment
     savedInstanceState: Bundle?
   ) {
     super.onViewCreated(view, savedInstanceState)
-    dashboard_navigationview.setNavigationItemSelectedListener {
-      when (it.itemId) {
-        R.id.action_bottom_settings -> {
-          router.goToSettings(this)
-          dismiss()
-        }
-        R.id.action_bottom_about -> {
-          router.goToAbout(this)
-          dismiss()
-        }
-      }
-      true
-    }
+//    dashboard_navigationview.setNavigationItemSelectedListener {
+//      when (it.itemId) {
+//        R.id.action_bottom_settings -> {
+//          router.goToSettings(this)
+//          dismiss()
+//        }
+//        R.id.action_bottom_about -> {
+//          router.goToAbout(this)
+//          dismiss()
+//        }
+//      }
+//      true
+//    }
   }
 
   override fun onAttach(context: Context) {

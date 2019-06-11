@@ -18,6 +18,7 @@ class ArticleItemDecorator(
 
     outRect.apply {
       right = space
+      bottom = space
     }
 
   }

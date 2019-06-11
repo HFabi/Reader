@@ -3,13 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="@dimen/item_last_added_width"
-    android:layout_height="@dimen/item_last_added_height"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginLeft="0dp"
     android:layout_marginRight="0dp"
     android:layout_marginTop="0dp"
     android:foreground="?attr/selectableItemBackground"
-    android:minHeight="200dp"
     app:cardBackgroundColor="@color/colorAccent"
     app:cardCornerRadius="@dimen/item_last_added_radius"
     app:cardElevation="0dp"
@@ -17,35 +16,19 @@
 
   <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
+      android:layout_height="wrap_content"
       >
 
     <ImageView
         android:id="@+id/item_last_added_imageview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:background="@color/colorAccent"
         android:scaleType="centerCrop"
         android:tint="#5F000000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/item_last_added_date_textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:maxLines="1"
-        android:maxWidth="150dp"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/fontsize_small"
-        app:layout_constraintBottom_toBottomOf="@+id/item_last_added_imageview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/item_last_added_imageview"
-        tools:text="23.09.2019"
+        app:layout_constraintBottom_toBottomOf="@+id/item_last_added_date_textView"
+        app:layout_constraintTop_toTopOf="@+id/item_last_added_subtitle_textView"
+        tools:layout_editor_absoluteX="-16dp"
         />
 
     <TextView
@@ -53,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ellipsize="end"
         android:lineSpacingMultiplier="1.2"
@@ -62,11 +45,28 @@
         android:textSize="@dimen/fontsize_title_2"
         app:layout_constraintEnd_toEndOf="@+id/item_last_added_imageview"
         app:layout_constraintStart_toStartOf="@+id/item_last_added_imageview"
-        app:layout_constraintTop_toTopOf="@+id/item_last_added_imageview"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Title"
         style="@style/Reader.Title2"
         />
 
+    <TextView
+        android:id="@+id/item_last_added_date_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:maxLines="1"
+        android:maxWidth="150dp"
+        android:paddingBottom="16dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/fontsize_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/item_last_added_imageview"
+        app:layout_constraintTop_toBottomOf="@+id/item_last_added_subtitle_textView"
+        tools:text="23.09.2019"
+        />
   </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

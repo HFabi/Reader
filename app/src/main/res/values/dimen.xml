@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <dimen name="articleFontSizeDefault">16sp</dimen>
-
 
   <!-- Fontsize -->
-  <dimen name="fontsize_small">12sp</dimen>
+  <dimen name="articleFontSizeSmall">17sp</dimen>
+  <dimen name="articleFontSizeMedium">19sp</dimen>
+  <dimen name="articleFontSizeLarge">21sp</dimen>
 
+  <dimen name="fontsize_small">12sp</dimen>
   <dimen name="fontsize_title_1"></dimen>
   <dimen name="fontsize_title_2">18sp</dimen>
   <dimen name="fontsize_title_3">20sp</dimen>
+  <dimen name="fontsize_title_4">12sp</dimen>
 
 
   <!-- Card -->

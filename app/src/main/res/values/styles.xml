@@ -14,7 +14,7 @@
 
   <style name="Reader.Toolbar" parent="Widget.MaterialComponents.Toolbar">
     <item name="android:background">@color/colorWhite</item>
-    <item name="android:elevation">3dp</item>
+    <item name="android:elevation">0dp</item>
   </style>
 
   <style name="Reader.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -39,6 +39,13 @@
     <item name="android:textStyle">bold</item>
     <item name="android:textColor">@android:color/black</item>
   </style>
+
+  <style name="Reader.Title4" >
+    <item name="android:textColor">@android:color/black</item>
+    <item name="android:textSize">@dimen/fontsize_title_4</item>
+    <item name="android:textAllCaps">false</item>
+  </style>
+
 
   <style name="Reader.Button">
 

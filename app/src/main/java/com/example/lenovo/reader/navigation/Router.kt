@@ -9,6 +9,8 @@ interface Router {
 
   fun goToDashboard(currentFragment: Fragment)
 
+  fun goToArticleList(currentFragment: Fragment)
+
   fun goToSettings(currentFragment: Fragment)
 
   fun goToArticle(currentFragment: Fragment, id: Int)

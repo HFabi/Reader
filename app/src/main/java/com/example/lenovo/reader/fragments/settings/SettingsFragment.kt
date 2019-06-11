@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import com.example.lenovo.reader.R
+import com.example.lenovo.reader.activities.mainactivity.MainActivity
 import com.example.lenovo.reader.annotations.Layout
 import com.example.lenovo.reader.fragments.base.BaseFragment
 import com.example.lenovo.reader.fragments.base.BasePresenter
@@ -26,7 +27,7 @@ class SettingsFragment : BaseFragment(), SettingsView {
     savedInstanceState: Bundle?
   ) {
     super.onViewCreated(view, savedInstanceState)
-    setUpToolbar(settings_toolbar, true)
+    setUpToolbar(settings_toolbar, false)
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -34,6 +35,13 @@ class SettingsFragment : BaseFragment(), SettingsView {
       android.R.id.home -> router.goBack()
     }
     return super.onOptionsItemSelected(item)
+  }
+
+
+  override fun onResume() {
+    super.onResume()
+    (activity as MainActivity).currentFragment = this
+    (activity as MainActivity).setBottomNavigationEnabled(true)
   }
 
 }

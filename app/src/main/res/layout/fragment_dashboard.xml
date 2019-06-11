@@ -18,7 +18,6 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
-        app:layout_collapseMode="pin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Home"
@@ -31,7 +30,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:hint="@string/article_search"
         app:boxBackgroundColor="@color/colorWhite"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,16 +56,18 @@
         android:text="@string/last_added"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-        style="@style/Reader.Title3"
+        style="@style/Reader.Title4"
         />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dashboard_last_added_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:clipToPadding="false"
         android:paddingStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dashboard_title_last_added_textview"
@@ -74,20 +75,13 @@
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 
-  <com.google.android.material.bottomappbar.BottomAppBar
-      android:id="@+id/dashboard_bottomappbar"
-      android:layout_width="match_parent"
-      android:layout_height="?attr/actionBarSize"
-      android:layout_gravity="bottom"
-      app:navigationIcon="@drawable/ic_menu_black_24dp"
-      />
-
   <com.google.android.material.floatingactionbutton.FloatingActionButton
       android:id="@+id/dashboard_floatingactionbutton"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_gravity="end|bottom"
+      android:layout_margin="16dp"
       app:tint="@color/colorWhite"
-      app:layout_anchor="@id/dashboard_bottomappbar"
       app:backgroundTint="@color/colorAccent"
       app:srcCompat="@drawable/ic_add_white_24dp"
       style="@style/Widget.MaterialComponents.FloatingActionButton"

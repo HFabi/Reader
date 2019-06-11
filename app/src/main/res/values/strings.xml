@@ -1,17 +1,24 @@
 <resources>
   <string name="app_name">Reader</string>
   <string name="search">Suchen</string>
+  <string name="filter">Filter</string>
   <string name="home">Home</string>
   <string name="settings">Einstellungen</string>
+  <string name="articles">Meine Artikel</string>
   <string name="title_add_article">Hinzufügen</string>
   <string name="ok">Ok</string>
   <string name="about">Impressum</string>
   <string name="add_article_url_helpertext">Artikel wird heruntergeladen und in der App gespeichert</string>
+
+
   <string name="article_action_fontsize">Schriftgröße</string>
   <string name="article_action_favorite">favorite</string>
   <string name="article_action_delete">Artikel löschen</string>
   <string name="article_action_share">Artikel teilen</string>
   <string name="article_search">Artikel durchsuchen</string>
+
+
+  <string name="article_list">Artikel</string>
   <string name="last_added">Zuletzt hinzugefügt</string>
   <string name="favorites">Favoriten</string>
   <string name="categories">Kategorien</string>
@@ -19,4 +26,5 @@
   <string name="category">Kategorie</string>
   <string name="url">Url</string>
   <string name="add_article_category_helpertext">(optional)</string>
+
 </resources>

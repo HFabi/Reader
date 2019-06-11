@@ -2,6 +2,7 @@ package com.example.lenovo.reader
 
 import android.content.Context
 import android.util.DisplayMetrics
+import android.util.TypedValue
 import android.view.WindowManager
 
 fun getDisplayMetrics(context: Context): DisplayMetrics {
@@ -27,6 +28,11 @@ fun pxFromDp(
   context: Context
 ): Float {
   return dp * context.getResources().getDisplayMetrics().density
+}
+
+fun pxFromSp(sp: Float, context: Context): Int {
+  return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.resources.displayMetrics)
+    .toInt()
 }
 
 fun getActionBarHeight(context: Context): Int {

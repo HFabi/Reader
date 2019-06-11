@@ -24,7 +24,7 @@ class ArticlePresenterImpl @Inject constructor() : BasePresenterImpl(), ArticleP
   @Inject
   lateinit var setFontSizeIndexInteractor: SetFontSizeIndexInteractor
 
-  val fontSizes = arrayOf(16.0f, 18.0f, 20.0f) // in sp
+  val fontSizes = arrayOf(17.0f, 19.0f, 21.0f) // in sp
   var currentFontSizeIndex = 0
 
   @SuppressLint("CheckResult")
@@ -41,7 +41,7 @@ class ArticlePresenterImpl @Inject constructor() : BasePresenterImpl(), ArticleP
       .schedule()
       .subscribe({ },
         { error -> error.printStackTrace() })
-    view.setContentFontSize(fontSizes[currentFontSizeIndex])
+        view.setContentFontSize(currentFontSizeIndex)
   }
 
   private fun setInitialFontSize() {
@@ -49,7 +49,7 @@ class ArticlePresenterImpl @Inject constructor() : BasePresenterImpl(), ArticleP
       .bind(compositeDisposable)
       .schedule()
       .subscribe({ index ->
-        view.setContentFontSize(fontSizes[index])
+        view.setContentFontSize(index)
         currentFontSizeIndex = index
       })
   }

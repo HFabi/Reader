@@ -33,17 +33,5 @@ class DashboardPresenterImpl @Inject constructor() : BasePresenterImpl(), Dashbo
         .subscribe { articles ->
           view.updateLastAddedArticles(articles)
         }
-    getFavoriteArticlesInteractor.execute()
-        .schedule()
-        .bind(compositeDisposable)
-        .subscribe { favorites ->
-          view.updateFavoriteArticles(favorites)
-        }
-    getCategoriesInteractor.execute()
-        .schedule()
-        .bind(compositeDisposable)
-        .subscribe { categories ->
-          view.updateCategories(categories)
-        }
   }
 }

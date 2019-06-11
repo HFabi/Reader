@@ -3,6 +3,7 @@ package com.example.lenovo.reader.fragments.article
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -10,6 +11,7 @@ import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.navigation.fragment.navArgs
 import com.example.lenovo.reader.R
+import com.example.lenovo.reader.activities.mainactivity.MainActivity
 import com.example.lenovo.reader.annotations.Layout
 import com.example.lenovo.reader.fragments.base.BaseFragment
 import com.example.lenovo.reader.fragments.base.BasePresenter
@@ -23,7 +25,6 @@ import com.google.android.material.appbar.AppBarLayout
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_article.article_appbarlayout
 import kotlinx.android.synthetic.main.fragment_article.article_chipgroup
-import kotlinx.android.synthetic.main.fragment_article.article_collapstingtoolbarlayout
 import kotlinx.android.synthetic.main.fragment_article.article_favorite_floatingactionbutton
 import kotlinx.android.synthetic.main.fragment_article.article_iamgeview
 import kotlinx.android.synthetic.main.fragment_article.article_nestedscrollview
@@ -32,7 +33,6 @@ import kotlinx.android.synthetic.main.fragment_article.article_title
 import kotlinx.android.synthetic.main.fragment_article.article_toolbar
 import kotlinx.android.synthetic.main.fragment_article.article_webview
 import kotlinx.android.synthetic.main.fragment_article.test_content
-import kotlinx.android.synthetic.main.fragment_dashboard.dashboard_toolbar
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_article)
@@ -76,11 +76,17 @@ class ArticleFragment : BaseFragment(), ArticleView {
     )
   }
 
+  override fun onResume() {
+    super.onResume()
+    (activity as MainActivity).setBottomNavigationEnabled(false)
+  }
+
   fun setUp() {
     //Collapsing Tollbar
     // article_appbarlayout.totalScrollRange
     // Test
 
+    // favorite icon
     article_appbarlayout.addOnOffsetChangedListener(
       AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
         if (verticalOffset == -1 * article_appbarlayout.totalScrollRange && !showActionFavorite) {
@@ -182,9 +188,15 @@ class ArticleFragment : BaseFragment(), ArticleView {
     )
   }
 
-  override fun setContentFontSize(fontSize: Float) {
-    Log.d("TAGG", "setContentFontSize in View " + fontSize)
-    test_content.textSize = fontSize
+  override fun setContentFontSize(index: Int) {
+//    Log.d("TAGG", "setContentFontSize in View " + fontSize)
+    val fontSize = when (index) {
+      0 -> context?.resources?.getDimension(R.dimen.articleFontSizeSmall) ?: 17.0f
+      1 -> context?.resources?.getDimension(R.dimen.articleFontSizeMedium) ?: 17.0f
+      2 -> context?.resources?.getDimension(R.dimen.articleFontSizeLarge) ?: 17.0f
+      else -> 17.0f
+    }
+    test_content.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSize)
   }
 
   override fun showArticle(article: Article) {
@@ -192,6 +204,7 @@ class ArticleFragment : BaseFragment(), ArticleView {
     article_subtitle.text = article.author
     article_appbarlayout.setExpanded(false, false)
 
+    // enable or disable content image
     val lp = article_appbarlayout.getLayoutParams() as CoordinatorLayout.LayoutParams
 //    lp.height = pxFromDp(getStatusBarHeight(context!!).toFloat(), context!!).toInt()
 //    lp.height = pxFromDp(getStatusBarHeight(context!!).toFloat(), context!!).toInt()
@@ -202,14 +215,12 @@ class ArticleFragment : BaseFragment(), ArticleView {
 //    lp.keyline
 //    lp.
 //    lp.height = 600;
-    Log.d("ABC","test "+pxFromDp(getStatusBarHeight(context!!).toFloat(), context!!).toInt())
-    Log.d("ABC","test "+getStatusBarHeight(context!!).toFloat())
-    Log.d("ABC","test "+getActionBarHeight(context!!))
-
+    Log.d("ABC", "test " + pxFromDp(getStatusBarHeight(context!!).toFloat(), context!!).toInt())
+    Log.d("ABC", "test " + getStatusBarHeight(context!!).toFloat())
+    Log.d("ABC", "test " + getActionBarHeight(context!!))
 
 //    lp.height = resources.getDimension(R.dimen.toolbar_height).toInt()
 //    lp.height = getStatusBarHeight(context!!) + pxFromDp(24.0f, context!!).toInt()
-
 
 //    val encodedHtml = Base64.encodeToString(article.content.toByteArray(), Base64.NO_PADDING)
 //    article_webview.loadData(encodedHtml, "text/html", "base64")
@@ -229,10 +240,8 @@ class ArticleFragment : BaseFragment(), ArticleView {
     }
   }
 
-
   private fun enableCollapsingToolbar(isEnabled: Boolean) {
 
   }
-
 
 }
