@@ -23,6 +23,16 @@ fun getStatusBarHeight(context: Context): Int {
   return statusBarHeight
 }
 
+fun getActionBarHeight(context: Context): Int {
+  var actionBarHeight = 0
+  val styledAttributes = context.getTheme().obtainStyledAttributes(
+    intArrayOf(android.R.attr.actionBarSize)
+  )
+  actionBarHeight = styledAttributes.getDimension(0, 0f).toInt()
+  styledAttributes.recycle()
+  return actionBarHeight
+}
+
 fun pxFromDp(
   dp: Float,
   context: Context
@@ -35,12 +45,3 @@ fun pxFromSp(sp: Float, context: Context): Int {
     .toInt()
 }
 
-fun getActionBarHeight(context: Context): Int {
-  var actionBarHeight = 0
-  val styledAttributes = context.getTheme().obtainStyledAttributes(
-    intArrayOf(android.R.attr.actionBarSize)
-  )
-  actionBarHeight = styledAttributes.getDimension(0, 0f).toInt()
-  styledAttributes.recycle()
-  return actionBarHeight
-}

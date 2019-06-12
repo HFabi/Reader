@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/colorWhite"
+    android:background="@color/colorDarkWhite"
     >
   <androidx.appcompat.widget.Toolbar
       android:id="@+id/article_list_toolbar"
@@ -13,4 +12,7 @@
       style="@style/Reader.Toolbar"
       />
 
-</LinearLayout>
+  <!-- include bottom sheet -->
+  <include layout="@layout/article_list_filter" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

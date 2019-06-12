@@ -7,6 +7,11 @@
 
     <color name="colorPunch">#D83B2B</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="colorDarkWhite">#fefefe</color>
     <color name="colorGallery">#FAFAFA</color>
     <color name="colorGray56">#8F8F8F</color>
+
+    <color name="colorYellowOrange">#F8BF35</color>
+    <color name="colorRegentStBlue">#A9D1E6</color>
+    <color name="colorSeaPink">#DC6B63</color>
 </resources>

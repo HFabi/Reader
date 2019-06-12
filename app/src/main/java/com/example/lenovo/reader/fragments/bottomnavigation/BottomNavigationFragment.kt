@@ -10,7 +10,6 @@ import com.example.lenovo.reader.R
 import com.example.lenovo.reader.navigation.Router
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.fragment_bottomsheet.dashboard_navigationview
 import javax.inject.Inject
 
 class BottomNavigationFragment @Inject constructor() : BottomSheetDialogFragment() {

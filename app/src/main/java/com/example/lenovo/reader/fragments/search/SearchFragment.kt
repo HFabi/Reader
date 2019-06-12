@@ -1,6 +1,7 @@
 package com.example.lenovo.reader.fragments.search
 
 import com.example.lenovo.reader.R
+import com.example.lenovo.reader.activities.mainactivity.MainActivity
 import com.example.lenovo.reader.annotations.Layout
 import com.example.lenovo.reader.fragments.base.BaseFragment
 import com.example.lenovo.reader.fragments.base.BasePresenter
@@ -13,4 +14,10 @@ class SearchFragment : BaseFragment(), SearchView {
   lateinit var searchPresenter: SearchPresenter
 
   override fun providePresenter(): BasePresenter = searchPresenter
+
+  override fun onResume() {
+    super.onResume()
+    (activity as MainActivity).setBottomNavigationEnabled(false)
+    (activity as MainActivity).currentFragment = this
+  }
 }

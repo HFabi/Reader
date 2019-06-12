@@ -1,5 +1,7 @@
 package com.example.lenovo.reader.fragments.dashboard.adapters
 
+import android.content.Context
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +13,7 @@ import com.example.lenovo.reader.fragments.dashboard.adapters.LastAddedArticleAd
 import com.example.lenovo.reader.pxFromDp
 import com.example.model.models.LastAddedArticle
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.item_last_added_article.view.item_last_added_cardview
 import kotlinx.android.synthetic.main.item_last_added_article.view.item_last_added_date_textView
 import kotlinx.android.synthetic.main.item_last_added_article.view.item_last_added_imageview
 import kotlinx.android.synthetic.main.item_last_added_article.view.item_last_added_subtitle_textView
@@ -43,6 +46,10 @@ class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleVi
     override fun bindTo(item: LastAddedArticle) {
       view.item_last_added_date_textView.text = SimpleDateFormat("MMMM yy").format(item.addedAt)
       view.item_last_added_subtitle_textView.text = item.title
+
+
+      view.item_last_added_cardview.setCardBackgroundColor(getRandomColor(view.context))
+
       view.setOnClickListener {
         onClickListener?.invoke(item, view.item_last_added_imageview)
       }
@@ -57,6 +64,21 @@ class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleVi
           .into(view.item_last_added_imageview)
       }
       view.item_last_added_imageview.transitionName="transition"+item.id
+    }
+
+    fun getRandomColor(context: Context): Int {
+      return when(Math.random()) {
+        in 0.0f..0.3f -> context.resources.getColor(R.color.colorYellowOrange)
+        in 0.3f..0.6f ->    context.resources.getColor(R.color.colorRegentStBlue)
+        else -> context.resources.getColor(R.color.colorSeaPink)
+      }
+
+
+
+
+
+
+
     }
   }
 }
