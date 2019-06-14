@@ -6,6 +6,7 @@
     <item name="colorPrimary">@color/colorPrimaryDark</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
+    <item name="android:statusBarColor">@color/colorAlto</item>
   </style>
 
   <style name="Reader">
@@ -25,7 +26,9 @@
 
   </style>
 
-  <style name="Reader.Title1" >
+
+  <!-- titles -->
+  <style name="Reader.Title1">
 
   </style>
 
@@ -47,6 +50,7 @@
   </style>
 
 
+  <!-- buttons -->
   <style name="Reader.Button">
 
   </style>
@@ -56,6 +60,13 @@
   </style>
 
 
+  <!-- chips -->
+  <style name="Reader.Chip" parent="Widget.MaterialComponents.Chip.Action">
 
+  </style>
+
+  <style name="Reader.FilterChip" parent="Widget.MaterialComponents.Chip.Filter">
+
+  </style>
 
 </resources>

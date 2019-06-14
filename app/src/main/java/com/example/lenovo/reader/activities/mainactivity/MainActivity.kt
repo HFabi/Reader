@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.activities.base.BaseActivity
+import com.example.lenovo.reader.fragments.articlelist.ArticleListFragment
 import com.example.lenovo.reader.fragments.dashboard.DashboardFragment
 import com.example.lenovo.reader.fragments.settings.SettingsFragment
 import com.example.lenovo.reader.navigation.Router
@@ -37,7 +38,9 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         R.id.action_bottom_article_list -> {
 //        Log.d("CLICK", "onOptionsItemSelected:: Navi")
           currentFragment?.let {
-            router.goToArticleList(it)
+            if (it !is ArticleListFragment) {
+              router.goToArticleList(it)
+            }
           }
         }
         R.id.action_bottom_settings -> {

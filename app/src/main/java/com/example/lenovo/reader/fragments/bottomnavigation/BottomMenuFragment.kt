@@ -12,7 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class BottomNavigationFragment @Inject constructor() : BottomSheetDialogFragment() {
+class BottomMenuFragment @Inject constructor() : BottomSheetDialogFragment() {
 
   @Inject
   lateinit var router: Router

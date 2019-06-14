@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <!-- Fontsize -->
+  <!-- toolbar -->
+  <dimen name="toolbar_elevation">4dp</dimen>
+  <dimen name="toolbar_delay">8dp</dimen>
+
+  <!-- fontsize -->
   <dimen name="articleFontSizeSmall">17sp</dimen>
   <dimen name="articleFontSizeMedium">19sp</dimen>
   <dimen name="articleFontSizeLarge">21sp</dimen>

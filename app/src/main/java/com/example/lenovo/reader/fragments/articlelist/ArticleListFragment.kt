@@ -1,21 +1,30 @@
 package com.example.lenovo.reader.fragments.articlelist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.activities.mainactivity.MainActivity
 import com.example.lenovo.reader.annotations.Layout
+import com.example.lenovo.reader.fragments.articlelist.adapters.ExcerptArticleAdapter
 import com.example.lenovo.reader.fragments.base.BaseFragment
 import com.example.lenovo.reader.fragments.base.BasePresenter
 import com.example.lenovo.reader.navigation.Router
+import com.example.lenovo.reader.pxFromDp
+import com.example.model.models.Category
+import com.example.model.models.ExcerptArticle
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.article_list_filter.filter_bottom_sheet
+import kotlinx.android.synthetic.main.article_list_filter.filter_chipgroup
+import kotlinx.android.synthetic.main.article_list_filter.filter_clear_button
+import kotlinx.android.synthetic.main.fragment_article_list.article_list_recyclerview
 import kotlinx.android.synthetic.main.fragment_article_list.article_list_toolbar
 import javax.inject.Inject
 
@@ -29,6 +38,7 @@ class ArticleListFragment : BaseFragment(), ArticleListView {
   lateinit var router: Router
 
   lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
+  lateinit var excerptArticleAdapter: ExcerptArticleAdapter
 
   override fun providePresenter(): BasePresenter? = presenter
 
@@ -39,6 +49,9 @@ class ArticleListFragment : BaseFragment(), ArticleListView {
     super.onViewCreated(view, savedInstanceState)
     setUpToolbar(article_list_toolbar, false, titleRes = R.string.articles)
     setUpFilter()
+    setUpList()
+//    setUpAdaptiveToolbarElevation(article_list_toolbar, article_list_recyclerview, pxFromDp(8.0f, context!!))
+    setUpAdaptiveToolbarElevation(article_list_toolbar, article_list_recyclerview)
   }
 
   override fun onResume() {
@@ -58,10 +71,26 @@ class ArticleListFragment : BaseFragment(), ArticleListView {
     super.onCreateOptionsMenu(menu, inflater)
   }
 
+  /**
+   * Called when invalidate
+   */
+  override fun onPrepareOptionsMenu(menu: Menu) {
+    var b = bottomSheetBehavior.state == BottomSheetBehavior.STATE_HIDDEN
+    Log.d("GGG", "Called onPrepareOptionsMenu" + b)
+
+    val filterItem: MenuItem = menu.findItem(R.id.action_article_list_filter)
+    filterItem.icon = context!!.getDrawable(
+      if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_HIDDEN)
+        R.drawable.ic_filter_list_black_24dp else R.drawable.ic_filter_list_color_24dp
+    )
+    super.onPrepareOptionsMenu(menu)
+  }
+
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {
       R.id.action_article_list_filter -> {
         onToggleFilter()
+        activity?.invalidateOptionsMenu()
       }
       R.id.action_article_list_search -> {
         router.goToSearch(this)
@@ -80,5 +109,58 @@ class ArticleListFragment : BaseFragment(), ArticleListView {
     bottomSheetBehavior = BottomSheetBehavior.from(filter_bottom_sheet)
     // hide on start
     bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+    bottomSheetBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+
+      override fun onSlide(bottomSheet: View, slideOffset: Float) {
+
+      }
+
+      override fun onStateChanged(bottomSheet: View, newState: Int) {
+        if (newState == BottomSheetBehavior.STATE_HIDDEN) {
+          activity?.invalidateOptionsMenu()
+        }
+      }
+    })
+
+    filter_clear_button.setOnClickListener {
+      filter_chipgroup.clearCheck()
+    }
+
+    filter_chipgroup.onActiveStateChangeListener = { isActive ->
+      Log.d("HHHH", "MSG" + isActive)
+      filter_clear_button.visibility = if (isActive) View.VISIBLE else View.GONE
+    }
+
+//    filter_chipgroup.onCl
+
+  }
+
+  fun setUpList() {
+    excerptArticleAdapter = ExcerptArticleAdapter()
+    excerptArticleAdapter.onItemClickListener = { excerptArticle, view ->
+      Toast.makeText(view.context, " " + excerptArticle.id + " ", Toast.LENGTH_SHORT).show()
+    }
+    article_list_recyclerview.adapter = excerptArticleAdapter
+    article_list_recyclerview.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+    article_list_recyclerview.addItemDecoration(
+      ExcerptArticleItemDecorator(
+        pxFromDp(
+          8.0f,
+          context!!
+        ).toInt()
+      )
+    )
+  }
+
+  override fun replaceExcerptArticles(excerptArticles: List<ExcerptArticle>) {
+    excerptArticleAdapter.replace(excerptArticles)
+  }
+
+  override fun appendExcerptArticles(excerptArticles: List<ExcerptArticle>) {
+    excerptArticleAdapter.append(excerptArticles)
+  }
+
+  override fun updateCategories(categories: List<Category>) {
+    filter_chipgroup.setCategories(categories)
   }
 }

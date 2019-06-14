@@ -16,6 +16,8 @@ import com.example.lenovo.reader.pxFromDp
 import com.example.model.models.LastAddedArticle
 import kotlinx.android.synthetic.main.fragment_dashboard.dashboard_floatingactionbutton
 import kotlinx.android.synthetic.main.fragment_dashboard.dashboard_last_added_recycler
+import kotlinx.android.synthetic.main.fragment_dashboard.dashboard_nestedscrollview
+import kotlinx.android.synthetic.main.fragment_dashboard.dashboard_toolbar
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_dashboard)
@@ -36,6 +38,7 @@ class DashboardFragment : BaseFragment(), DashboardView {
   ) {
     super.onViewCreated(view, savedInstanceState)
     setHasOptionsMenu(true)
+    setUpAdaptiveToolbarElevation(dashboard_toolbar, dashboard_nestedscrollview)
     setUp()
   }
 
@@ -68,27 +71,16 @@ class DashboardFragment : BaseFragment(), DashboardView {
         pxFromDp(
           8.0f,
           context!!
+        ).toInt(),
+        pxFromDp(
+          4.0f,
+          context!!
         ).toInt()
       )
     )
-
-//    val snapHelperLastArticle = StartSnapHelper()
-//    snapHelperLastArticle.attachToRecyclerView(dashboard_last_added_recycler)
   }
 
   override fun updateLastAddedArticles(lastAddedArticles: List<LastAddedArticle>) {
     lastAddedArticleAdapter.replace(lastAddedArticles)
   }
 }
-//lastAddedArticleAdapter = LastAddedArticleAdapter()
-//dashboard_last_added_recycler.adapter = lastAddedArticleAdapter
-//dashboard_last_added_recycler.layoutManager =
-//LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-//dashboard_last_added_recycler.isNestedScrollingEnabled = false
-//lastAddedArticleAdapter.addListener { article, view ->
-//  router.goToArticle(
-//    this,
-//    article.id,
-//    view
-//  )
-//}

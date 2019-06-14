@@ -12,7 +12,7 @@ import com.example.lenovo.reader.fragments.article.ArticleFragment
 import com.example.lenovo.reader.fragments.article.ArticleModule
 import com.example.lenovo.reader.fragments.articlelist.ArticleListFragment
 import com.example.lenovo.reader.fragments.articlelist.ArticleListModule
-import com.example.lenovo.reader.fragments.bottomnavigation.BottomNavigationFragment
+import com.example.lenovo.reader.fragments.bottomnavigation.BottomMenuFragment
 import com.example.lenovo.reader.fragments.dashboard.DashboardFragment
 import com.example.lenovo.reader.fragments.dashboard.DashboardModule
 import com.example.lenovo.reader.fragments.search.SearchFragment
@@ -65,6 +65,6 @@ abstract class FragmentBuilder {
 
   @FragmentScope
   @ContributesAndroidInjector(modules = [])
-  abstract fun bottomNavigationFragmentInjector(): BottomNavigationFragment
+  abstract fun bottomNavigationFragmentInjector(): BottomMenuFragment
 
 }

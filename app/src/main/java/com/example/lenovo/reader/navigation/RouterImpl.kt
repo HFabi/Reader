@@ -7,7 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.activities.base.BaseActivity
 import com.example.lenovo.reader.fragments.articlelist.ArticleListFragment
-import com.example.lenovo.reader.fragments.bottomnavigation.BottomNavigationFragment
+import com.example.lenovo.reader.fragments.bottomnavigation.BottomMenuFragment
 import com.example.lenovo.reader.fragments.dashboard.DashboardFragment
 import com.example.lenovo.reader.fragments.dashboard.DashboardFragmentDirections
 import javax.inject.Inject
@@ -78,7 +78,7 @@ class RouterImpl @Inject constructor(var baseActivity: BaseActivity) : Router {
   }
 
   override fun showBottomNavigation() {
-    with(BottomNavigationFragment()) {
+    with(BottomMenuFragment()) {
       show(baseActivity.supportFragmentManager, javaClass.simpleName)
     }
   }

@@ -1,5 +1,6 @@
 package com.example.lenovo.reader.fragments.base
 
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseAdapter<T, V : RecyclerView.ViewHolder> : RecyclerView.Adapter<V>() {
@@ -17,5 +18,11 @@ abstract class BaseAdapter<T, V : RecyclerView.ViewHolder> : RecyclerView.Adapte
     itemList.clear()
     itemList.addAll(0, collection)
     notifyDataSetChanged()
+  }
+
+  fun append(collection: Collection<T>) {
+    val length = itemList.size
+    itemList.addAll(length, collection)
+    notifyItemRangeInserted(length, collection.size)
   }
 }

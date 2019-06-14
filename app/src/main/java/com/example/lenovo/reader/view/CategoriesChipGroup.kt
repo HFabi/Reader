@@ -18,6 +18,7 @@ class CategoriesChipGroup : ChipGroup {
 
   private var categoryList: List<Category> = mutableListOf()
 
+
   private val onClickListener: View.OnClickListener = View.OnClickListener {
     onChipClicked((it as Chip).text as String)
   }
@@ -33,7 +34,6 @@ class CategoriesChipGroup : ChipGroup {
   constructor(context: Context, attributeSet: AttributeSet, a: Int): super(context, attributeSet, a) {
 
   }
-
 
   // can add
   // list -> show list
