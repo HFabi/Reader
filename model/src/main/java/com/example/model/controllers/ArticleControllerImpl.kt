@@ -1,12 +1,10 @@
 package com.example.model.controllers
 
-import android.util.Log
 import com.example.model.generateUniqueDirectoryName
 import com.example.model.generateUniqueFileName
 import com.example.model.models.Article
 import com.example.model.models.DownloadTask
 import io.reactivex.Single
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -21,7 +19,7 @@ class ArticleControllerImpl @Inject constructor() : ArticleController {
 
   var downloadTaskList: MutableList<DownloadTask> = mutableListOf()
 
-  override fun parse(article: Article): Single<Pair<Article, List<DownloadTask>>> {
+  override fun processArticle(article: Article): Single<Article> {
     return Single.fromCallable {
 
       article.localPath = downloadController.providePath(generateUniqueDirectoryName())
@@ -32,12 +30,35 @@ class ArticleControllerImpl @Inject constructor() : ArticleController {
       article.content = parsedHtml
 
       // handle lead image Url
-      article.leadImagePath = generateUniqueFileName(article.leadImageUrl, article.localPath)
-      downloadTaskList.add(DownloadTask(article.leadImageUrl, article.leadImagePath))
+      val leadImageUrl = article.leadImagePath
+      article.leadImagePath = generateUniqueFileName(leadImageUrl, article.localPath)
+      downloadTaskList.add(DownloadTask(leadImageUrl, article.leadImagePath))
 
-      Pair(article, downloadTaskList)
+      // start Service with download task list
+      //.flatMapObservable { (article, downloadTaskList) ->
+      //articlesDbDataSource.addArticle(article)
+      //.andThen(downloadController.load(downloadTaskList))
+      //}
+      article
     }
   }
 }
 
+//  override fun parse(article: Article): Single<Pair<Article, List<DownloadTask>>> {
+//    return Single.fromCallable {
+//
+//      article.localPath = downloadController.providePath(generateUniqueDirectoryName())
+//
+//      // replace img with local paths
+//      val (parsedHtml, downloadTasks) = htmlParser.replaceImagePaths(article.content, article.localPath)
+//      downloadTaskList.addAll(downloadTasks)
+//      article.content = parsedHtml
+//
+//      // handle lead image Url
+//      article.leadImagePath = generateUniqueFileName(article.leadImageUrl, article.localPath)
+//      downloadTaskList.add(DownloadTask(article.leadImageUrl, article.leadImagePath))
+//
+//      Pair(article, downloadTaskList)
+//    }
+//  }
 

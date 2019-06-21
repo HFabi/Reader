@@ -16,7 +16,7 @@ import androidx.room.Index
   ],
   indices = [Index("categoryId")]
 )
-data class ArticleCategoryJoin(
+data class ArticleCategoryDbEntity(
   var articleId: Int,
   var categoryId: Int
 )

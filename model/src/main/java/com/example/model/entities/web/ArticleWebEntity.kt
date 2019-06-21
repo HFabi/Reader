@@ -6,16 +6,13 @@ import java.util.Date
  * @author appcom interactive GmbH on 2019-05-09
  */
 data class ArticleWebEntity(
-  var id: Int,
-  var author: String = "",
-  var title: String,
-  var content: String,
   var domain: String,
   var url: String,
-  var localPath: String = "",
-  var excerpt: String,
+  var title: String,
+  var author: String = "",
+  var datePublished: Date,
   var leadImageUrl: String,
-  var leadImagePath: String = "",
-  var nextPageUrl: String,
-  var addedAt: Date
+  var excerpt: String,
+  var content: String,
+  var nextPageUrl: String
 )

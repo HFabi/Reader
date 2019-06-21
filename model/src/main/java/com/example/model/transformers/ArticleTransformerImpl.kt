@@ -1,10 +1,11 @@
 package com.example.model.transformers
 
 import com.example.model.entities.db.ArticleDbEntity
+import com.example.model.entities.db.ExcerptArticleDbEntity
 import com.example.model.entities.web.ArticleWebEntity
 import com.example.model.models.Article
-import com.example.model.models.FavoriteArticle
-import com.example.model.models.LastAddedArticle
+import com.example.model.models.ExcerptArticle
+import java.util.Date
 import javax.inject.Inject
 
 /**
@@ -12,78 +13,72 @@ import javax.inject.Inject
  */
 class ArticleTransformerImpl @Inject constructor() : ArticleTransformer {
 
-  override fun toModel(articleWebEntity: ArticleWebEntity): Article {
-    return Article(
-      articleWebEntity.id,
-      articleWebEntity.author,
-      articleWebEntity.title,
-      articleWebEntity.content,
-      articleWebEntity.domain,
-      articleWebEntity.url,
-      articleWebEntity.localPath,
-      articleWebEntity.excerpt,
-      articleWebEntity.leadImageUrl,
-      articleWebEntity.leadImagePath,
-      articleWebEntity.nextPageUrl,
-      articleWebEntity.addedAt,
-      false,
-      false
-    )
-  }
-
   override fun toModel(articleDbEntity: ArticleDbEntity): Article {
     return Article(
       articleDbEntity.id,
-      articleDbEntity.author,
-      articleDbEntity.title,
-      articleDbEntity.content,
       articleDbEntity.domain,
       articleDbEntity.url,
-      articleDbEntity.localPath,
-      articleDbEntity.excerpt,
-      articleDbEntity.leadImageUrl,
+      articleDbEntity.title,
+      articleDbEntity.author,
+      articleDbEntity.datePublished,
       articleDbEntity.leadImagePath,
+      articleDbEntity.excerpt,
+      articleDbEntity.content,
+      articleDbEntity.localPath,
       articleDbEntity.nextPageUrl,
-      articleDbEntity.addedAt,
-      articleDbEntity.isRead,
-      articleDbEntity.isFavorite
+      articleDbEntity.addedAt
+    )
+  }
+
+  override fun toModel(articleWebEntity: ArticleWebEntity): Article {
+    return Article(
+      0,
+      articleWebEntity.domain,
+      articleWebEntity.url,
+      articleWebEntity.title,
+      articleWebEntity.author,
+      articleWebEntity.datePublished,
+      articleWebEntity.leadImageUrl,
+      articleWebEntity.excerpt,
+      articleWebEntity.content,
+      "",
+      articleWebEntity.nextPageUrl,
+      Date()
+    )
+  }
+
+  override fun toModel(excerptArticleDbEntity: ExcerptArticleDbEntity): ExcerptArticle {
+    return ExcerptArticle(
+      excerptArticleDbEntity.id,
+      excerptArticleDbEntity.title,
+      excerptArticleDbEntity.addedAt,
+      excerptArticleDbEntity.imagePath
     )
   }
 
   override fun toDbEntity(article: Article): ArticleDbEntity {
     return ArticleDbEntity(
       article.id,
-      article.author,
-      article.title,
-      article.content,
       article.domain,
       article.url,
-      article.localPath,
-      article.excerpt,
-      article.leadImageUrl,
+      article.title,
+      article.author,
+      article.datePublished,
       article.leadImagePath,
+      article.excerpt,
+      article.content,
+      article.localPath,
       article.nextPageUrl,
-      article.addedAt,
-      article.isRead,
-      article.isFavorite
+      article.addedAt
     )
   }
 
-  override fun toLastAddedArticle(articleDbEntity: ArticleDbEntity): LastAddedArticle {
-    return LastAddedArticle(
-      articleDbEntity.id,
-      articleDbEntity.title,
-      articleDbEntity.addedAt,
-      articleDbEntity.leadImagePath
-    )
-  }
-
-  override fun toFavoriteArticle(articleDbEntity: ArticleDbEntity): FavoriteArticle {
-    return FavoriteArticle(
-      articleDbEntity.id,
-      articleDbEntity.title,
-      articleDbEntity.excerpt,
-      articleDbEntity.leadImagePath
+  override fun toDbEntity(excerptArticle: ExcerptArticle): ExcerptArticleDbEntity {
+    return ExcerptArticleDbEntity(
+      excerptArticle.id,
+      excerptArticle.title,
+      excerptArticle.addedAt,
+      excerptArticle.imagePath
     )
   }
 }

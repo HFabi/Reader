@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.model.entities.db.ArticleDbEntity
+import com.example.model.entities.db.LastAddedArticleDbEntity
 import io.reactivex.Completable
 import io.reactivex.Single
 
@@ -17,19 +18,17 @@ interface ArticleDao {
   @Query("SELECT * FROM articles WHERE id = (:id)")
   fun getArticleById(id: Int): Single<ArticleDbEntity>
 
-  @Query("SELECT * FROM articles ORDER BY addedAt DESC LIMIT (:count) OFFSET (:skip)")
-  fun getArticles(count: Int, skip: Int): Single<List<ArticleDbEntity>>
+  @Query("SELECT id, title, addedAt, leadImagePath FROM articles ORDER BY addedAt DESC LIMIT (:count) OFFSET (:skip)")
+  fun getExcerptArticles(count: Int, skip: Int): Single<List<ArticleDbEntity>>
 
-  @Query("SELECT * FROM articles ORDER BY addedAt DESC LIMIT 4")
-  fun getLastAddedArticles(): Single<List<ArticleDbEntity>>
-
-  @Query("SELECT * FROM articles WHERE isFavorite = 1 ORDER BY addedAt LIMIT 8")
-  fun getFavoriteArticles(): Single<List<ArticleDbEntity>>
+  @Query("SELECT id, title, addedAt, leadImagePath FROM articles ORDER BY addedAt DESC LIMIT 8")
+  fun getLastAddedArticles(): Single<List<LastAddedArticleDbEntity>>
 
   @Insert(onConflict = OnConflictStrategy.ABORT)
   fun addArticle(articleDb: ArticleDbEntity): Completable
 
-
+//  @Query("SELECT * FROM articles WHERE isFavorite = 1 ORDER BY addedAt LIMIT 8")
+//  fun getFavoriteArticles(): Single<List<ArticleDbEntity>>
 
   // LIMIT <skip>, <count>
   // LIMIT <count> OFFSET <skip>

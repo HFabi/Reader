@@ -9,5 +9,7 @@ import io.reactivex.Single
  */
 interface ArticleController {
 
-  fun parse(article: Article): Single<Pair<Article, List<DownloadTask>>>
+//  fun parse(article: Article): Single<Pair<Article, List<DownloadTask>>>
+
+  fun processArticle(article: Article): Single<Article>
 }

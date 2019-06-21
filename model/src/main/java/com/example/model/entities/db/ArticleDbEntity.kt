@@ -11,18 +11,16 @@ import java.util.Date
   tableName = "articles"
 )
 data class ArticleDbEntity(
-  @PrimaryKey(autoGenerate = true) var id: Int,
-  var author: String = "",
-  var title: String,
-  var content: String,
+  @PrimaryKey(autoGenerate = true) var id: Long,
   var domain: String,
   var url: String,
-  var localPath: String,
-  var excerpt: String,
-  var leadImageUrl: String,
+  var title: String,
+  var author: String = "",
+  var datePublished: Date,
   var leadImagePath: String,
+  var excerpt: String,
+  var content: String,
+  var localPath: String,
   var nextPageUrl: String,
-  var addedAt: Date,
-  var isRead: Boolean,
-  var isFavorite: Boolean
+  var addedAt: Date
 )

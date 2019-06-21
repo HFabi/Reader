@@ -9,5 +9,5 @@ import io.reactivex.Single
  */
 interface ArticlesWebDataSource {
 
-  fun parseHtmlFromUrl(url: String): Single<Article>
+  fun getArticle(url: String): Single<Article>
 }

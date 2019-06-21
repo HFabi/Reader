@@ -2,8 +2,6 @@ package com.example.lenovo.reader.fragments.dashboard
 
 import android.util.Log
 import com.example.lenovo.reader.fragments.base.BasePresenterImpl
-import com.example.lenovo.reader.fragments.dashboard.interactors.GetCategoriesInteractor
-import com.example.lenovo.reader.fragments.dashboard.interactors.GetFavoriteArticlesInteractor
 import com.example.lenovo.reader.fragments.dashboard.interactors.GetLastAddedArticlesInteractor
 import com.example.model.bind
 import com.example.model.schedule

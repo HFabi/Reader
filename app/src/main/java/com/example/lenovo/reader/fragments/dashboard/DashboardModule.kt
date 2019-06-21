@@ -1,10 +1,6 @@
 package com.example.lenovo.reader.fragments.dashboard
 
 import com.example.lenovo.reader.annotations.FragmentScope
-import com.example.lenovo.reader.fragments.dashboard.interactors.GetCategoriesInteractor
-import com.example.lenovo.reader.fragments.dashboard.interactors.GetCategoriesInteractorImpl
-import com.example.lenovo.reader.fragments.dashboard.interactors.GetFavoriteArticlesInteractor
-import com.example.lenovo.reader.fragments.dashboard.interactors.GetFavoriteArticlesInteractorImpl
 import com.example.lenovo.reader.fragments.dashboard.interactors.GetLastAddedArticlesInteractor
 import com.example.lenovo.reader.fragments.dashboard.interactors.GetLastAddedArticlesInteractorImpl
 import dagger.Binds

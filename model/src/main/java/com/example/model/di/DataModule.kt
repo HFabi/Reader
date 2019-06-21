@@ -26,6 +26,8 @@ import com.example.model.datastores.ArticlesDataStore
 import com.example.model.datastores.ArticlesDataStoreImpl
 import com.example.model.transformers.ArticleTransformer
 import com.example.model.transformers.ArticleTransformerImpl
+import com.example.model.transformers.CategoryTransformer
+import com.example.model.transformers.CategoryTransformerImpl
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -109,6 +111,12 @@ class DataModule {
   @Singleton
   fun provideArticleTransformer(articleTransformerImpl: ArticleTransformerImpl): ArticleTransformer {
     return articleTransformerImpl
+  }
+
+  @Provides
+  @Singleton
+  fun provideCategoryTransformer(categoryTransformerImpl: CategoryTransformerImpl): CategoryTransformer {
+    return categoryTransformerImpl
   }
 
   @Provides

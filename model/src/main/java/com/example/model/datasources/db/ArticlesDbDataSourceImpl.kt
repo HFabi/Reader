@@ -1,9 +1,11 @@
 package com.example.model.datasources.db
 
 import com.example.model.models.Article
-import com.example.model.models.FavoriteArticle
+import com.example.model.models.Category
+import com.example.model.models.ExcerptArticle
 import com.example.model.models.LastAddedArticle
 import com.example.model.transformers.ArticleTransformer
+import com.example.model.transformers.CategoryTransformer
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -22,17 +24,14 @@ class ArticlesDbDataSourceImpl @Inject constructor() : ArticlesDbDataSource {
   lateinit var articleCategoryDao: ArticleCategoryDao
   @Inject
   lateinit var articleTransformer: ArticleTransformer
+  @Inject
+  lateinit var categoryTransformer: CategoryTransformer
+
+  private val articlesPerPage: Int = 10
 
   override fun getArticleById(id: Int): Single<Article> {
     return articleDao.getArticleById(id)
       .map { articleDbEntity -> articleTransformer.toModel(articleDbEntity) }
-  }
-
-  override fun getArticles(count: Int, skip: Int): Single<List<Article>> {
-    return articleDao.getArticles(count, skip)
-      .flatMapObservable { list -> Observable.fromIterable(list) }
-      .map { articleDbEntity -> articleTransformer.toModel(articleDbEntity) }
-      .toList()
   }
 
   override fun getLastAddedArticles(): Single<List<LastAddedArticle>> {
@@ -42,14 +41,22 @@ class ArticlesDbDataSourceImpl @Inject constructor() : ArticlesDbDataSource {
       .toList()
   }
 
-  override fun getFavoriteArticles(): Single<List<FavoriteArticle>> {
-    return articleDao.getFavoriteArticles()
+  override fun addArticle(article: Article): Completable {
+    return articleDao.addArticle(articleTransformer.toDbEntity(article))
+  }
+
+  override fun getExcerptArticles(page: Int, categories: List<Category>): Single<List<ExcerptArticle>> {
+    val skip = articlesPerPage * page
+    return articleDao.getExcerptArticles(articlesPerPage, skip)
       .flatMapObservable { list -> Observable.fromIterable(list) }
-      .map { articleDbEntity -> articleTransformer.toFavoriteArticle(articleDbEntity) }
+      .map { articleDbEntity -> articleTransformer.toModel(articleDbEntity) }
       .toList()
   }
 
-  override fun addArticle(article: Article): Completable {
-    return articleDao.addArticle(articleTransformer.toDbEntity(article))
+  override fun getCategories(): Single<List<Category>> {
+    return categoryDao.getCategories()
+      .flatMapObservable { list -> Observable.fromIterable(list) }
+      .map { categoryDbEntity -> categoryTransformer.toModel(categoryDbEntity) }
+      .toList()
   }
 }

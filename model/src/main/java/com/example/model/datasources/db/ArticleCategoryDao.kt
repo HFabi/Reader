@@ -4,7 +4,8 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import com.example.model.entities.db.ArticleCategoryJoin
+import androidx.room.Query
+import com.example.model.entities.db.ArticleCategoryDbEntity
 import io.reactivex.Completable
 
 /**
@@ -14,9 +15,17 @@ import io.reactivex.Completable
 interface ArticleCategoryDao {
 
   @Insert(onConflict = OnConflictStrategy.ABORT)
-  fun addArticleCategory(articleCategoryJoin: ArticleCategoryJoin): Completable
+  fun addArticleCategory(articleCategoryDbEntity: ArticleCategoryDbEntity): Completable
 
   @Delete
-  fun remove(articleCategoryJoin: ArticleCategoryJoin): Completable
+  fun remove(articleCategoryDbEntity: ArticleCategoryDbEntity): Completable
+
+  @Query(
+    "SELECT id, title, addedAt, leadImagePath " +
+        "FROM articles INNER JOIN articles_categories " +
+        "ON articles.category=user_repo_join.userId " +
+        "WHERE user_repo_join.repoId=:repoId"
+  )
+  fun getExcerptArticle()
 
 }

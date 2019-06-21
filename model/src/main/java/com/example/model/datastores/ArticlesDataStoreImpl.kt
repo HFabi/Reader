@@ -1,13 +1,12 @@
 package com.example.model.datastores
 
-import android.util.Log
 import com.example.model.controllers.ArticleController
-import com.example.model.controllers.DownloadController
 import com.example.model.datasources.db.ArticlesDbDataSource
 import com.example.model.datasources.local.SharedPreferencesDataSource
 import com.example.model.datasources.web.ArticlesWebDataSource
 import com.example.model.models.Article
-import com.example.model.models.FavoriteArticle
+import com.example.model.models.Category
+import com.example.model.models.ExcerptArticle
 import com.example.model.models.LastAddedArticle
 import io.reactivex.Completable
 import io.reactivex.Single
@@ -15,8 +14,6 @@ import javax.inject.Inject
 
 class ArticlesDataStoreImpl @Inject constructor() : ArticlesDataStore {
 
-  @Inject
-  lateinit var downloadController: DownloadController
   @Inject
   lateinit var articlesWebDataSource: ArticlesWebDataSource
   @Inject
@@ -26,35 +23,26 @@ class ArticlesDataStoreImpl @Inject constructor() : ArticlesDataStore {
   @Inject
   lateinit var sharedPreferencesDataSource: SharedPreferencesDataSource
 
-  override fun getFavoriteArticles(): Single<List<FavoriteArticle>> {
-    return articlesDbDataSource.getFavoriteArticles()
+  override fun getLastAddedArticles(count: Int): Single<List<LastAddedArticle>> {
+    return articlesDbDataSource.getLastAddedArticles()
   }
 
-  override fun getCategories() {
-
-  }
-
-  override fun getArticles(count: Int, skip: Int): Single<List<Article>> {
-    return articlesDbDataSource.getArticles(count, skip)
+  override fun getExcerptArticles(page: Int, categories: List<Category>): Single<List<ExcerptArticle>> {
+    return articlesDbDataSource.getExcerptArticles(page, categories)
   }
 
   override fun getArticle(id: Int): Single<Article> {
     return articlesDbDataSource.getArticleById(id)
   }
 
-  override fun getLastAddedArticles(count: Int): Single<List<LastAddedArticle>> {
-    return articlesDbDataSource.getLastAddedArticles()
+  override fun getCategories(): Single<List<Category>> {
+    return articlesDbDataSource.getCategories()
   }
 
-  override fun addArticle(url: String, categroy: String): Completable {
-    return articlesWebDataSource.parseHtmlFromUrl(url)
-      .flatMap { article -> articleController.parse(article) }
-      .flatMapObservable { (article, downloadTaskList) ->
-        articlesDbDataSource.addArticle(article)
-          .andThen(downloadController.load(downloadTaskList))
-      }
-      .map { downloadResult -> Log.d("DOWNLOAD", downloadResult.toString()) }
-      .flatMapCompletable { Completable.complete() }
+  override fun addArticle(url: String, category: List<String>): Completable {
+    return articlesWebDataSource.getArticle(url)
+      .flatMap(articleController::processArticle)
+      .flatMapCompletable { article -> articlesDbDataSource.addArticle(article) }
   }
 
   override fun setArticleFontSizeIndex(value: Int): Completable {
@@ -64,5 +52,4 @@ class ArticlesDataStoreImpl @Inject constructor() : ArticlesDataStore {
   override fun getArticleFontSizeIndex(): Single<Int> {
     return sharedPreferencesDataSource.getArticleFontSizeIndex()
   }
-
 }
