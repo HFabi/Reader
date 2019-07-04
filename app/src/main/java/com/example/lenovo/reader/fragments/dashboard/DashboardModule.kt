@@ -19,19 +19,7 @@ abstract class DashboardModule {
 
   @Binds
   @FragmentScope
-  abstract fun provideGetCategoriesInteractor(getCategoriesInteractorImpl: GetCategoriesInteractorImpl): GetCategoriesInteractor
-
-  @Binds
-  @FragmentScope
-  abstract fun provideGetFavoriteArticlesInteractor(getFavoriteArticlesInteractorImpl: GetFavoriteArticlesInteractorImpl): GetFavoriteArticlesInteractor
-
-  @Binds
-  @FragmentScope
   abstract fun provideGetLastAddedArticlesInteractor(getLastAddedArticlesInteractorImpl: GetLastAddedArticlesInteractorImpl): GetLastAddedArticlesInteractor
 
-//  @JvmStatic
-//  @Provides
-//  @FragmentScope
-//  internal fun provideDashboardPresenter(dashboardPresenterImpl: DashboardPresenterImpl): DashboardPresenter =
-//    dashboardPresenterImpl
+
 }

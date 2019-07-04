@@ -17,6 +17,6 @@ import androidx.room.Index
   indices = [Index("categoryId")]
 )
 data class ArticleCategoryDbEntity(
-  var articleId: Int,
-  var categoryId: Int
+  var articleId: Long,
+  var categoryId: Long
 )

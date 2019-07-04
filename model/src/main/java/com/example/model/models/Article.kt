@@ -8,7 +8,7 @@ data class Article(
   var url: String,
   var title: String,
   var author: String = "",
-  var datePublished: Date,
+  var datePublished: Date?,
   var leadImagePath: String = "",
   var excerpt: String,
   var content: String,

@@ -1,6 +1,6 @@
 package com.example.model.models
 
 class Category(
-  var id: Int,
+  var id: Long,
   var name: String
 )

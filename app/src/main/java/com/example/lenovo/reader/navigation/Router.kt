@@ -13,9 +13,9 @@ interface Router {
 
   fun goToSettings(currentFragment: Fragment)
 
-  fun goToArticle(currentFragment: Fragment, id: Int)
+  fun goToArticle(currentFragment: Fragment, id: Long)
 
-  fun goToArticle(currentFragment: Fragment, id: Int, view: View)
+  fun goToArticle(currentFragment: Fragment, id: Long, view: View)
 
   fun goToAddArticle(currentFragment: Fragment)
 

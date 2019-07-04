@@ -16,10 +16,18 @@ class CategoryTransformerImpl @Inject constructor() : CategoryTransformer {
     )
   }
 
+  override fun toModel(categoryDbEntityList: List<CategoryDbEntity>): List<Category> {
+    return categoryDbEntityList.map(::toModel)
+  }
+
   override fun toDbEntity(category: Category): CategoryDbEntity {
     return CategoryDbEntity(
       category.id,
       category.name
     )
+  }
+
+  override fun toDbEntity(categories: List<Category>): List<CategoryDbEntity> {
+    return categories.map(::toDbEntity)
   }
 }

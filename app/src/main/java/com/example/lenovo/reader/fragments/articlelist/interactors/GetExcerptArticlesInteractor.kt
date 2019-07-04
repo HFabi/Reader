@@ -9,6 +9,6 @@ import io.reactivex.Single
  */
 interface GetExcerptArticlesInteractor {
 
-  fun execute(page: Int = 0, categories: List<Category> = mutableListOf()): Single<List<ExcerptArticle>>
+  fun execute(page: Int = 0, categoryIds: List<Long>): Single<List<ExcerptArticle>>
 
 }

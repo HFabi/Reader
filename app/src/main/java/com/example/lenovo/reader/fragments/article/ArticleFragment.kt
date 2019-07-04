@@ -45,7 +45,7 @@ class ArticleFragment : BaseFragment(), ArticleView {
 
   override fun providePresenter(): BasePresenter = presenter
 
-  override fun articleId(): Int = args.articleId
+  override fun articleId(): Long = args.articleId
 
   override fun onViewCreated(
     view: View,
@@ -57,24 +57,11 @@ class ArticleFragment : BaseFragment(), ArticleView {
     // Remove any title
     article_toolbar.title = ""
     Log.d("AAAA", "Passed id: " + args.articleId)
-
-    // TODO remove
-    article_chipgroup.setCategories(
-      arrayListOf(
-        Category(1, "Design"),
-        Category(2, "Programming"),
-        Category(3, "Art"),
-        Category(4, "Learning"),
-        Category(5, "Test")
-      )
-    )
   }
 
   override fun onResume() {
     super.onResume()
     (activity as MainActivity).setBottomNavigationEnabled(false)
-
-    router.showBottomNavigation()
   }
 
   /**
@@ -123,7 +110,7 @@ class ArticleFragment : BaseFragment(), ArticleView {
     article_webview.loadDataWithBaseURL("file:///", encodedHtml, "text/html", "UTF-8", null)
     article_webview.setVerticalScrollBarEnabled(false)
 
-    if (article.leadImageUrl.isEmpty()) {
+    if (article.leadImagePath.isEmpty()) {
       article_appbarlayout.setExpanded(false, false)
       val lp = article_appbarlayout.getLayoutParams() as CoordinatorLayout.LayoutParams
       lp.height = getActionBarHeight(context!!)
@@ -137,6 +124,10 @@ class ArticleFragment : BaseFragment(), ArticleView {
         .centerCrop()
         .into(article_iamgeview)
     }
+  }
+
+  override fun setCategories(categories: List<Category>) {
+    article_chipgroup.setCategories(categories)
   }
 
 }

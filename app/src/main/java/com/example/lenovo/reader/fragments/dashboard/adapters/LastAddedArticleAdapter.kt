@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.item_last_added_article.view.item_last_add
 import kotlinx.android.synthetic.main.item_last_added_article.view.item_last_added_date_textView
 import kotlinx.android.synthetic.main.item_last_added_article.view.item_last_added_imageview
 import kotlinx.android.synthetic.main.item_last_added_article.view.item_last_added_subtitle_textView
+import timber.log.Timber
 import java.text.SimpleDateFormat
 
 class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleViewHolder>() {
@@ -46,6 +47,8 @@ class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleVi
     override fun bindTo(item: LastAddedArticle) {
       view.item_last_added_date_textView.text = SimpleDateFormat("MMMM yy").format(item.addedAt)
       view.item_last_added_subtitle_textView.text = item.title
+
+      Timber.d("ADAPTER item"+item.id)
 
 
       view.item_last_added_cardview.setCardBackgroundColor(getRandomColor(view.context))

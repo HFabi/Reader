@@ -23,19 +23,11 @@
       android:layout_height="wrap_content"
       android:layout_gravity="center_vertical"
       android:layout_marginEnd="32dp"
-      android:hint="Artikel durchsuchen"
+      android:clickable="false"
+      android:hint="@string/hint_search_articles"
       android:layout_marginStart="4dp"
       android:background="@android:color/transparent"
       tools:text="Suche jetzt"
       />
 
 </LinearLayout>
-
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--xmlns:tools="http://schemas.android.com/tools"-->
-<!--android:id="@+id/searchtextview_linearlayout"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="48dp"-->
-<!--android:orientation="horizontal"-->
-    <!--android:layout_margin="12dp"-->
-    <!--&gt;-->

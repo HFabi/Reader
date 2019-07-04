@@ -2,9 +2,12 @@ package com.example.model.transformers
 
 import com.example.model.entities.db.ArticleDbEntity
 import com.example.model.entities.db.ExcerptArticleDbEntity
+import com.example.model.entities.db.LastAddedArticleDbEntity
 import com.example.model.entities.web.ArticleWebEntity
 import com.example.model.models.Article
 import com.example.model.models.ExcerptArticle
+import com.example.model.models.LastAddedArticle
+import timber.log.Timber
 import java.util.Date
 import javax.inject.Inject
 
@@ -32,17 +35,17 @@ class ArticleTransformerImpl @Inject constructor() : ArticleTransformer {
 
   override fun toModel(articleWebEntity: ArticleWebEntity): Article {
     return Article(
-      0,
-      articleWebEntity.domain,
-      articleWebEntity.url,
-      articleWebEntity.title,
-      articleWebEntity.author,
-      articleWebEntity.datePublished,
-      articleWebEntity.leadImageUrl,
-      articleWebEntity.excerpt,
-      articleWebEntity.content,
+      Date().time,
+      articleWebEntity.domain ?:"",
+      articleWebEntity.url ?:"",
+      articleWebEntity.title ?:"",
+      articleWebEntity.author ?:"",
+      articleWebEntity.date_published?.let { Date(it)} ?: null,
+      articleWebEntity.lead_image_url ?:"",
+      articleWebEntity.excerpt ?:"",
+      articleWebEntity.content ?:"",
       "",
-      articleWebEntity.nextPageUrl,
+      articleWebEntity.next_page_url ?:"",
       Date()
     )
   }
@@ -52,8 +55,21 @@ class ArticleTransformerImpl @Inject constructor() : ArticleTransformer {
       excerptArticleDbEntity.id,
       excerptArticleDbEntity.title,
       excerptArticleDbEntity.addedAt,
-      excerptArticleDbEntity.imagePath
+      excerptArticleDbEntity.leadImagePath
     )
+  }
+
+  override fun toModel(lastAddedArticleDbEntity: LastAddedArticleDbEntity): LastAddedArticle {
+    return LastAddedArticle(
+      lastAddedArticleDbEntity.id,
+      lastAddedArticleDbEntity.title,
+      lastAddedArticleDbEntity.addedAt,
+      lastAddedArticleDbEntity.leadImagePath
+    )
+  }
+
+  override fun toModel(lastAddedArticleDbEntities: List<LastAddedArticleDbEntity>): List<LastAddedArticle> {
+    return lastAddedArticleDbEntities.map(::toModel)
   }
 
   override fun toDbEntity(article: Article): ArticleDbEntity {

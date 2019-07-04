@@ -1,5 +1,6 @@
 package com.example.lenovo.reader.fragments.articlelist.interactors
 
+import android.util.Log
 import com.example.model.datastores.ArticlesDataStore
 import com.example.model.models.Category
 import io.reactivex.Single
@@ -22,6 +23,8 @@ class GetCategoriesInteractorImpl @Inject constructor() : GetCategoriesInteracto
 //          )
 //      )
 //    }
-    return articlesDataStore.getCategories()
+    return articlesDataStore.getCategories().map { a -> Log.d("CATEG"," " + a.size +" ")
+      a
+    }
   }
 }

@@ -13,10 +13,6 @@ class DashboardPresenterImpl @Inject constructor() : BasePresenterImpl(), Dashbo
   lateinit var view: DashboardView
   @Inject
   lateinit var getLastAddedArticlesInteractor: GetLastAddedArticlesInteractor
-  @Inject
-  lateinit var getFavoriteArticlesInteractor: GetFavoriteArticlesInteractor
-  @Inject
-  lateinit var getCategoriesInteractor: GetCategoriesInteractor
 
   override fun onCreate() {
     super<BasePresenterImpl>.onCreate()
@@ -25,7 +21,7 @@ class DashboardPresenterImpl @Inject constructor() : BasePresenterImpl(), Dashbo
   }
 
   fun initializeView() {
-    getLastAddedArticlesInteractor.execute()
+    getLastAddedArticlesInteractor.execute(10)
         .schedule()
         .bind(compositeDisposable)
         .subscribe { articles ->

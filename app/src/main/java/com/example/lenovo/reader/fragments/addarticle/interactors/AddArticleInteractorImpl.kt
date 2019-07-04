@@ -1,6 +1,7 @@
 package com.example.lenovo.reader.fragments.addarticle.interactors
 
 import com.example.model.datastores.ArticlesDataStore
+import com.example.model.models.Category
 import io.reactivex.Completable
 import javax.inject.Inject
 
@@ -12,8 +13,7 @@ class AddArticleInteractorImpl @Inject constructor() : AddArticleInteractor {
   @Inject
   lateinit var dataStore: ArticlesDataStore
 
-  override fun execute(url: String): Completable {
-    return dataStore.addArticle(url)
+  override fun execute(url: String, categories: List<Category>?): Completable {
+    return dataStore.addArticle(url, categories)
   }
-
 }

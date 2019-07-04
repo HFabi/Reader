@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.activities.base.BaseActivity
 import com.example.lenovo.reader.fragments.articlelist.ArticleListFragment
+import com.example.lenovo.reader.fragments.articlelist.ArticleListFragmentDirections
 import com.example.lenovo.reader.fragments.bottomnavigation.BottomMenuFragment
 import com.example.lenovo.reader.fragments.dashboard.DashboardFragment
 import com.example.lenovo.reader.fragments.dashboard.DashboardFragmentDirections
@@ -30,15 +31,21 @@ class RouterImpl @Inject constructor(var baseActivity: BaseActivity) : Router {
       .navigate(R.id.settingsFragment)
   }
 
-  override fun goToArticle(currentFragment: Fragment, id: Int) {
-    val action = DashboardFragmentDirections.actionDashboardFragmentToArticleFragment(id)
-    NavHostFragment.findNavController(currentFragment)
-      .navigate(action)
+  override fun goToArticle(currentFragment: Fragment, id: Long) {
+//    val action = DashboardFragmentDirections.actionDashboardFragmentToArticleFragment(id)
+//    NavHostFragment.findNavController(currentFragment)
+//      .navigate(action)
 //    NavHostFragment.findNavController(currentFragment)
 //      .navigate(R.id.action_dashboardFragment_to_articleFragment)
+
+    val action = ArticleListFragmentDirections.actionArticleListFragmentToArticleFragment(id)
+    NavHostFragment.findNavController(currentFragment)
+      .navigate(action)
+
+//    action_articleListFragment_to_articleFragment
   }
 
-  override fun goToArticle(currentFragment: Fragment, id: Int, view: View) {
+  override fun goToArticle(currentFragment: Fragment, id: Long, view: View) {
 
 //    val extras = FragmentNavigatorExtras(
 //      imageView to "header_image",

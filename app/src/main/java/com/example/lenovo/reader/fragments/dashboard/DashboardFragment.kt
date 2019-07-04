@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_dashboard.dashboard_floatingactio
 import kotlinx.android.synthetic.main.fragment_dashboard.dashboard_last_added_recycler
 import kotlinx.android.synthetic.main.fragment_dashboard.dashboard_nestedscrollview
 import kotlinx.android.synthetic.main.fragment_dashboard.dashboard_toolbar
+import kotlinx.android.synthetic.main.fragment_dashboard.searchTextView
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_dashboard)
@@ -78,6 +79,10 @@ class DashboardFragment : BaseFragment(), DashboardView {
         ).toInt()
       )
     )
+
+    searchTextView.setOnClickListener{
+      router.goToSearch(this)
+    }
   }
 
   override fun updateLastAddedArticles(lastAddedArticles: List<LastAddedArticle>) {

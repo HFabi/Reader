@@ -5,7 +5,6 @@ import android.content.res.ColorStateList
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import com.example.lenovo.reader.R
 import com.example.model.models.Category
 import com.google.android.material.chip.Chip
@@ -16,58 +15,85 @@ import com.google.android.material.chip.ChipGroup
  */
 class CategoriesChipGroup : ChipGroup {
 
-  private var categoryList: List<Category> = mutableListOf()
+  private var categoryList: MutableList<Category> = mutableListOf()
 
+  private var checkedCategories: MutableSet<Category> = mutableSetOf()
 
-  private val onClickListener: View.OnClickListener = View.OnClickListener {
-    onChipClicked((it as Chip).text as String)
+  // click on chip
+  private val onChipClickListener: View.OnClickListener = View.OnClickListener {
+    var chip = it as Chip
+    if (chip.isChecked) {
+      checkedCategories.add(chip.tag as Category)
+    } else {
+      checkedCategories.remove(chip.tag as Category)
+    }
+    onChipClicked?.invoke()
   }
 
-  constructor(context: Context): super(context) {
-
+  // click on chip with +
+  private val onAddChipClickListener: View.OnClickListener = View.OnClickListener {
+    onAddClicked?.invoke()
   }
 
-  constructor(context: Context, attributeSet: AttributeSet): super(context, attributeSet) {
+  val selectedCategoryIdentifier: List<Category>
+    get() = checkedCategories.toList()
 
+  var onAddClicked: (() -> Unit)? = null
+
+  var onChipClicked: (() -> Unit)? = null
+
+  constructor(context: Context) : this(context, null)
+  constructor(context: Context, attributeSet: AttributeSet?) : super(context, attributeSet) {
+    init()
+  }
+  constructor(context: Context, attributeSet: AttributeSet?, a: Int) : super(context, attributeSet, a) {
+    init()
   }
 
-  constructor(context: Context, attributeSet: AttributeSet, a: Int): super(context, attributeSet, a) {
-
+  fun init() {
+    categoryList.add(0, Category(-1L, " + "))
+    updateViews()
   }
 
   // can add
   // list -> show list
   fun setCategories(categories: List<Category>) {
-    categoryList = categories
-    categoryList = mutableListOf(Category(234," + ")) + categoryList
+    categoryList = categories.toMutableList()
+    categoryList.add(0, Category(-1L, " + "))
     updateViews()
   }
 
-  fun onChipClicked(text: String) {
-    Toast.makeText(context, text, Toast.LENGTH_LONG).show()
+  fun addCategory(category: Category) {
+    addView(getChipFromCategory(category), 1)
   }
 
+  // replace
   private fun updateViews() {
-    var chipGroup = this
+    removeAllViews()
     categoryList.forEach {
-      (LayoutInflater.from(context).inflate(
-        R.layout.chip_category, chipGroup, false
-      ) as Chip).apply {
-        text = it.name
-        setOnClickListener(onClickListener)
-        chipGroup.addView(this)
-        if(it.name == " + ") {
-          chipBackgroundColor = ColorStateList.valueOf(resources.getColor(android.R.color.black))
-          setTextColor(resources.getColor(android.R.color.white))
-        }
-      }
+      addView(getChipFromCategory(it))
     }
   }
 
-//  fun replaceAll(categories: List<Category>) {
-//    itemList = categories
-//    chipGroup.removeAllViews()
-//    updateViews()
-//  }
-
+  private fun getChipFromCategory(category: Category): Chip {
+    if (category.id == -1L) {
+      return (LayoutInflater.from(context).inflate(
+        R.layout.chip_category_action, this, false
+      ) as Chip).apply {
+        text = category.name
+        chipBackgroundColor = ColorStateList.valueOf(resources.getColor(android.R.color.black))
+        setTextColor(resources.getColor(android.R.color.white))
+        setOnClickListener(onAddChipClickListener)
+//        tag = category
+      }
+    } else {
+      return (LayoutInflater.from(context).inflate(
+        R.layout.chip_category_filter, this, false
+      ) as Chip).apply {
+        text = category.name
+        setOnClickListener(onChipClickListener)
+        tag = category
+      }
+    }
+  }
 }

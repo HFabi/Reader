@@ -5,5 +5,5 @@ import io.reactivex.Single
 
 interface GetArticleInteractor {
 
-  fun execute(id: Int): Single<Article>
+  fun execute(id: Long): Single<Article>
 }

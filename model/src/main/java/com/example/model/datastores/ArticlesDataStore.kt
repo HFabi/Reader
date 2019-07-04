@@ -9,15 +9,19 @@ import io.reactivex.Single
 
 interface ArticlesDataStore {
 
-  fun getArticle(id: Int): Single<Article>
+  fun getArticle(id: Long): Single<Article>
 
   fun getLastAddedArticles(count: Int): Single<List<LastAddedArticle>>
 
-  fun getExcerptArticles(page: Int = 0, categories: List<Category> = mutableListOf()): Single<List<ExcerptArticle>>
+  fun getExcerptArticles(page: Int = 0, categoryIds: List<Long>): Single<List<ExcerptArticle>>
+
+  fun getExcerptArticles(page: Int = 0, serachString: String): Single<List<ExcerptArticle>>
 
   fun getCategories(): Single<List<Category>>
 
-  fun addArticle(url: String, category: List<String> = mutableListOf("")): Completable
+  fun getCategoriesForArticle(articleId: Long): Single<List<Category>>
+
+  fun addArticle(url: String, category: List<Category>?): Completable
 
   fun setArticleFontSizeIndex(value: Int): Completable
 

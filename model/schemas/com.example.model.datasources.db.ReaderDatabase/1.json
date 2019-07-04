@@ -2,34 +2,16 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "27555956b3064c3a452e6e468c6927b6",
+    "identityHash": "7d58866144dc7e5aff631f4b55ba4838",
     "entities": [
       {
         "tableName": "articles",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `author` TEXT NOT NULL, `title` TEXT NOT NULL, `content` TEXT NOT NULL, `domain` TEXT NOT NULL, `url` TEXT NOT NULL, `localPath` TEXT NOT NULL, `excerpt` TEXT NOT NULL, `leadImageUrl` TEXT NOT NULL, `leadImagePath` TEXT NOT NULL, `nextPageUrl` TEXT NOT NULL, `addedAt` INTEGER NOT NULL, `isRead` INTEGER NOT NULL, `isFavorite` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `domain` TEXT NOT NULL, `url` TEXT NOT NULL, `title` TEXT NOT NULL, `author` TEXT NOT NULL, `datePublished` INTEGER, `leadImagePath` TEXT NOT NULL, `excerpt` TEXT NOT NULL, `content` TEXT NOT NULL, `localPath` TEXT NOT NULL, `nextPageUrl` TEXT NOT NULL, `addedAt` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "author",
-            "columnName": "author",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "title",
-            "columnName": "title",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "content",
-            "columnName": "content",
-            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -45,8 +27,26 @@
             "notNull": true
           },
           {
-            "fieldPath": "localPath",
-            "columnName": "localPath",
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "author",
+            "columnName": "author",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "datePublished",
+            "columnName": "datePublished",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "leadImagePath",
+            "columnName": "leadImagePath",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -57,14 +57,14 @@
             "notNull": true
           },
           {
-            "fieldPath": "leadImageUrl",
-            "columnName": "leadImageUrl",
+            "fieldPath": "content",
+            "columnName": "content",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "leadImagePath",
-            "columnName": "leadImagePath",
+            "fieldPath": "localPath",
+            "columnName": "localPath",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -77,18 +77,6 @@
           {
             "fieldPath": "addedAt",
             "columnName": "addedAt",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "isRead",
-            "columnName": "isRead",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "isFavorite",
-            "columnName": "isFavorite",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -191,7 +179,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"27555956b3064c3a452e6e468c6927b6\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"7d58866144dc7e5aff631f4b55ba4838\")"
     ]
   }
 }

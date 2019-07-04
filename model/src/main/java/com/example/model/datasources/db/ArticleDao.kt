@@ -16,10 +16,7 @@ import io.reactivex.Single
 interface ArticleDao {
 
   @Query("SELECT * FROM articles WHERE id = (:id)")
-  fun getArticleById(id: Int): Single<ArticleDbEntity>
-
-  @Query("SELECT id, title, addedAt, leadImagePath FROM articles ORDER BY addedAt DESC LIMIT (:count) OFFSET (:skip)")
-  fun getExcerptArticles(count: Int, skip: Int): Single<List<ArticleDbEntity>>
+  fun getArticleById(id: Long): Single<ArticleDbEntity>
 
   @Query("SELECT id, title, addedAt, leadImagePath FROM articles ORDER BY addedAt DESC LIMIT 8")
   fun getLastAddedArticles(): Single<List<LastAddedArticleDbEntity>>
@@ -27,9 +24,9 @@ interface ArticleDao {
   @Insert(onConflict = OnConflictStrategy.ABORT)
   fun addArticle(articleDb: ArticleDbEntity): Completable
 
-//  @Query("SELECT * FROM articles WHERE isFavorite = 1 ORDER BY addedAt LIMIT 8")
-//  fun getFavoriteArticles(): Single<List<ArticleDbEntity>>
 
+  // @Query("SELECT * FROM articles WHERE isFavorite = 1 ORDER BY addedAt LIMIT 8")
+  // fun getFavoriteArticles(): Single<List<ArticleDbEntity>>
   // LIMIT <skip>, <count>
   // LIMIT <count> OFFSET <skip>
 }

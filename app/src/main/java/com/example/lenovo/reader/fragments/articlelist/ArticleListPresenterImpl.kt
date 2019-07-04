@@ -4,6 +4,7 @@ import com.example.lenovo.reader.fragments.articlelist.interactors.GetCategories
 import com.example.lenovo.reader.fragments.articlelist.interactors.GetExcerptArticlesInteractor
 import com.example.lenovo.reader.fragments.base.BasePresenterImpl
 import com.example.model.bind
+import com.example.model.models.Category
 import com.example.model.schedule
 import javax.inject.Inject
 
@@ -27,28 +28,29 @@ class ArticleListPresenterImpl @Inject constructor(): BasePresenterImpl(), Artic
   }
 
   fun initializeView() {
-    getExcerptArticlesInteractor.execute()
-      .bind(compositeDisposable)
-      .schedule()
-      .subscribe({articles -> view.replaceExcerptArticles(articles)})
-
+//    getExcerptArticlesInteractor.execute(currentPage, mutableListOf<Int>())
+//      .bind(compositeDisposable)
+//      .schedule()
+//      .subscribe({articles -> view.replaceExcerptArticles(articles)})
+//
     getCategoriesInteractor.execute()
       .bind(compositeDisposable)
       .schedule()
       .subscribe({categories -> view.updateCategories(categories)})
   }
 
-  fun loadNextExcerptArticlesPage() {
-    getExcerptArticlesInteractor.execute(currentPage)
-      .bind(compositeDisposable)
-      .schedule()
-      .subscribe({articles -> view.appendExcerptArticles(articles)})
-  }
+//  fun loadNextExcerptArticlesPage() {
+//    getExcerptArticlesInteractor.execute(currentPage)
+//      .bind(compositeDisposable)
+//      .schedule()
+//      .subscribe({articles -> view.appendExcerptArticles(articles)})
+//  }
 
-  fun loadExcerptArticles() {
-    getExcerptArticlesInteractor.execute()
+  override fun loadExcerptArticles(categoryIds: List<Long>) {
+    getExcerptArticlesInteractor.execute(currentPage, categoryIds)
       .bind(compositeDisposable)
       .schedule()
       .subscribe({articles -> view.replaceExcerptArticles(articles)})
   }
+
 }

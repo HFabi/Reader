@@ -39,10 +39,17 @@ class ArticleControllerImpl @Inject constructor() : ArticleController {
       //articlesDbDataSource.addArticle(article)
       //.andThen(downloadController.load(downloadTaskList))
       //}
+//      Pair(article, downloadTaskList)
       article
     }
   }
 }
+
+
+//      .flatMap { (article, downloadTaskList) ->
+//      downloadController.load(downloadTaskList)
+//        .map { r -> article }
+//      }
 
 //  override fun parse(article: Article): Single<Pair<Article, List<DownloadTask>>> {
 //    return Single.fromCallable {

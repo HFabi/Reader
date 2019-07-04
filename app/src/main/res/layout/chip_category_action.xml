@@ -16,9 +16,6 @@
     app:rippleColor="@color/colorGray56"
     app:chipMinTouchTargetSize="36dp"
     app:ensureMinTouchTargetSize="true"
-    app:chipIconSize="16dp"
-    app:iconStartPadding="4dp"
-    app:checkedIcon="@drawable/ic_check_white_24dp"
-    app:iconEndPadding="-2dp"
-    style="@style/Widget.MaterialComponents.Chip.Filter"
+    style="@style/Widget.MaterialComponents.Chip.Action"
+    tools:text="chip"
     />

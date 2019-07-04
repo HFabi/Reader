@@ -4,6 +4,7 @@ import com.example.model.api.ArticlesApi
 import com.example.model.models.Article
 import com.example.model.transformers.ArticleTransformer
 import io.reactivex.Single
+import timber.log.Timber
 import java.util.Date
 import javax.inject.Inject
 
@@ -25,10 +26,8 @@ class ArticlesWebDataSourceImpl @Inject constructor() : ArticlesWebDataSource {
   }
 
   private fun initializeArticle(article: Article): Article {
-    return article.apply {
-      addedAt = Date()
-      article.id = Date().time
-    }
+    Timber.d(article.toString())
+    return article
   }
 }
 

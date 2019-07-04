@@ -3,6 +3,8 @@ package com.example.lenovo.reader.fragments.article
 import com.example.lenovo.reader.annotations.FragmentScope
 import com.example.lenovo.reader.fragments.article.interactors.GetArticleInteractor
 import com.example.lenovo.reader.fragments.article.interactors.GetArticleInteractorImpl
+import com.example.lenovo.reader.fragments.article.interactors.GetCategoriesInteractor
+import com.example.lenovo.reader.fragments.article.interactors.GetCategoriesInteractorImpl
 import com.example.lenovo.reader.fragments.article.interactors.GetFontSizeIndexInteractor
 import com.example.lenovo.reader.fragments.article.interactors.GetFontSizeIndexInteractorImpl
 import com.example.lenovo.reader.fragments.article.interactors.SetFontSizeIndexInteractor
@@ -32,5 +34,10 @@ abstract class ArticleModule {
   @Binds
   @FragmentScope
   abstract fun provideSetFontSizeIndexInteractor(setFontSizeIndexInteractorImpl: SetFontSizeIndexInteractorImpl): SetFontSizeIndexInteractor
+
+  @Binds
+  @FragmentScope
+  abstract fun provideGetCategoriesInteractor(getCategoriesInteractorImpl: GetCategoriesInteractorImpl): GetCategoriesInteractor
+
 
 }

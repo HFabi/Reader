@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
 import com.example.model.BuildConfig
+import com.example.model.api.ArticlesApi
 import com.example.model.api.baseUrl
 import com.example.model.api.databaseName
 import com.example.model.controllers.ArticleController
@@ -24,6 +25,8 @@ import com.example.model.datasources.web.ArticlesWebDataSource
 import com.example.model.datasources.web.ArticlesWebDataSourceImpl
 import com.example.model.datastores.ArticlesDataStore
 import com.example.model.datastores.ArticlesDataStoreImpl
+import com.example.model.transformers.ArticleCategoryTransformer
+import com.example.model.transformers.ArticleCategoryTransformerImpl
 import com.example.model.transformers.ArticleTransformer
 import com.example.model.transformers.ArticleTransformerImpl
 import com.example.model.transformers.CategoryTransformer
@@ -36,6 +39,7 @@ import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.create
 import timber.log.Timber
 import javax.inject.Named
 import javax.inject.Singleton
@@ -69,6 +73,12 @@ class DataModule {
           addInterceptor(HttpLoggingInterceptor { text -> Timber.d(text) }.setLevel(BODY))
         }
       }.build()
+  }
+
+  @Provides
+  @Singleton
+  fun provideArticleApi(retrofit: Retrofit): ArticlesApi {
+    return retrofit.create(ArticlesApi::class.java)
   }
 
   @Provides
@@ -117,6 +127,12 @@ class DataModule {
   @Singleton
   fun provideCategoryTransformer(categoryTransformerImpl: CategoryTransformerImpl): CategoryTransformer {
     return categoryTransformerImpl
+  }
+
+  @Provides
+  @Singleton
+  fun provideArticleCategoryTransformer(articleCategoryTransformerImpl: ArticleCategoryTransformerImpl): ArticleCategoryTransformer {
+    return articleCategoryTransformerImpl
   }
 
   @Provides

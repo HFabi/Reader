@@ -5,6 +5,7 @@ import android.graphics.Outline
 import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewOutlineProvider
 import android.widget.LinearLayout
@@ -47,6 +48,12 @@ class SearchTextView : LinearLayout {
     elevation = 4.0f
 
   }
+
+  override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
+    // consume all clicks
+    return true
+  }
+
 }
 
 //    searchtextview_linearlayout.elevation = 8.0f

@@ -5,9 +5,9 @@ import java.util.Date
 /**
  * @author appcom interactive GmbH on 2019-06-21
  */
-class ExcerptArticleDbEntity (
-  var id: Int,
+data class ExcerptArticleDbEntity (
+  var id: Long,
   var title: String,
   var addedAt: Date,
-  var imagePath: String
+  var leadImagePath: String
 )

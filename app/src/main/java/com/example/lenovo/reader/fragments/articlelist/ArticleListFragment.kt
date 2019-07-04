@@ -50,7 +50,6 @@ class ArticleListFragment : BaseFragment(), ArticleListView {
     setUpToolbar(article_list_toolbar, false, titleRes = R.string.articles)
     setUpFilter()
     setUpList()
-//    setUpAdaptiveToolbarElevation(article_list_toolbar, article_list_recyclerview, pxFromDp(8.0f, context!!))
     setUpAdaptiveToolbarElevation(article_list_toolbar, article_list_recyclerview)
   }
 
@@ -122,16 +121,17 @@ class ArticleListFragment : BaseFragment(), ArticleListView {
       }
     })
 
+    filter_chipgroup.onFilterChangeListener = {categories ->
+      presenter.loadExcerptArticles(categories)
+    }
+
     filter_clear_button.setOnClickListener {
       filter_chipgroup.clearCheck()
     }
 
     filter_chipgroup.onActiveStateChangeListener = { isActive ->
-      Log.d("HHHH", "MSG" + isActive)
       filter_clear_button.visibility = if (isActive) View.VISIBLE else View.GONE
     }
-
-//    filter_chipgroup.onCl
 
   }
 
@@ -139,6 +139,7 @@ class ArticleListFragment : BaseFragment(), ArticleListView {
     excerptArticleAdapter = ExcerptArticleAdapter()
     excerptArticleAdapter.onItemClickListener = { excerptArticle, view ->
       Toast.makeText(view.context, " " + excerptArticle.id + " ", Toast.LENGTH_SHORT).show()
+      router.goToArticle(this, excerptArticle.id)
     }
     article_list_recyclerview.adapter = excerptArticleAdapter
     article_list_recyclerview.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)

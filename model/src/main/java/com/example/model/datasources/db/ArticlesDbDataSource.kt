@@ -12,13 +12,22 @@ import io.reactivex.Single
  */
 interface ArticlesDbDataSource {
 
-  fun getArticleById(id: Int): Single<Article>
+  fun getArticleById(id: Long): Single<Article>
 
   fun getLastAddedArticles(): Single<List<LastAddedArticle>>
 
-  fun getExcerptArticles(page: Int, categories: List<Category>): Single<List<ExcerptArticle>>
+  fun getExcerptArticles(page: Int): Single<List<ExcerptArticle>>
+
+  fun getExcerptArticles(page: Int, categoryIds: List<Long>): Single<List<ExcerptArticle>>
+
+  fun getExcerptArticles(page: Int, searchString: String): Single<List<ExcerptArticle>>
 
   fun getCategories(): Single<List<Category>>
 
+  fun getCategoriesForArticle(articleId: Long): Single<List<Category>>
+
   fun addArticle(article: Article): Completable
+
+  fun addArticle(article: Article, categories: List<Category>?): Completable
+
 }

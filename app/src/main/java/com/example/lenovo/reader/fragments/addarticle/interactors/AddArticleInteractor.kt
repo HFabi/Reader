@@ -1,5 +1,6 @@
 package com.example.lenovo.reader.fragments.addarticle.interactors
 
+import com.example.model.models.Category
 import io.reactivex.Completable
 
 /**
@@ -7,5 +8,5 @@ import io.reactivex.Completable
  */
 interface AddArticleInteractor {
 
-  fun execute(url: String): Completable
+  fun execute(url: String, categories: List<Category>?): Completable
 }

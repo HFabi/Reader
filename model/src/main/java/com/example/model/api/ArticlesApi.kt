@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface ArticlesApi {
 
-  @GET("10.100.1.238:3000/parse")
+  @GET("/parse")
   fun getContentFromUrl(@Query("url") url: String): Single<ArticleWebEntity>
 
 }

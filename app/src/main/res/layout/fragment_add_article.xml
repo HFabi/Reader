@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorWhite"
     android:orientation="vertical"
     >
@@ -16,7 +17,7 @@
       />
 
   <com.google.android.material.textfield.TextInputLayout
-      android:id="@+id/add_article_category_textinputlayout"
+      android:id="@+id/add_article_url_textinputlayout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginEnd="16dp"
@@ -32,8 +33,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawablePadding="8dp"
-        android:nextFocusForward="@id/add_article_category_textinputedittext"
-        android:nextFocusRight="@id/add_article_category_textinputedittext"
         android:singleLine="true"
         android:maxLines="1"
         android:inputType="text"
@@ -43,7 +42,7 @@
   </com.google.android.material.textfield.TextInputLayout>
 
   <com.google.android.material.textfield.TextInputLayout
-      android:id="@+id/url_textinputlayout"
+      android:id="@+id/add_article_category_textinputlayout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginEnd="16dp"
@@ -66,5 +65,21 @@
         />
   </com.google.android.material.textfield.TextInputLayout>
 
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="32dp"
+      tools:text="Kategorie hinzufügen"
+      />
+
+  <com.example.lenovo.reader.view.CategoriesChipGroup
+      android:id="@+id/add_category_categorieschipgroup"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="16dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      />
 
 </LinearLayout>

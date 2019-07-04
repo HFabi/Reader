@@ -26,5 +26,6 @@
   <string name="category">Kategorie</string>
   <string name="url">Url</string>
   <string name="add_article_category_helpertext">(optional)</string>
+  <string name="hint_search_articles">Artikel durchsuchen</string>
 
 </resources>

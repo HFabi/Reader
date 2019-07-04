@@ -11,6 +11,6 @@ import androidx.room.PrimaryKey
   tableName = "categories"
 )
 data class CategoryDbEntity(
-  @PrimaryKey(autoGenerate = false) var id: Int,
+  @PrimaryKey(autoGenerate = false) var id: Long,
   var name: String
 )

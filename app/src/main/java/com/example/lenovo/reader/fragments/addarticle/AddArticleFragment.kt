@@ -11,19 +11,25 @@ import com.example.lenovo.reader.annotations.Layout
 import com.example.lenovo.reader.fragments.base.BaseFragment
 import com.example.lenovo.reader.fragments.base.BasePresenter
 import com.example.lenovo.reader.navigation.Router
+import com.example.model.models.Category
+import kotlinx.android.synthetic.main.article_list_filter.filter_chipgroup
+import kotlinx.android.synthetic.main.fragment_add_article.add_article_category_textinputedittext
 import kotlinx.android.synthetic.main.fragment_add_article.add_article_toolbar
 import kotlinx.android.synthetic.main.fragment_add_article.add_article_url_textinputedittext
+import kotlinx.android.synthetic.main.fragment_add_article.add_category_categorieschipgroup
+import timber.log.Timber
+import java.util.Date
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_add_article)
 class AddArticleFragment : BaseFragment(), AddArticleView {
 
   @Inject
-  lateinit var addArticlePresenter: AddArticlePresenter
+  lateinit var presenter: AddArticlePresenter
   @Inject
   lateinit var router: Router
 
-  override fun providePresenter(): BasePresenter = addArticlePresenter
+  override fun providePresenter(): BasePresenter = presenter
 
   override fun onViewCreated(
     view: View,
@@ -36,6 +42,7 @@ class AddArticleFragment : BaseFragment(), AddArticleView {
   override fun onResume() {
     super.onResume()
     (activity as MainActivity).setBottomNavigationEnabled(false)
+    setUpChips()
   }
 
   override fun onCreateOptionsMenu(
@@ -51,10 +58,28 @@ class AddArticleFragment : BaseFragment(), AddArticleView {
       android.R.id.home -> router.goBack()
       R.id.action_add_article_submit -> {
         //Todo: validate Input
-        addArticlePresenter.onSubmitClicked(add_article_url_textinputedittext.text.toString())
+        presenter.onSubmitClicked(add_article_url_textinputedittext.text.toString())
         router.goToDashboard(this)
       }
     }
     return super.onOptionsItemSelected(item)
   }
+
+  fun setUpChips() {
+    add_category_categorieschipgroup.onAddClicked = {
+      val categoryName = add_article_category_textinputedittext.text.toString()
+      val category = Category(Date().time, categoryName)
+      add_category_categorieschipgroup.addCategory(category)
+    }
+  }
+
+  override fun getSelectedCategoryIdentifier(): List<Category>? {
+    Timber.d("SELECTED Category IDentifier legnth" + add_category_categorieschipgroup.selectedCategoryIdentifier.size)
+    return add_category_categorieschipgroup.selectedCategoryIdentifier
+  }
+
+  override fun setCategories(categories: List<Category>) {
+    add_category_categorieschipgroup.setCategories(categories)
+  }
+
 }

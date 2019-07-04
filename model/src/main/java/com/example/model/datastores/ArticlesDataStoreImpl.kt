@@ -27,11 +27,15 @@ class ArticlesDataStoreImpl @Inject constructor() : ArticlesDataStore {
     return articlesDbDataSource.getLastAddedArticles()
   }
 
-  override fun getExcerptArticles(page: Int, categories: List<Category>): Single<List<ExcerptArticle>> {
-    return articlesDbDataSource.getExcerptArticles(page, categories)
+  override fun getExcerptArticles(page: Int, categoryIds: List<Long>): Single<List<ExcerptArticle>> {
+    return articlesDbDataSource.getExcerptArticles(page, categoryIds)
   }
 
-  override fun getArticle(id: Int): Single<Article> {
+  override fun getExcerptArticles(page: Int, serachString: String): Single<List<ExcerptArticle>> {
+    return articlesDbDataSource.getExcerptArticles(page, serachString)
+  }
+
+  override fun getArticle(id: Long): Single<Article> {
     return articlesDbDataSource.getArticleById(id)
   }
 
@@ -39,10 +43,14 @@ class ArticlesDataStoreImpl @Inject constructor() : ArticlesDataStore {
     return articlesDbDataSource.getCategories()
   }
 
-  override fun addArticle(url: String, category: List<String>): Completable {
+  override fun getCategoriesForArticle(articleId: Long): Single<List<Category>> {
+    return articlesDbDataSource.getCategoriesForArticle(articleId)
+  }
+
+  override fun addArticle(url: String, category: List<Category>?): Completable {
     return articlesWebDataSource.getArticle(url)
       .flatMap(articleController::processArticle)
-      .flatMapCompletable { article -> articlesDbDataSource.addArticle(article) }
+      .flatMapCompletable { article -> articlesDbDataSource.addArticle(article, category) }
   }
 
   override fun setArticleFontSizeIndex(value: Int): Completable {

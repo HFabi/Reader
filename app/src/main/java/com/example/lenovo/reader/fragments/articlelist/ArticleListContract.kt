@@ -11,5 +11,5 @@ interface ArticleListView {
 }
 
 interface ArticleListPresenter : BasePresenter {
-
+  fun loadExcerptArticles(categoryIds: List<Long>)
 }

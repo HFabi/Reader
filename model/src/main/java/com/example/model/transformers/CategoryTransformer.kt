@@ -10,6 +10,10 @@ interface CategoryTransformer {
 
   fun toModel(categoryDbEntity: CategoryDbEntity): Category
 
+  fun toModel(categoryDbEntityList: List<CategoryDbEntity>): List<Category>
+
   fun toDbEntity(category: Category): CategoryDbEntity
+
+  fun toDbEntity(categories: List<Category>): List<CategoryDbEntity>
 
 }

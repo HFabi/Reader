@@ -19,6 +19,9 @@ import com.google.android.material.appbar.AppBarLayout
 import dagger.android.support.DaggerFragment
 import timber.log.Timber
 
+
+
+
 abstract class BaseFragment : DaggerFragment() {
 
   private var scrollChangeListener: OnScrollChangedListener? = null
@@ -59,7 +62,7 @@ abstract class BaseFragment : DaggerFragment() {
     super.onDestroyView()
     providePresenter()?.let { lifecycle.removeObserver(it) }
     viewTreeObserver?.apply {
-      if(isAlive) {
+      if (isAlive) {
         removeOnScrollChangedListener(scrollChangeListener)
       }
     }
@@ -98,6 +101,27 @@ abstract class BaseFragment : DaggerFragment() {
     setHasOptionsMenu(hasOptionMenu)
   }
 
+  fun setUpCustomToolbar(
+    toolbar: Toolbar?,
+    showUpNavigation: Boolean,
+    customView: View
+  ) {
+    (activity as BaseActivity).setSupportActionBar(toolbar)
+    (activity as BaseActivity).supportActionBar?.apply {
+      setDisplayHomeAsUpEnabled(showUpNavigation)
+      setDisplayShowHomeEnabled(showUpNavigation)
+      val layoutParams =
+        Toolbar.LayoutParams(Toolbar.LayoutParams.MATCH_PARENT, Toolbar.LayoutParams.MATCH_PARENT).apply {
+          marginStart = 0
+          marginEnd =  pxFromDp(16f, context!!).toInt()
+        }
+      setCustomView(customView, layoutParams)
+      setDisplayShowCustomEnabled(true)
+    }
+//    toolbar?.setNavigationOnClickListener()
+    setHasOptionsMenu(true)
+  }
+
   fun setUpAdaptiveToolbarElevation(bar: View, scrollableView: View) {
 //    setUpAdaptiveToolbarElevation(bar, scrollableView, context!!.resources.getDimension(R.dimen.toolbar_delay))
     setUpAdaptiveToolbarElevation(bar, scrollableView, pxFromDp(8.0f, context!!))
@@ -111,11 +135,11 @@ abstract class BaseFragment : DaggerFragment() {
           bar.elevation = if (scrollableView.computeVerticalScrollOffset() > delayInPx) elevation else 0f
         }
       } else if (scrollableView is NestedScrollView) {
-        Log.d("LLL","isNestedScrollView")
+        Log.d("LLL", "isNestedScrollView")
         scrollChangeListener = OnScrollChangedListener {
 
           bar.elevation = if (scrollableView.scrollY > delayInPx) elevation else 0f
-          Log.d("LLL","onScrollChange"+ bar.elevation)
+          Log.d("LLL", "onScrollChange" + bar.elevation)
         }
       }
       viewTreeObserver = scrollableView.viewTreeObserver
