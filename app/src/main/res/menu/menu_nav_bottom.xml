@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+      android:id="@+id/dashboardFragment"
+      android:icon="@drawable/ic_home_black_24dp"
+      android:title="@string/home"/>
+  <item
+      android:id="@+id/articleListFragment"
+      android:icon="@drawable/ic_import_contacts_black_24dp"
+      android:title="@string/article_list"/>
+
+  <item
+      android:id="@+id/settingsFragment"
+      android:icon="@drawable/ic_settings_black_24dp"
+      android:title="@string/settings"/>
+</menu>
