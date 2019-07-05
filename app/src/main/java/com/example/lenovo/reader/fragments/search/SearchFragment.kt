@@ -16,6 +16,7 @@ import com.example.lenovo.reader.fragments.base.BasePresenter
 import com.example.lenovo.reader.fragments.search.adapters.ExcerptArticleAdapter
 import com.example.lenovo.reader.navigation.Router
 import com.example.lenovo.reader.pxFromDp
+import com.example.lenovo.reader.view.KeyboardUtils
 import com.example.lenovo.reader.view.ToolbarSearchView
 import com.example.model.models.ExcerptArticle
 import kotlinx.android.synthetic.main.fragment_search.search_recyclerview
@@ -39,6 +40,7 @@ class SearchFragment : BaseFragment(), SearchView {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     toolbarSearchView = ToolbarSearchView(context)
+    Log.d("CALL","Call Viewcreated")
     toolbarSearchView?.let {
       setUpCustomToolbar(search_toolbar, true, it)
     }
@@ -50,6 +52,8 @@ class SearchFragment : BaseFragment(), SearchView {
     (activity as MainActivity).setBottomNavigationEnabled(false)
     (activity as MainActivity).currentFragment = this
     setUp()
+    toolbarSearchView?.requestFocus()
+    showKeyboard(toolbarSearchView)
   }
 
   fun setUp() {
@@ -61,7 +65,6 @@ class SearchFragment : BaseFragment(), SearchView {
   }
 
   override fun updateExcerptArticles(excerptArticles: List<ExcerptArticle>) {
-    Log.d("SEARCH", "LIST: " + excerptArticles.size)
     excerptArticleAdapter.replace(excerptArticles)
   }
 
@@ -73,11 +76,15 @@ class SearchFragment : BaseFragment(), SearchView {
     super.onCreateOptionsMenu(menu, inflater)
   }
 
+  override fun onPause() {
+    super.onPause()
+    hideKeyboard(toolbarSearchView)
+  }
+
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {
       android.R.id.home -> router.goBack()
     }
     return super.onOptionsItemSelected(item)
   }
-
 }

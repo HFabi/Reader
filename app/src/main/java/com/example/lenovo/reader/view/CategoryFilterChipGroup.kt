@@ -1,11 +1,15 @@
 package com.example.lenovo.reader.view
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.EditText
+import androidx.core.view.marginBottom
 import com.example.lenovo.reader.R
+import com.example.lenovo.reader.pxFromDp
 import com.example.model.models.Category
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -15,8 +19,10 @@ import com.google.android.material.chip.ChipGroup
  */
 class CategoryFilterChipGroup : ChipGroup {
 
-  private var itemList: List<Category> = mutableListOf()
+  private var itemList: MutableList<Category> = mutableListOf()
   private var checkedChipsCounter = 0
+
+  var allCategoriesString: String = ""
 
   var onActiveStateChangeListener: ((isActive: Boolean) -> Unit)? = null
   var onFilterChangeListener: ((List<Long>) -> Unit)? = null
@@ -34,7 +40,16 @@ class CategoryFilterChipGroup : ChipGroup {
   }
 
   fun init() {
+    allCategoriesString = context.getString(R.string.categories_all)
+  }
 
+  private val onAllCategoriesChipClickListener: View.OnClickListener = View.OnClickListener { view ->
+    if (getCheckedCategoryIds().size < itemList.size - 1) {
+      setChipsChecked(true)
+    } else {
+      setChipsChecked(false)
+    }
+    onFilterChangeListener?.invoke(getCheckedCategoryIds())
   }
 
   private val onClickListener: View.OnClickListener = View.OnClickListener { view ->
@@ -50,23 +65,30 @@ class CategoryFilterChipGroup : ChipGroup {
     onFilterChangeListener?.invoke(getCheckedCategoryIds())
   }
 
-  fun setCategories(items: List<Category>) {
-    itemList = items
-    updateViews()
-  }
+  fun replaceCategories(items: List<Category>) {
+    Log.d("BBBB","asd "+items.size)
 
-  private fun updateViews() {
-    val chipGroup = this
-    itemList.forEach { category ->
-      (LayoutInflater.from(context).inflate(
-        R.layout.chip_category_filter, chipGroup, false
-      ) as Chip).apply {
-        text = category.name
-        setOnClickListener(onClickListener)
-        chipGroup.addView(this)
-        tag = category.id
-      }
+    removeAllViews()
+
+    itemList = items.toMutableList()
+    itemList.add(0, Category(-1L, allCategoriesString))
+    var a = EditText(context)
+    var params = ChipGroup.LayoutParams(ChipGroup.LayoutParams.WRAP_CONTENT, pxFromDp(32f, context!!).toInt()).apply {
+//      marginStart = 0dp
+//      this.bottomMargin = pxFromDp(16f, context!!).toInt()
+      topMargin = 0
+     setPadding(20,0,20,0)
     }
+    a.layoutParams = params
+    a.setText("ABCDE")
+    a.background = context.getDrawable(R.drawable.bg_editchip)
+//    var l = (LayoutInflater.from(context).inflate(
+//      R.layout.chip_edit, this, false
+//    ))
+
+    addView(a)
+    itemList.forEach { category -> addView(getChipFromCategory(category)) }
+
   }
 
   override fun clearCheck() {
@@ -76,7 +98,16 @@ class CategoryFilterChipGroup : ChipGroup {
     onFilterChangeListener?.invoke(getCheckedCategoryIds())
   }
 
-  fun getCheckedCategoryIds(): List<Long> {
+  private fun setChipsChecked(isChecked: Boolean) {
+    for (i in 0 until childCount) {
+      val child = getChildAt(i)
+      if (child is Chip) {
+        child.isChecked = isChecked
+      }
+    }
+  }
+
+  private fun getCheckedCategoryIds(): List<Long> {
     val checkedCategories = mutableListOf<Long>()
     for (i in 0 until childCount) {
       val child = getChildAt(i)
@@ -88,4 +119,35 @@ class CategoryFilterChipGroup : ChipGroup {
     return checkedCategories
   }
 
+  private fun getChipFromCategory(category: Category): Chip {
+    if (category.id == -1L) {
+      return (LayoutInflater.from(context).inflate(
+        R.layout.chip_category_action, this, false
+      ) as Chip).apply {
+        text = category.name
+        chipBackgroundColor = ColorStateList.valueOf(resources.getColor(android.R.color.black))
+        setTextColor(resources.getColor(android.R.color.white))
+        setOnClickListener(onAllCategoriesChipClickListener)
+      }
+    } else {
+      return (LayoutInflater.from(context).inflate(
+        R.layout.chip_category_filter, this, false
+      ) as Chip).apply {
+        text = category.name
+        setOnClickListener(onClickListener)
+        tag = category.id
+      }
+    }
+  }
 }
+
+//    itemList.forEach { category ->
+//      (LayoutInflater.from(context).inflate(
+//        R.layout.chip_category_filter, chipGroup, false
+//      ) as Chip).apply {
+//        text = category.name
+//        setOnClickListener(onClickListener)
+//        chipGroup.addView(this)
+//        tag = category.id
+//      }
+//    }

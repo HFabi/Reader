@@ -162,6 +162,6 @@ class ArticleListFragment : BaseFragment(), ArticleListView {
   }
 
   override fun updateCategories(categories: List<Category>) {
-    filter_chipgroup.setCategories(categories)
+    filter_chipgroup.replaceCategories(categories)
   }
 }

@@ -28,4 +28,6 @@
   <string name="add_article_category_helpertext">(optional)</string>
   <string name="hint_search_articles">Artikel durchsuchen</string>
 
+  <string name="categories_all">Alle Kategorien</string>
+
 </resources>

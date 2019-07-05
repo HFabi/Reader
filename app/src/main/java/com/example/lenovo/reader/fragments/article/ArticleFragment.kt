@@ -1,5 +1,6 @@
 package com.example.lenovo.reader.fragments.article
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
@@ -7,7 +8,9 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.widget.ShareActionProvider
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.MenuItemCompat
 import androidx.navigation.fragment.navArgs
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.activities.mainactivity.MainActivity
@@ -31,6 +34,8 @@ import kotlinx.android.synthetic.main.fragment_article.article_webview
 import kotlinx.android.synthetic.main.fragment_article.test_content
 import javax.inject.Inject
 
+
+
 @Layout(R.layout.fragment_article)
 class ArticleFragment : BaseFragment(), ArticleView {
 
@@ -42,6 +47,8 @@ class ArticleFragment : BaseFragment(), ArticleView {
   lateinit var router: Router
 
   private var isFavorite = false
+
+  private var shareActionProvider: ShareActionProvider? = null
 
   override fun providePresenter(): BasePresenter = presenter
 
@@ -62,6 +69,11 @@ class ArticleFragment : BaseFragment(), ArticleView {
   override fun onResume() {
     super.onResume()
     (activity as MainActivity).setBottomNavigationEnabled(false)
+
+    val myShareIntent = Intent(Intent.ACTION_SEND)
+    myShareIntent.type = "image/*"
+    myShareIntent.putExtra(Intent.EXTRA_STREAM, "")
+    shareActionProvider?.setShareIntent(myShareIntent)
   }
 
   /**
@@ -72,8 +84,22 @@ class ArticleFragment : BaseFragment(), ArticleView {
     inflater: MenuInflater
   ) {
     inflater.inflate(R.menu.menu_article, menu)
+
+    // Locate MenuItem with ShareActionProvider
+    menu.findItem(R.id.action_article_share).also { menuItem ->
+      // Fetch and store ShareActionProvider
+      shareActionProvider = MenuItemCompat.getActionProvider(menuItem) as ShareActionProvider
+    }
+
+
     super.onCreateOptionsMenu(menu, inflater)
   }
+
+
+//  // Call to update the share intent
+//  private fun setShareIntent(shareIntent: Intent) {
+//    shareActionProvider?.setShareIntent(shareIntent)
+//  }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {

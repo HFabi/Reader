@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.view.ViewTreeObserver.OnScrollChangedListener
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.getSystemService
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionInflater
@@ -18,9 +20,6 @@ import com.example.lenovo.reader.pxFromDp
 import com.google.android.material.appbar.AppBarLayout
 import dagger.android.support.DaggerFragment
 import timber.log.Timber
-
-
-
 
 abstract class BaseFragment : DaggerFragment() {
 
@@ -113,7 +112,7 @@ abstract class BaseFragment : DaggerFragment() {
       val layoutParams =
         Toolbar.LayoutParams(Toolbar.LayoutParams.MATCH_PARENT, Toolbar.LayoutParams.MATCH_PARENT).apply {
           marginStart = 0
-          marginEnd =  pxFromDp(16f, context!!).toInt()
+          marginEnd = pxFromDp(16f, context!!).toInt()
         }
       setCustomView(customView, layoutParams)
       setDisplayShowCustomEnabled(true)
@@ -150,4 +149,17 @@ abstract class BaseFragment : DaggerFragment() {
   }
 
   abstract fun providePresenter(): BasePresenter?
+
+  protected fun hideKeyboard(view: View?) {
+    if (view != null) {
+      context?.getSystemService<InputMethodManager>()?.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+  }
+
+  protected fun showKeyboard(view: View?) {
+    if (view != null) {
+      context?.getSystemService<InputMethodManager>()?.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+    }
+  }
+
 }
