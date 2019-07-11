@@ -31,6 +31,10 @@ class ArticlesDataStoreImpl @Inject constructor() : ArticlesDataStore {
     return articlesDbDataSource.getExcerptArticles(page, categoryIds)
   }
 
+  override fun getExcerptArticles(page: Int): Single<List<ExcerptArticle>> {
+    return articlesDbDataSource.getExcerptArticles(page)
+  }
+
   override fun getExcerptArticles(page: Int, serachString: String): Single<List<ExcerptArticle>> {
     return articlesDbDataSource.getExcerptArticles(page, serachString)
   }

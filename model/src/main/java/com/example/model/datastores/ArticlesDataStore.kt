@@ -15,6 +15,8 @@ interface ArticlesDataStore {
 
   fun getExcerptArticles(page: Int = 0, categoryIds: List<Long>): Single<List<ExcerptArticle>>
 
+  fun getExcerptArticles(page: Int = 0): Single<List<ExcerptArticle>>
+
   fun getExcerptArticles(page: Int = 0, serachString: String): Single<List<ExcerptArticle>>
 
   fun getCategories(): Single<List<Category>>

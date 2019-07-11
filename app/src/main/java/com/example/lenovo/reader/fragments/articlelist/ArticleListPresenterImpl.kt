@@ -28,11 +28,11 @@ class ArticleListPresenterImpl @Inject constructor(): BasePresenterImpl(), Artic
   }
 
   fun initializeView() {
-//    getExcerptArticlesInteractor.execute(currentPage, mutableListOf<Int>())
-//      .bind(compositeDisposable)
-//      .schedule()
-//      .subscribe({articles -> view.replaceExcerptArticles(articles)})
-//
+    getExcerptArticlesInteractor.execute(currentPage, null)
+      .bind(compositeDisposable)
+      .schedule()
+      .subscribe({articles -> view.replaceExcerptArticles(articles)})
+
     getCategoriesInteractor.execute()
       .bind(compositeDisposable)
       .schedule()

@@ -2,15 +2,11 @@ package com.example.lenovo.reader.view
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.drawable.InsetDrawable
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.EditText
-import androidx.core.view.marginBottom
 import com.example.lenovo.reader.R
-import com.example.lenovo.reader.pxFromDp
 import com.example.model.models.Category
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -22,6 +18,8 @@ class CategoryFilterChipGroup : ChipGroup {
 
   private var itemList: MutableList<Category> = mutableListOf()
   private var checkedChipsCounter = 0
+
+  private val ID_ACTION_ALL = -1L
 
   var allCategoriesString: String = ""
 
@@ -69,27 +67,9 @@ class CategoryFilterChipGroup : ChipGroup {
   fun replaceCategories(items: List<Category>) {
     removeAllViews()
     itemList = items.toMutableList()
-    itemList.add(0, Category(-1L, allCategoriesString))
-
-//    createEditableChip()
-
+    itemList.add(0, Category(ID_ACTION_ALL, allCategoriesString))
     itemList.forEach { category -> addView(getChipFromCategory(category)) }
   }
-
-//  fun createEditableChip() {
-//    val editText = EditText(context).apply {
-//      textSize = 15.0f
-//      setPaddingRelative(36, 0, 36, 0)
-//      setText("ABCDE")
-////      minimumWidth = 50
-////      minWidth = 60
-//      background = InsetDrawable(context.getDrawable(R.drawable.bg_editchip), 5, 6, 5, 6)
-//    }
-//    val params = ChipGroup.LayoutParams(ChipGroup.LayoutParams.WRAP_CONTENT, pxFromDp(36f, context!!).toInt()).apply {
-//      topMargin = 0
-//    }
-//    addView(editText, params)
-//  }
 
   override fun clearCheck() {
     super.clearCheck()
@@ -119,35 +99,61 @@ class CategoryFilterChipGroup : ChipGroup {
     return checkedCategories
   }
 
+  /**
+   * Create a chip for category
+   */
   private fun getChipFromCategory(category: Category): Chip {
-    if (category.id == -1L) {
-      return (LayoutInflater.from(context).inflate(
-        R.layout.chip_category_action, this, false
-      ) as Chip).apply {
-        text = category.name
-        chipBackgroundColor = ColorStateList.valueOf(resources.getColor(android.R.color.black))
-        setTextColor(resources.getColor(android.R.color.white))
-        setOnClickListener(onAllCategoriesChipClickListener)
-      }
+    if (category.id == ID_ACTION_ALL) {
+      return createActionChipFromCategory(category)
     } else {
-      return (LayoutInflater.from(context).inflate(
-        R.layout.chip_category_filter, this, false
-      ) as Chip).apply {
-        text = category.name
-        setOnClickListener(onClickListener)
-        tag = category.id
-      }
+      return createFilterChipFromCategory(category)
     }
   }
+
+  private fun createActionChipFromCategory(category: Category): Chip {
+    return (LayoutInflater.from(context).inflate(
+      R.layout.chip_category_action, this, false
+    ) as Chip).apply {
+      text = category.name
+      chipBackgroundColor = ColorStateList.valueOf(resources.getColor(android.R.color.black))
+      setTextColor(resources.getColor(android.R.color.white))
+      setOnClickListener(onAllCategoriesChipClickListener)
+    }
+  }
+
+  private fun createFilterChipFromCategory(category: Category): Chip {
+    return (LayoutInflater.from(context).inflate(
+      R.layout.chip_category_filter, this, false
+    ) as Chip).apply {
+      text = category.name
+      setOnClickListener(onClickListener)
+      tag = category.id
+      //TODO test
+      isChecked = true
+    }
+  }
+
 }
 
-//    itemList.forEach { category ->
-//      (LayoutInflater.from(context).inflate(
-//        R.layout.chip_category_filter, chipGroup, false
+//private fun getChipFromCategory(category: Category): Chip {
+//    if (category.id == -1L) {
+//      return (LayoutInflater.from(context).inflate(
+//        R.layout.chip_category_action, this, false
+//      ) as Chip).apply {
+//        text = category.name
+//        chipBackgroundColor = ColorStateList.valueOf(resources.getColor(android.R.color.black))
+//        setTextColor(resources.getColor(android.R.color.white))
+//        setOnClickListener(onAllCategoriesChipClickListener)
+//      }
+//    } else {
+//      return (LayoutInflater.from(context).inflate(
+//        R.layout.chip_category_filter, this, false
 //      ) as Chip).apply {
 //        text = category.name
 //        setOnClickListener(onClickListener)
-//        chipGroup.addView(this)
 //        tag = category.id
+//        //TODO test
+//        isChecked = true
 //      }
 //    }
+//  }

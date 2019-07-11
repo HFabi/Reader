@@ -16,7 +16,11 @@ class GetExcerptArticlesInteractorImpl @Inject constructor() : GetExcerptArticle
   @Inject
   lateinit var articlesDataStore: ArticlesDataStore
 
-  override fun execute(page: Int, categoryIds: List<Long>): Single<List<ExcerptArticle>> {
-    return articlesDataStore.getExcerptArticles(page, categoryIds)
+  override fun execute(page: Int, categoryIds: List<Long>?): Single<List<ExcerptArticle>> {
+    if(categoryIds != null) {
+      return articlesDataStore.getExcerptArticles(page, categoryIds)
+    } else {
+      return articlesDataStore.getExcerptArticles(page)
+    }
   }
 }
