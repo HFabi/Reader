@@ -5,9 +5,13 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.model.entities.db.ArticleDbEntity
+import com.example.model.entities.db.ExcerptArticleDbEntity
 import com.example.model.entities.db.LastAddedArticleDbEntity
 import io.reactivex.Completable
 import io.reactivex.Single
+import androidx.room.Transaction
+
+
 
 /**
  * @author appcom interactive GmbH on 04.04.19
@@ -24,6 +28,14 @@ interface ArticleDao {
   @Insert(onConflict = OnConflictStrategy.ABORT)
   fun addArticle(articleDb: ArticleDbEntity): Completable
 
+//  @Query(
+//    "SELECT articles.id, title, addedAt, leadImagePath FROM articles WHERE title LIKE (:searchString) LIMIT (:count) OFFSET (:skip)"
+//  )
+//  fun getExcerptArticles(count: Int, skip: Int, searchString: String): Single<List<ExcerptArticleDbEntity>>
+
+
+  @Query("SELECT articles.id, articles.title, articles.addedAt, articles.leadImagePath  FROM articles JOIN articles_fts ON (articles.id = articles_fts.docid) WHERE articles_fts MATCH :searchString LIMIT (:count) OFFSET (:skip)")
+  fun getExcerptArticles(count: Int, skip: Int, searchString: String): Single<List<ExcerptArticleDbEntity>>
 
   // @Query("SELECT * FROM articles WHERE isFavorite = 1 ORDER BY addedAt LIMIT 8")
   // fun getFavoriteArticles(): Single<List<ArticleDbEntity>>

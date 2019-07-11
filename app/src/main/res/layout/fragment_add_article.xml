@@ -16,15 +16,22 @@
       style="@style/Reader.Toolbar"
       />
 
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      android:text="Link zur Seite"
+      />
+
   <com.google.android.material.textfield.TextInputLayout
       android:id="@+id/add_article_url_textinputlayout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginEnd="16dp"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="32dp"
+      android:layout_marginTop="8dp"
       android:hint="@string/url"
-      app:helperText="@string/add_article_url_helpertext"
       style="@style/Reader.TextInputLayout"
       >
 
@@ -36,32 +43,8 @@
         android:singleLine="true"
         android:maxLines="1"
         android:inputType="text"
-        android:imeOptions="actionNext"
-        android:drawableStart="@drawable/ic_insert_link_gray_24dp"
-        />
-  </com.google.android.material.textfield.TextInputLayout>
-
-  <com.google.android.material.textfield.TextInputLayout
-      android:id="@+id/add_article_category_textinputlayout"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="16dp"
-      android:layout_marginStart="16dp"
-      android:layout_marginTop="32dp"
-      android:hint="@string/category"
-      app:helperText="@string/add_article_category_helpertext"
-      style="@style/Reader.TextInputLayout"
-      >
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/add_article_category_textinputedittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawablePadding="8dp"
-        android:singleLine="true"
-        android:maxLines="1"
         android:imeOptions="actionDone"
-        android:drawableStart="@drawable/ic_category_gray"
+        android:drawableStart="@drawable/ic_insert_link_gray_24dp"
         />
   </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,8 +52,8 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="32dp"
-      tools:text="Kategorie hinzufügen"
+      android:layout_marginTop="24dp"
+      android:text="Kategorien auswählen"
       />
 
   <com.example.lenovo.reader.view.CategoriesChipGroup
@@ -79,7 +62,9 @@
       android:layout_height="wrap_content"
       android:layout_marginEnd="16dp"
       android:layout_marginStart="16dp"
-      android:layout_marginTop="16dp"
+      android:layout_marginTop="8dp"
+      app:chipSpacingHorizontal="8dp"
+      app:chipSpacingVertical="6dp"
       />
 
 </LinearLayout>

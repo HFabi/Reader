@@ -2,6 +2,7 @@ package com.example.lenovo.reader.view
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.graphics.drawable.InsetDrawable
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
@@ -66,30 +67,29 @@ class CategoryFilterChipGroup : ChipGroup {
   }
 
   fun replaceCategories(items: List<Category>) {
-    Log.d("BBBB","asd "+items.size)
-
     removeAllViews()
-
     itemList = items.toMutableList()
     itemList.add(0, Category(-1L, allCategoriesString))
-    var a = EditText(context)
-    var params = ChipGroup.LayoutParams(ChipGroup.LayoutParams.WRAP_CONTENT, pxFromDp(32f, context!!).toInt()).apply {
-//      marginStart = 0dp
-//      this.bottomMargin = pxFromDp(16f, context!!).toInt()
-      topMargin = 0
-     setPadding(20,0,20,0)
-    }
-    a.layoutParams = params
-    a.setText("ABCDE")
-    a.background = context.getDrawable(R.drawable.bg_editchip)
-//    var l = (LayoutInflater.from(context).inflate(
-//      R.layout.chip_edit, this, false
-//    ))
 
-    addView(a)
+//    createEditableChip()
+
     itemList.forEach { category -> addView(getChipFromCategory(category)) }
-
   }
+
+//  fun createEditableChip() {
+//    val editText = EditText(context).apply {
+//      textSize = 15.0f
+//      setPaddingRelative(36, 0, 36, 0)
+//      setText("ABCDE")
+////      minimumWidth = 50
+////      minWidth = 60
+//      background = InsetDrawable(context.getDrawable(R.drawable.bg_editchip), 5, 6, 5, 6)
+//    }
+//    val params = ChipGroup.LayoutParams(ChipGroup.LayoutParams.WRAP_CONTENT, pxFromDp(36f, context!!).toInt()).apply {
+//      topMargin = 0
+//    }
+//    addView(editText, params)
+//  }
 
   override fun clearCheck() {
     super.clearCheck()

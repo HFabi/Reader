@@ -29,5 +29,6 @@
   <string name="hint_search_articles">Artikel durchsuchen</string>
 
   <string name="categories_all">Alle Kategorien</string>
+  <string name="category_hint">Kategorie</string>
 
 </resources>

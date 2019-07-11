@@ -12,13 +12,10 @@ import com.example.lenovo.reader.fragments.base.BaseFragment
 import com.example.lenovo.reader.fragments.base.BasePresenter
 import com.example.lenovo.reader.navigation.Router
 import com.example.model.models.Category
-import kotlinx.android.synthetic.main.article_list_filter.filter_chipgroup
-import kotlinx.android.synthetic.main.fragment_add_article.add_article_category_textinputedittext
 import kotlinx.android.synthetic.main.fragment_add_article.add_article_toolbar
 import kotlinx.android.synthetic.main.fragment_add_article.add_article_url_textinputedittext
 import kotlinx.android.synthetic.main.fragment_add_article.add_category_categorieschipgroup
 import timber.log.Timber
-import java.util.Date
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_add_article)
@@ -43,6 +40,8 @@ class AddArticleFragment : BaseFragment(), AddArticleView {
     super.onResume()
     (activity as MainActivity).setBottomNavigationEnabled(false)
     setUpChips()
+    add_article_url_textinputedittext.requestFocus()
+    showKeyboard(add_article_url_textinputedittext)
   }
 
   override fun onCreateOptionsMenu(
@@ -66,11 +65,7 @@ class AddArticleFragment : BaseFragment(), AddArticleView {
   }
 
   fun setUpChips() {
-    add_category_categorieschipgroup.onAddClicked = {
-      val categoryName = add_article_category_textinputedittext.text.toString()
-      val category = Category(Date().time, categoryName)
-      add_category_categorieschipgroup.addCategory(category)
-    }
+
   }
 
   override fun getSelectedCategoryIdentifier(): List<Category>? {

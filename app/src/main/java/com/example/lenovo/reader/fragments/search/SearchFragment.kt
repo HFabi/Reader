@@ -62,6 +62,9 @@ class SearchFragment : BaseFragment(), SearchView {
     toolbarSearchView?.onSearchChange = { text ->
       presenter.searchExcerptArticles(text)
     }
+    excerptArticleAdapter.onItemClickListener = { excerptArticle, view ->
+      router.goToArticle(this, excerptArticle.id)
+    }
   }
 
   override fun updateExcerptArticles(excerptArticles: List<ExcerptArticle>) {

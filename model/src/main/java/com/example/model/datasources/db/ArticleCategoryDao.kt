@@ -38,10 +38,10 @@ interface ArticleCategoryDao {
   )
   fun getExcerptArticles(count: Int, skip: Int, categoryIds: List<Long>): Single<List<ExcerptArticleDbEntity>>
 
-  @Query(
-    "SELECT articles.id, title, addedAt, leadImagePath FROM articles WHERE title LIKE (:searchString) LIMIT (:count) OFFSET (:skip)"
-  )
-  fun getExcerptArticles(count: Int, skip: Int, searchString: String): Single<List<ExcerptArticleDbEntity>>
+//  @Query(
+//    "SELECT articles.id, title, addedAt, leadImagePath FROM articles WHERE title LIKE (:searchString) LIMIT (:count) OFFSET (:skip)"
+//  )
+//  fun getExcerptArticles(count: Int, skip: Int, searchString: String): Single<List<ExcerptArticleDbEntity>>
 
   @Query(
     "SELECT categories.id, categories.name FROM articles_categories JOIN categories ON categories.id = articles_categories.categoryId WHERE articles_categories.articleId=(:articleId)"

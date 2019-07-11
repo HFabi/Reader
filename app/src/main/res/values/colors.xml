@@ -7,10 +7,11 @@
 
     <color name="colorPunch">#D83B2B</color>
     <color name="colorWhite">#ffffff</color>
-    <color name="colorDarkWhite">#fefefe</color>
+    <color name="colorDarkWhite">#F3F3F3</color>
     <color name="colorGallery">#FAFAFA</color>
     <color name="colorGray56">#8F8F8F</color>
     <color name="colorAlto">#CFCFCF</color>
+    <color name="colorMercury">#E7E7E7</color>
 
     <color name="colorYellowOrange">#F8BF35</color>
     <color name="colorRegentStBlue">#A9D1E6</color>

@@ -1,6 +1,5 @@
 package com.example.model.datasources.db
 
-import android.util.Log
 import com.example.model.models.Article
 import com.example.model.models.Category
 import com.example.model.models.ExcerptArticle
@@ -11,7 +10,6 @@ import com.example.model.transformers.CategoryTransformer
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -83,7 +81,7 @@ class ArticlesDbDataSourceImpl @Inject constructor() : ArticlesDbDataSource {
 
   override fun getExcerptArticles(page: Int, searchString: String): Single<List<ExcerptArticle>> {
     val skip = articlesPerPage * page
-    return articleCategoryDao.getExcerptArticles(articlesPerPage, skip, "%$searchString%")
+    return articleDao.getExcerptArticles(articlesPerPage, skip, "*$searchString*")
       .flatMapObservable { list -> Observable.fromIterable(list) }
       .map { articleDbEntity -> articleTransformer.toModel(articleDbEntity) }
       .toList()

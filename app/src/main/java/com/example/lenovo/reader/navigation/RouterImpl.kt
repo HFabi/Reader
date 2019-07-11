@@ -11,6 +11,8 @@ import com.example.lenovo.reader.fragments.articlelist.ArticleListFragmentDirect
 import com.example.lenovo.reader.fragments.bottomnavigation.BottomMenuFragment
 import com.example.lenovo.reader.fragments.dashboard.DashboardFragment
 import com.example.lenovo.reader.fragments.dashboard.DashboardFragmentDirections
+import com.example.lenovo.reader.fragments.search.SearchFragment
+import com.example.lenovo.reader.fragments.search.SearchFragmentDirections
 import javax.inject.Inject
 
 class RouterImpl @Inject constructor(var baseActivity: BaseActivity) : Router {
@@ -32,17 +34,15 @@ class RouterImpl @Inject constructor(var baseActivity: BaseActivity) : Router {
   }
 
   override fun goToArticle(currentFragment: Fragment, id: Long) {
-//    val action = DashboardFragmentDirections.actionDashboardFragmentToArticleFragment(id)
-//    NavHostFragment.findNavController(currentFragment)
-//      .navigate(action)
-//    NavHostFragment.findNavController(currentFragment)
-//      .navigate(R.id.action_dashboardFragment_to_articleFragment)
-
-    val action = ArticleListFragmentDirections.actionArticleListFragmentToArticleFragment(id)
-    NavHostFragment.findNavController(currentFragment)
-      .navigate(action)
-
-//    action_articleListFragment_to_articleFragment
+    if (currentFragment is ArticleListFragment) {
+      val action = ArticleListFragmentDirections.actionArticleListFragmentToArticleFragment(id)
+      NavHostFragment.findNavController(currentFragment)
+        .navigate(action)
+    } else if (currentFragment is SearchFragment) {
+      val action = SearchFragmentDirections.actionSearchFragmentToArticleFragment(id)
+      NavHostFragment.findNavController(currentFragment)
+        .navigate(action)
+    }
   }
 
   override fun goToArticle(currentFragment: Fragment, id: Long, view: View) {
