@@ -1,11 +1,13 @@
 package com.example.lenovo.reader.fragments.article
 
 import android.annotation.SuppressLint
+import com.example.lenovo.reader.fragments.article.interactors.DeleteArticleInteractor
 import com.example.lenovo.reader.fragments.article.interactors.GetArticleInteractor
 import com.example.lenovo.reader.fragments.article.interactors.GetCategoriesInteractor
 import com.example.lenovo.reader.fragments.article.interactors.GetFontSizeIndexInteractor
 import com.example.lenovo.reader.fragments.article.interactors.SetFontSizeIndexInteractor
 import com.example.lenovo.reader.fragments.base.BasePresenterImpl
+import com.example.lenovo.reader.navigation.Router
 import com.example.model.bind
 import com.example.model.schedule
 import javax.inject.Inject
@@ -15,6 +17,8 @@ class ArticlePresenterImpl @Inject constructor() : BasePresenterImpl(), ArticleP
   @Inject
   lateinit var view: ArticleView
   @Inject
+  lateinit var router: Router
+  @Inject
   lateinit var getArticleInteractor: GetArticleInteractor
   @Inject
   lateinit var getFontSizeIndexInteractor: GetFontSizeIndexInteractor
@@ -22,6 +26,8 @@ class ArticlePresenterImpl @Inject constructor() : BasePresenterImpl(), ArticleP
   lateinit var setFontSizeIndexInteractor: SetFontSizeIndexInteractor
   @Inject
   lateinit var getCategoriesInteractor: GetCategoriesInteractor
+  @Inject
+  lateinit var deleteArticleInteractor: DeleteArticleInteractor
 
   val fontSizes = arrayOf(17.0f, 19.0f, 21.0f) // in sp
   var currentFontSizeIndex = 0
@@ -68,6 +74,20 @@ class ArticlePresenterImpl @Inject constructor() : BasePresenterImpl(), ArticleP
         { categories -> view.setCategories(categories)},
         { error -> error.printStackTrace() }
       )
+  }
+
+  override fun onDeleteArticleClicked() {
+    deleteArticleInteractor.execute(view.articleId())
+      .schedule()
+      .bind(compositeDisposable)
+      .subscribe(
+        { isDeleted -> if(isDeleted) goBack() else view.showErrorDialog("Fehler beim Löschen")},
+        { error -> error.printStackTrace() }
+      )
+  }
+
+  override fun goBack() {
+    router.goBack()
   }
 
 }

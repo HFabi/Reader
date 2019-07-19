@@ -1,7 +1,6 @@
 package com.example.lenovo.reader.fragments.base
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -134,11 +133,8 @@ abstract class BaseFragment : DaggerFragment() {
           bar.elevation = if (scrollableView.computeVerticalScrollOffset() > delayInPx) elevation else 0f
         }
       } else if (scrollableView is NestedScrollView) {
-        Log.d("LLL", "isNestedScrollView")
         scrollChangeListener = OnScrollChangedListener {
-
           bar.elevation = if (scrollableView.scrollY > delayInPx) elevation else 0f
-          Log.d("LLL", "onScrollChange" + bar.elevation)
         }
       }
       viewTreeObserver = scrollableView.viewTreeObserver

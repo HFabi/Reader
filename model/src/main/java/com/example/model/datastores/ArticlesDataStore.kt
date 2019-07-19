@@ -29,4 +29,6 @@ interface ArticlesDataStore {
 
   fun getArticleFontSizeIndex(): Single<Int>
 
+  fun deleteArticle(articleId: Long): Single<Boolean>
+
 }

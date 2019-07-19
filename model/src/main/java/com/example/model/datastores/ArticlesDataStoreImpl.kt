@@ -64,4 +64,10 @@ class ArticlesDataStoreImpl @Inject constructor() : ArticlesDataStore {
   override fun getArticleFontSizeIndex(): Single<Int> {
     return sharedPreferencesDataSource.getArticleFontSizeIndex()
   }
+
+  override fun deleteArticle(articleId: Long): Single<Boolean> {
+    // ggf Categories loeschen??
+    // muss ich aus der Such-TAbelle rauslöschen?
+    return articlesDbDataSource.deleteArticle(articleId)
+  }
 }

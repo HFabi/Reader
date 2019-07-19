@@ -81,7 +81,7 @@ class ArticlesDbDataSourceImpl @Inject constructor() : ArticlesDbDataSource {
 
   override fun getExcerptArticles(page: Int, searchString: String): Single<List<ExcerptArticle>> {
     val skip = articlesPerPage * page
-    return articleDao.getExcerptArticles(articlesPerPage, skip, "*$searchString*")
+    return articleDao.getExcerptArticles(articlesPerPage, skip, "$searchString*")
       .flatMapObservable { list -> Observable.fromIterable(list) }
       .map { articleDbEntity -> articleTransformer.toModel(articleDbEntity) }
       .toList()
@@ -99,4 +99,8 @@ class ArticlesDbDataSourceImpl @Inject constructor() : ArticlesDbDataSource {
       .map(categoryTransformer::toModel)
   }
 
+  override fun deleteArticle(articleId: Long): Single<Boolean> {
+    return articleDao.deleteArticle(articleId)
+      .map { changedRows -> changedRows > 0 }
+  }
 }

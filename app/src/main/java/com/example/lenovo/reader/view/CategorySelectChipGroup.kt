@@ -13,6 +13,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.getSystemService
 import com.example.lenovo.reader.R
+import com.example.lenovo.reader.R.drawable
 import com.example.lenovo.reader.R.string
 import com.example.lenovo.reader.pxFromDp
 import com.example.model.models.Category
@@ -21,9 +22,9 @@ import com.google.android.material.chip.ChipGroup
 import java.util.Date
 
 /**
- * @author appcom interactive GmbH on 2019-06-06
+ * @author appcom interactive GmbH on 2019-07-18
  */
-class CategoriesChipGroup : ChipGroup {
+class CategorySelectChipGroup : ChipGroup {
 
   val ID_ACTION_ADD = -1L
 
@@ -37,11 +38,6 @@ class CategoriesChipGroup : ChipGroup {
   // click on chip
   private val onChipClickListener: View.OnClickListener = View.OnClickListener {
     val chip = it as Chip
-//    if (chip.isChecked) {
-//      checkedCategories.add(chip.tag as Category)
-//    } else {
-//      checkedCategories.remove(chip.tag as Category)
-//    }
     handleCheckedChange(chip)
     onChipClicked?.invoke()
   }
@@ -125,6 +121,7 @@ class CategoriesChipGroup : ChipGroup {
   }
 
   private fun createActionChipFromCategory(category: Category): Chip {
+
     return (LayoutInflater.from(context).inflate(
       R.layout.chip_category_action, this, false
     ) as Chip).apply {
@@ -179,7 +176,7 @@ class CategoriesChipGroup : ChipGroup {
       setSingleLine(true)
       maxLines = 1
       setPaddingRelative(36, 0, 36, 0)
-      background = InsetDrawable(context.getDrawable(R.drawable.bg_editchip), 5, 6, 5, 6)
+      background = InsetDrawable(context.getDrawable(drawable.bg_editchip), 5, 6, 5, 6)
     }
     val params = ChipGroup.LayoutParams(ChipGroup.LayoutParams.WRAP_CONTENT, pxFromDp(36f, context!!).toInt()).apply {
       topMargin = 0

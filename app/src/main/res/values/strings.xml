@@ -30,5 +30,8 @@
 
   <string name="categories_all">Alle Kategorien</string>
   <string name="category_hint">Kategorie</string>
+  <string name="cancel">abbrechen</string>
+  <string name="message_delete">Möchten Sie den Artikel wirklich löschen?</string>
+  <string name="delete_article">Artikel löschen</string>
 
 </resources>

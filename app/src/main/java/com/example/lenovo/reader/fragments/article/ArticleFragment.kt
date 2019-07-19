@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.ShareActionProvider
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.MenuItemCompat
@@ -18,7 +19,6 @@ import com.example.lenovo.reader.annotations.Layout
 import com.example.lenovo.reader.fragments.base.BaseFragment
 import com.example.lenovo.reader.fragments.base.BasePresenter
 import com.example.lenovo.reader.getActionBarHeight
-import com.example.lenovo.reader.navigation.Router
 import com.example.lenovo.reader.pxFromDp
 import com.example.model.models.Article
 import com.example.model.models.Category
@@ -34,8 +34,6 @@ import kotlinx.android.synthetic.main.fragment_article.article_webview
 import kotlinx.android.synthetic.main.fragment_article.test_content
 import javax.inject.Inject
 
-
-
 @Layout(R.layout.fragment_article)
 class ArticleFragment : BaseFragment(), ArticleView {
 
@@ -43,8 +41,6 @@ class ArticleFragment : BaseFragment(), ArticleView {
 
   @Inject
   lateinit var presenter: ArticlePresenter
-  @Inject
-  lateinit var router: Router
 
   private var isFavorite = false
 
@@ -95,7 +91,6 @@ class ArticleFragment : BaseFragment(), ArticleView {
     super.onCreateOptionsMenu(menu, inflater)
   }
 
-
 //  // Call to update the share intent
 //  private fun setShareIntent(shareIntent: Intent) {
 //    shareActionProvider?.setShareIntent(shareIntent)
@@ -103,13 +98,13 @@ class ArticleFragment : BaseFragment(), ArticleView {
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {
-      android.R.id.home -> router.goBack()
+      android.R.id.home -> presenter.goBack()
       R.id.action_article_favorite -> {
         onFavoriteButtonClicked()
       }
       R.id.action_article_fontsize -> presenter.onFontSizeChanged() //TODO
       R.id.action_article_share -> Log.d("TODO", "NOT IMPLEMENTED") //TODO
-      R.id.action_article_delete -> Log.d("TODO", "NOT IMPLEMENTED") //TODO
+      R.id.action_article_delete -> showDeleteDialog()
     }
     return super.onOptionsItemSelected(item)
   }
@@ -156,4 +151,30 @@ class ArticleFragment : BaseFragment(), ArticleView {
     article_chipgroup.setCategories(categories)
   }
 
+  fun showDeleteDialog() {
+    val alertDialog: AlertDialog? = context?.let {
+      AlertDialog.Builder(it).apply {
+        setTitle(getString(R.string.delete_article))
+          .setMessage(getString(R.string.message_delete))
+        setPositiveButton(R.string.ok, { dialog, id ->
+          presenter.onDeleteArticleClicked()
+        })
+        setNegativeButton(R.string.cancel, { dialog, id ->
+          // User cancelled the dialog
+        })
+      }.create()
+    }
+    alertDialog?.show()
+  }
+
+  override fun showErrorDialog(message: String) {
+    val alertDialog: AlertDialog? = context?.let {
+      AlertDialog.Builder(it).apply {
+        setPositiveButton(R.string.ok, { dialog, id ->
+
+        })
+      }.create()
+    }
+    alertDialog?.show()
+  }
 }

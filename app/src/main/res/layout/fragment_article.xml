@@ -86,7 +86,7 @@
           tools:text="von Mark-Uwe Kling"
           />
 
-      <com.example.lenovo.reader.view.CategoriesChipGroup
+      <com.example.lenovo.reader.view.CategoryShowChipGroup
           android:id="@+id/article_chipgroup"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"

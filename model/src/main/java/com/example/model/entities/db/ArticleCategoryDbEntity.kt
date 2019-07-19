@@ -2,6 +2,7 @@ package com.example.model.entities.db
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.ForeignKey.CASCADE
 import androidx.room.Index
 
 /**
@@ -11,7 +12,7 @@ import androidx.room.Index
   tableName = "articles_categories",
   primaryKeys = ["articleId", "categoryId"],
   foreignKeys = [
-    ForeignKey(entity = ArticleDbEntity::class, parentColumns = ["id"], childColumns = ["articleId"]),
+    ForeignKey(entity = ArticleDbEntity::class, parentColumns = ["id"], childColumns = ["articleId"], onDelete = CASCADE),
     ForeignKey(entity = CategoryDbEntity::class, parentColumns = ["id"], childColumns = ["categoryId"])
   ],
   indices = [Index("categoryId")]

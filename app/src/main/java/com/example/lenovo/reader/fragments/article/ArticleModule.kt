@@ -1,6 +1,8 @@
 package com.example.lenovo.reader.fragments.article
 
 import com.example.lenovo.reader.annotations.FragmentScope
+import com.example.lenovo.reader.fragments.article.interactors.DeleteArticleInteractor
+import com.example.lenovo.reader.fragments.article.interactors.DeleteArticleInteractorImpl
 import com.example.lenovo.reader.fragments.article.interactors.GetArticleInteractor
 import com.example.lenovo.reader.fragments.article.interactors.GetArticleInteractorImpl
 import com.example.lenovo.reader.fragments.article.interactors.GetCategoriesInteractor
@@ -39,5 +41,8 @@ abstract class ArticleModule {
   @FragmentScope
   abstract fun provideGetCategoriesInteractor(getCategoriesInteractorImpl: GetCategoriesInteractorImpl): GetCategoriesInteractor
 
+  @Binds
+  @FragmentScope
+  abstract fun provideDeleteArticleInteractor(deleteArticleInteractorImpl: DeleteArticleInteractorImpl): DeleteArticleInteractor
 
 }

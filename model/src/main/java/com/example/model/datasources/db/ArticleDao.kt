@@ -1,6 +1,7 @@
 package com.example.model.datasources.db
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -37,9 +38,24 @@ interface ArticleDao {
   @Query("SELECT articles.id, articles.title, articles.addedAt, articles.leadImagePath  FROM articles JOIN articles_fts ON (articles.id = articles_fts.docid) WHERE articles_fts MATCH :searchString LIMIT (:count) OFFSET (:skip)")
   fun getExcerptArticles(count: Int, skip: Int, searchString: String): Single<List<ExcerptArticleDbEntity>>
 
+
+  // FTS 5
+  // SELECT * FROM movies MATCH 'pul*' ORDER BY rank;
+  //
+  // SELECT * FROM movies WHERE movies MATCH 'pul*'
+  // AND rank MATCH 'bm25(10.0, 1.0)' ORDER BY rank
+
+  // FTS 4
+  //
+
+
   // @Query("SELECT * FROM articles WHERE isFavorite = 1 ORDER BY addedAt LIMIT 8")
   // fun getFavoriteArticles(): Single<List<ArticleDbEntity>>
   // LIMIT <skip>, <count>
   // LIMIT <count> OFFSET <skip>
+
+  @Query("DELETE FROM articles WHERE id = :articleId")
+  fun deleteArticle(articleId: Long): Single<Int>
+
 }
 

@@ -9,8 +9,11 @@ interface ArticleView {
   fun articleId(): Long
   fun setContentFontSize(index: Int)
   fun setCategories(categories: List<Category>)
+  fun showErrorDialog(message: String)
 }
 
 interface ArticlePresenter : BasePresenter {
   fun onFontSizeChanged()
+  fun onDeleteArticleClicked()
+  fun goBack()
 }

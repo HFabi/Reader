@@ -30,4 +30,5 @@ interface ArticlesDbDataSource {
 
   fun addArticle(article: Article, categories: List<Category>?): Completable
 
+  fun deleteArticle(articleId: Long): Single<Boolean>
 }
