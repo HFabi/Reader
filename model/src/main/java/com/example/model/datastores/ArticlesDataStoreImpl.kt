@@ -20,8 +20,7 @@ class ArticlesDataStoreImpl @Inject constructor() : ArticlesDataStore {
   lateinit var articlesDbDataSource: ArticlesDbDataSource
   @Inject
   lateinit var articleController: ArticleController
-  @Inject
-  lateinit var sharedPreferencesDataSource: SharedPreferencesDataSource
+
 
   override fun getLastAddedArticles(count: Int): Single<List<LastAddedArticle>> {
     return articlesDbDataSource.getLastAddedArticles()
@@ -55,14 +54,6 @@ class ArticlesDataStoreImpl @Inject constructor() : ArticlesDataStore {
     return articlesWebDataSource.getArticle(url)
       .flatMap(articleController::processArticle)
       .flatMapCompletable { article -> articlesDbDataSource.addArticle(article, category) }
-  }
-
-  override fun setArticleFontSizeIndex(value: Int): Completable {
-    return sharedPreferencesDataSource.setArticleFontSizeIndex(value)
-  }
-
-  override fun getArticleFontSizeIndex(): Single<Int> {
-    return sharedPreferencesDataSource.getArticleFontSizeIndex()
   }
 
   override fun deleteArticle(articleId: Long): Single<Boolean> {

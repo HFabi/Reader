@@ -1,6 +1,7 @@
 package com.example.lenovo.reader.fragments.article.interactors
 
 import com.example.model.datastores.ArticlesDataStore
+import com.example.model.datastores.UserPreferencesDataStore
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -10,10 +11,10 @@ import javax.inject.Inject
 class GetFontSizeIndexInteractorImpl @Inject constructor(): GetFontSizeIndexInteractor {
 
   @Inject
-  lateinit var articlesDataStore: ArticlesDataStore
+  lateinit var userPreferencesDataStore: UserPreferencesDataStore
 
   override fun execute(): Single<Int> {
-    return articlesDataStore.getArticleFontSizeIndex()
+    return userPreferencesDataStore.getFontSizeIndex()
   }
 
 }

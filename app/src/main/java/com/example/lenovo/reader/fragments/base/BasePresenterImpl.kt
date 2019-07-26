@@ -6,4 +6,8 @@ open class BasePresenterImpl : BasePresenter {
 
   var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
+  override fun onDestroy() {
+    super.onDestroy()
+    compositeDisposable.dispose()
+  }
 }

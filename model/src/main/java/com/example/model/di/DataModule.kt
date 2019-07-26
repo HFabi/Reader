@@ -25,6 +25,8 @@ import com.example.model.datasources.web.ArticlesWebDataSource
 import com.example.model.datasources.web.ArticlesWebDataSourceImpl
 import com.example.model.datastores.ArticlesDataStore
 import com.example.model.datastores.ArticlesDataStoreImpl
+import com.example.model.datastores.UserPreferencesDataStore
+import com.example.model.datastores.UserPreferencesDataStoreImpl
 import com.example.model.transformers.ArticleCategoryTransformer
 import com.example.model.transformers.ArticleCategoryTransformerImpl
 import com.example.model.transformers.ArticleTransformer
@@ -163,5 +165,11 @@ class DataModule {
   @Singleton
   fun provideSharedPreferencesDataSource(sharedPreferencesDataSourceImpl: SharedPreferencesDataSourceImpl): SharedPreferencesDataSource {
     return sharedPreferencesDataSourceImpl
+  }
+
+  @Provides
+  @Singleton
+  fun provideUserPreferencesDataStore(userPreferencesDataStore: UserPreferencesDataStoreImpl) : UserPreferencesDataStore {
+    return userPreferencesDataStore
   }
 }

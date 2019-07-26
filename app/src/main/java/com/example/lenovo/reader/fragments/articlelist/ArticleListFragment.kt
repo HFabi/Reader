@@ -138,7 +138,6 @@ class ArticleListFragment : BaseFragment(), ArticleListView {
   fun setUpList() {
     excerptArticleAdapter = ExcerptArticleAdapter()
     excerptArticleAdapter.onItemClickListener = { excerptArticle, view ->
-      Toast.makeText(view.context, " " + excerptArticle.id + " ", Toast.LENGTH_SHORT).show()
       router.goToArticle(this, excerptArticle.id)
     }
     article_list_recyclerview.adapter = excerptArticleAdapter

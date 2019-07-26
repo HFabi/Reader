@@ -11,4 +11,8 @@ abstract class SettingsModule {
   @FragmentScope
   abstract fun provideSettingsPresenter(settingsPresenterImpl: SettingsPresenterImpl): SettingsPresenter
 
+
+  @Binds
+  @FragmentScope
+  abstract fun provideSettingsView(settingsFragment: SettingsFragment): SettingsView
 }

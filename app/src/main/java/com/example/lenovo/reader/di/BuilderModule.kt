@@ -1,5 +1,6 @@
 package com.example.lenovo.reader.di
 
+import com.example.lenovo.reader.activities.addarticle.AddArticleActivity
 import com.example.lenovo.reader.activities.mainactivity.MainActivity
 import com.example.lenovo.reader.activities.mainactivity.MainModule
 import com.example.lenovo.reader.annotations.ActivityScope
@@ -30,6 +31,12 @@ abstract class ActivityBuilder {
       modules = [MainModule::class, ControllerModule::class, FragmentBuilder::class]
   )
   abstract fun mainInjector(): MainActivity
+
+  @ActivityScope
+  @ContributesAndroidInjector(
+    modules = [com.example.lenovo.reader.activities.addarticle.AddArticleModule::class, ControllerModule::class]
+  )
+  abstract fun addArticleInjector(): AddArticleActivity
 }
 
 @Module

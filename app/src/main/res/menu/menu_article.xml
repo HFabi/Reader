@@ -15,10 +15,15 @@
       app:showAsAction="never"/>
 
   <item
-      android:id="@+id/action_article_delete"
-      android:icon="@drawable/ic_delete_forever_black_24dp"
-      android:title="@string/article_action_delete"
+      android:id="@+id/action_fullscreen"
+      android:title="@string/article_action_fullscreen"
       app:showAsAction="never"/>
+
+  <item
+    android:id="@+id/action_article_delete"
+    android:icon="@drawable/ic_delete_forever_black_24dp"
+    android:title="@string/article_action_delete"
+    app:showAsAction="never"/>
 
   <item
       android:id="@+id/action_article_share"

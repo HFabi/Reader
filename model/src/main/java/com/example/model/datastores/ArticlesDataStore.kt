@@ -25,10 +25,8 @@ interface ArticlesDataStore {
 
   fun addArticle(url: String, category: List<Category>?): Completable
 
-  fun setArticleFontSizeIndex(value: Int): Completable
-
-  fun getArticleFontSizeIndex(): Single<Int>
-
   fun deleteArticle(articleId: Long): Single<Boolean>
+
+
 
 }

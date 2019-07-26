@@ -5,13 +5,24 @@
     <color name="colorAccent">@color/colorPunch</color>
     <color name="colorToolbar">@color/colorWhite</color>
 
+    <color name="colorBackground">@color/colorWhite</color>
+    <color name="colorIconBlack">@color/colorBlack</color>
+    <color name="colorToolbarIconBlack">@color/colorBlack</color>
+    <color name="colorSearchTextViewBg">@color/colorWhite</color>
+    <color name="colorFilterBackground">@color/colorDarkWhite</color>
+    <color name="colorStatusBar">@color/colorDarkWhite</color>
+
     <color name="colorPunch">#D83B2B</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="colorBlack">#000000</color>
     <color name="colorDarkWhite">#F3F3F3</color>
     <color name="colorGallery">#FAFAFA</color>
     <color name="colorGray56">#8F8F8F</color>
     <color name="colorAlto">#CFCFCF</color>
     <color name="colorMercury">#E7E7E7</color>
+
+    <color name="colorNightBg">#121212</color>
+    <color name="colorNightGray">#4D4D4D</color>
 
     <color name="colorYellowOrange">#F8BF35</color>
     <color name="colorRegentStBlue">#A9D1E6</color>

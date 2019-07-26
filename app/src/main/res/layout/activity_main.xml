@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/colorBackground"
     tools:context=".activities.mainactivity.MainActivity"
     >
 
@@ -26,7 +26,7 @@
       android:id="@+id/main_bottom_navigation"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@color/colorWhite"
+      android:background="@color/colorBackground"
       app:labelVisibilityMode="unlabeled"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"

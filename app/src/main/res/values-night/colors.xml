@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="colorBackground">@color/colorNightBg</color>
+  <color name="colorIconBlack">@color/colorWhite</color>
+  <color name="colorToolbarIconBlack">@color/colorWhite</color>
+  <color name="colorSearchTextViewBg">@color/colorNightGray</color>
+  <color name="colorFilterBackground">@color/colorNightGray</color>
+  <color name="colorStatusBar">@color/colorNightBg</color>
+</resources>

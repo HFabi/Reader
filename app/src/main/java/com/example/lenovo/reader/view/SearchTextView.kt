@@ -46,7 +46,6 @@ class SearchTextView : LinearLayout {
     background = context.getDrawable(R.drawable.view_serachtextview_bg)
     outlineProvider = viewOutlineProvider
     elevation = 4.0f
-
   }
 
   override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
@@ -55,8 +54,3 @@ class SearchTextView : LinearLayout {
   }
 
 }
-
-//    searchtextview_linearlayout.elevation = 8.0f
-//    searchtextview_linearlayout.background = context.getDrawable(R.drawable.view_serachtextview_bg)
-//    searchtextview_linearlayout.outlineProvider = viewOutlineProvider
-

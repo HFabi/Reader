@@ -1,6 +1,9 @@
 package com.example.lenovo.reader.fragments.article
 
 import android.content.Intent
+import android.os.Build
+import android.os.Build.VERSION
+import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
@@ -9,6 +12,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.ShareActionProvider
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.MenuItemCompat
@@ -105,6 +109,7 @@ class ArticleFragment : BaseFragment(), ArticleView {
       R.id.action_article_fontsize -> presenter.onFontSizeChanged() //TODO
       R.id.action_article_share -> Log.d("TODO", "NOT IMPLEMENTED") //TODO
       R.id.action_article_delete -> showDeleteDialog()
+      R.id.action_fullscreen -> showFullScreen()
     }
     return super.onOptionsItemSelected(item)
   }
@@ -176,5 +181,63 @@ class ArticleFragment : BaseFragment(), ArticleView {
       }.create()
     }
     alertDialog?.show()
+  }
+
+  fun showFullScreen() {
+    // Enables regular immersive mode.
+    // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
+    // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+    activity?.window?.decorView?.systemUiVisibility = (View.SYSTEM_UI_FLAG_IMMERSIVE
+        // Set the content to appear under the system bars so that the
+        // content doesn't resize when the system bars hide and show.
+        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        // Hide the nav bar and status bar
+        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+        or View.SYSTEM_UI_FLAG_FULLSCREEN)
+
+    activity?.window?.decorView?.setOnSystemUiVisibilityChangeListener { visibility ->
+      // Note that system bars will only be "visible" if none of the
+      // LOW_PROFILE, HIDE_NAVIGATION, or FULLSCREEN flags are set.
+      if (visibility and View.SYSTEM_UI_FLAG_FULLSCREEN == 0) {
+        Log.d("WIND","if - - -")
+        // TODO: The system bars are visible. Make any desired
+        // adjustments to your UI, such as showing the action bar or
+        // other navigational controls.
+        activity?.window?.decorView?.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+        article_toolbar.visibility = View.VISIBLE
+
+        if(VERSION.SDK_INT >= VERSION_CODES.M) {
+          if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+            // if light
+            activity?.window?.decorView?.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
+          }
+          if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            // ifDark
+            activity?.window?.clearFlags(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
+          }
+          //if auto?????
+
+        }
+        //hell
+        //dunkel
+        //was ist mit auto ??
+
+
+
+        //TODO
+        //bug tobar light/dark not correct restored
+
+      } else {
+        Log.d("WIND","else - - ")
+        // TODO: The system bars are NOT visible. Make any desired
+        //TODO hide actionbar
+        article_toolbar.visibility = View.GONE
+//        activity?.actionBar?.hide()
+        // adjustments to your UI, such as hiding the action bar or
+        // other navigational controls.
+      }
+    }
   }
 }

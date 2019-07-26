@@ -5,7 +5,7 @@
     android:id="@+id/filter_bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="340dp"
-    android:background="@color/colorDarkWhite"
+    android:background="@color/colorFilterBackground"
     android:elevation="8dp"
     app:behavior_hideable="true"
     app:behavior_peekHeight="@dimen/bottom_sheet_peak_height"

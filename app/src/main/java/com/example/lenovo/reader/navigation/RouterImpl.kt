@@ -1,6 +1,8 @@
 package com.example.lenovo.reader.navigation
 
+import android.app.Activity
 import android.view.View
+import androidx.core.app.NavUtils.navigateUpFromSameTask
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.NavHostFragment
@@ -17,15 +19,27 @@ import javax.inject.Inject
 
 class RouterImpl @Inject constructor(var baseActivity: BaseActivity) : Router {
 
+
   override fun goBack() {
     //todo: adapt
     baseActivity.onBackPressed()
+  }
+
+  fun goToParent() {
+//    navigateUpFromSameTask()
   }
 
   override fun goToDashboard(currentFragment: Fragment) {
     NavHostFragment.findNavController(currentFragment)
       .navigate(R.id.dashboardFragment)
 
+  }
+
+  override fun goToDashboard(currentActivity: Activity) {
+//    //addArticleActivity
+//    NavHostFragment.findNavController(currentActivity)
+//      .navigate(R.id.dashboardFragment)
+    //TODO
   }
 
   override fun goToSettings(currentFragment: Fragment) {
@@ -58,9 +72,14 @@ class RouterImpl @Inject constructor(var baseActivity: BaseActivity) : Router {
       .navigate(action, extras)
   }
 
+//  override fun goToAddArticle(currentFragment: Fragment) {
+//    NavHostFragment.findNavController(currentFragment)
+//      .navigate(R.id.addArticleFragment)
+//  }
+
   override fun goToAddArticle(currentFragment: Fragment) {
     NavHostFragment.findNavController(currentFragment)
-      .navigate(R.id.addArticleFragment)
+      .navigate(R.id.addArticleActivity)
   }
 
   override fun goToArticleList(currentFragment: Fragment) {
@@ -89,4 +108,6 @@ class RouterImpl @Inject constructor(var baseActivity: BaseActivity) : Router {
       show(baseActivity.supportFragmentManager, javaClass.simpleName)
     }
   }
+
+
 }

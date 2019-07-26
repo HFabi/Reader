@@ -8,8 +8,12 @@ import io.reactivex.Single
  */
 interface SharedPreferencesDataSource {
 
-  fun setArticleFontSizeIndex(value: Int): Completable
+  fun setFontSizeIndex(value: Int): Completable
 
-  fun getArticleFontSizeIndex(): Single<Int>
+  fun getFontSizeIndex(): Single<Int>
+
+  fun setDayNightMode(value: Int): Completable
+
+  fun getDayNightMode(): Single<Int>
 
 }

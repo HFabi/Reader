@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
@@ -31,9 +32,10 @@ class ToolbarSearchView : AppCompatEditText {
     drawable = context.getDrawable(R.drawable.ic_close_black_24dp)
     drawable?.setBounds(0, 0, drawable?.getIntrinsicWidth() ?: 0, drawable?.getIntrinsicHeight() ?: 0);
     doAfterTextChanged { text -> onTextChange(text.toString()) }
-//    setOnTouchListener(this::onTouch)
     setBackgroundColor(ContextCompat.getColor(context, android.R.color.transparent))
     hint = context.getString(R.string.hint_search_articles)
+    setSingleLine(true)
+    imeOptions = EditorInfo.IME_ACTION_DONE
 
 //    isFocusableInTouchMode = true
 

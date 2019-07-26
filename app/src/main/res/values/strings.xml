@@ -33,5 +33,16 @@
   <string name="cancel">abbrechen</string>
   <string name="message_delete">Möchten Sie den Artikel wirklich löschen?</string>
   <string name="delete_article">Artikel löschen</string>
+  <string name="theme_auto">automatisch</string>
+  <string name="theme_light">hell</string>
+  <string name="theme_dark">dunkel</string>
+  <string name="settings_theme_dialog_title">Theme auswählen</string>
+  <string name="article_action_fullscreen">vollbild</string>
+
+  <string-array name="array_themes">
+    <item>Hell</item>
+    <item>Dunkel</item>
+    <item>Automatisch</item>
+  </string-array>
 
 </resources>

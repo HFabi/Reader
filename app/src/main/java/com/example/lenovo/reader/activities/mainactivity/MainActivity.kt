@@ -10,6 +10,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.activities.base.BaseActivity
+import com.example.lenovo.reader.activities.base.BasePresenter
 import com.example.lenovo.reader.fragments.articlelist.ArticleListFragment
 import com.example.lenovo.reader.fragments.dashboard.DashboardFragment
 import com.example.lenovo.reader.fragments.settings.SettingsFragment
@@ -24,7 +25,11 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
 
   var currentFragment: Fragment? = null
 
-  override fun provideContainerId(): Int = R.id.nav_host_fragment //TODO: this is not correct
+  override fun providePresenter(): BasePresenter? {
+    return null
+  }
+
+//  override fun provideContainerId(): Int = R.id.nav_host_fragment //TODO: this is not correct
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -71,5 +76,4 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
   fun setBottomNavigationEnabled(isEnabled: Boolean) {
     main_bottom_navigation.visibility = if (isEnabled) View.VISIBLE else View.GONE
   }
-
 }

@@ -77,4 +77,9 @@
         app:destination="@id/articleFragment">
     </action>
   </fragment>
+  <activity
+      android:id="@+id/addArticleActivity"
+      android:name="com.example.lenovo.reader.activities.addarticle.AddArticleActivity"
+      android:label="AddArticleActivity"
+      tools:layout="@layout/activity_add_article"/>
 </navigation>

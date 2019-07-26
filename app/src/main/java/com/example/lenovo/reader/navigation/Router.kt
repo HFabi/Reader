@@ -1,11 +1,14 @@
 package com.example.lenovo.reader.navigation
 
+import android.app.Activity
 import android.view.View
 import androidx.fragment.app.Fragment
 
 interface Router {
 
   fun goBack()
+
+  fun goToDashboard(currentActivity: Activity)
 
   fun goToDashboard(currentFragment: Fragment)
 

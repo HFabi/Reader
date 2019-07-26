@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
+    android:background="@color/colorBackground"
     android:orientation="vertical"
     >
 
@@ -12,7 +12,7 @@
       android:id="@+id/article_appbarlayout"
       android:layout_width="match_parent"
       android:layout_height="@dimen/appbarlayout_height"
-      android:background="@color/colorWhite"
+      android:background="@color/colorBackground"
       app:elevation="0dp"
       >
 
@@ -20,7 +20,7 @@
         android:id="@+id/article_collapstingtoolbarlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:contentScrim="@color/colorWhite"
+        app:contentScrim="@color/colorBackground"
         app:expandedTitleGravity="top"
         app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
         app:titleEnabled="false"
@@ -43,6 +43,7 @@
           android:layout_height="?attr/actionBarSize"
           app:layout_collapseMode="pin"
           app:title=""
+          style="@style/Reader.Toolbar"
           />
     </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -102,7 +103,7 @@
           android:layout_marginBottom="32dp"
           android:lineSpacingMultiplier="1.4"
           android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. aliquyam erat, sed diam voluptua. At luptua. aliquyam erat, sed diam voluptua accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
-          android:textColor="#000000"
+          android:textColor="?android:attr/textColorPrimary"
           android:textSize="@dimen/articleFontSizeSmall"
           />
 
