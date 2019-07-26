@@ -10,7 +10,7 @@
     app:textEndPadding="0dp"
     app:chipStartPadding="0dp"
     app:chipEndPadding="0dp"
-    app:chipBackgroundColor="@android:color/black"
+    app:chipBackgroundColor="@color/colorChipActionBg"
     app:chipStrokeColor="@color/chip_filter_states_stroke"
     android:textColor="@android:color/white"
     app:rippleColor="@color/colorGray56"

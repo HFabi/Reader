@@ -6,4 +6,5 @@
   <color name="colorSearchTextViewBg">@color/colorNightGray</color>
   <color name="colorFilterBackground">@color/colorNightGray</color>
   <color name="colorStatusBar">@color/colorNightBg</color>
+  <color name="colorChipActionBg">@color/colorWhite</color>
 </resources>

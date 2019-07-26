@@ -11,6 +11,7 @@
     <color name="colorSearchTextViewBg">@color/colorWhite</color>
     <color name="colorFilterBackground">@color/colorDarkWhite</color>
     <color name="colorStatusBar">@color/colorDarkWhite</color>
+    <color name="colorChipActionBg">@color/colorBlack</color>
 
     <color name="colorPunch">#D83B2B</color>
     <color name="colorWhite">#ffffff</color>

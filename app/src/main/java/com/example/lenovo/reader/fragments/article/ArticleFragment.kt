@@ -29,6 +29,7 @@ import com.example.model.models.Category
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_article.article_appbarlayout
 import kotlinx.android.synthetic.main.fragment_article.article_chipgroup
+import kotlinx.android.synthetic.main.fragment_article.article_collapstingtoolbarlayout
 import kotlinx.android.synthetic.main.fragment_article.article_iamgeview
 import kotlinx.android.synthetic.main.fragment_article.article_nestedscrollview
 import kotlinx.android.synthetic.main.fragment_article.article_subtitle
@@ -207,7 +208,6 @@ class ArticleFragment : BaseFragment(), ArticleView {
         // other navigational controls.
         activity?.window?.decorView?.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
         article_toolbar.visibility = View.VISIBLE
-
         if(VERSION.SDK_INT >= VERSION_CODES.M) {
           if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
             // if light
@@ -218,13 +218,10 @@ class ArticleFragment : BaseFragment(), ArticleView {
             activity?.window?.clearFlags(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
           }
           //if auto?????
-
         }
         //hell
         //dunkel
         //was ist mit auto ??
-
-
 
         //TODO
         //bug tobar light/dark not correct restored
@@ -234,6 +231,15 @@ class ArticleFragment : BaseFragment(), ArticleView {
         // TODO: The system bars are NOT visible. Make any desired
         //TODO hide actionbar
         article_toolbar.visibility = View.GONE
+//        article_appbarlayout.visibility = View.GONE
+//        article_collapstingtoolbarlayout.visibility = View.GONE
+
+//        (activity as MainActivity).supportActionBar?.hide()
+//        article_appbarlayout.visibility = View.GONE
+//        article_iamgeview.visibility = View.GONE
+//        article_toolbar
+
+//        activity?.actionBar?.hide()
 //        activity?.actionBar?.hide()
         // adjustments to your UI, such as hiding the action bar or
         // other navigational controls.
