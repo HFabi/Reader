@@ -52,7 +52,8 @@ class AddArticlePresenterImpl @Inject constructor() : BasePresenterImpl(), AddAr
   }
 
   override fun navigateToDashboard() {
-    router.goToDashboard(view as AddArticleActivity)
+//    router.goToDashboard(view as AddArticleActivity)
+    router.goBack()
   }
 
   override fun navigateBack() {

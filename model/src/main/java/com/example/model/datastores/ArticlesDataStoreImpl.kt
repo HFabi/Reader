@@ -57,8 +57,8 @@ class ArticlesDataStoreImpl @Inject constructor() : ArticlesDataStore {
   }
 
   override fun deleteArticle(articleId: Long): Single<Boolean> {
-    // ggf Categories loeschen??
-    // muss ich aus der Such-TAbelle rauslöschen?
+    // TODO: delete category?
+    // TODO: delete images, resources from file directory,
     return articlesDbDataSource.deleteArticle(articleId)
   }
 }
