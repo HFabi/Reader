@@ -24,10 +24,11 @@
         android:id="@+id/item_last_added_imageview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="0dp"
         android:scaleType="centerCrop"
         android:tint="#5F000000"
         app:layout_constraintBottom_toBottomOf="@+id/item_last_added_date_textView"
-        app:layout_constraintTop_toTopOf="@+id/item_last_added_subtitle_textView"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="-16dp"
         />
 

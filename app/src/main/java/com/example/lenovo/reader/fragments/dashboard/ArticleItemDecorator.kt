@@ -16,12 +16,10 @@ class ArticleItemDecorator(
 
   override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: State) {
     super.getItemOffsets(outRect, view, parent, state)
-
     outRect.apply {
       left = halfSpace
       right = halfSpace
       bottom = space
     }
   }
-
 }

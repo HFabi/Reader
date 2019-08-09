@@ -12,7 +12,7 @@
       android:id="@+id/article_appbarlayout"
       android:layout_width="match_parent"
       android:layout_height="@dimen/appbarlayout_height"
-      android:background="@color/colorBackground"
+      android:background="@android:color/transparent"
       app:elevation="0dp"
       >
 
@@ -43,8 +43,19 @@
           android:layout_height="?attr/actionBarSize"
           app:layout_collapseMode="pin"
           app:title=""
-          style="@style/Reader.Toolbar"
+
+          app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
           />
+
+      <!--<androidx.appcompat.widget.Toolbar-->
+          <!--android:id="@+id/article_toolbar"-->
+          <!--android:layout_width="match_parent"-->
+          <!--android:layout_height="?attr/actionBarSize"-->
+          <!--app:layout_collapseMode="pin"-->
+          <!--app:title=""-->
+          <!--style="@style/Reader.Toolbar"-->
+          <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
+          <!--/>-->
     </com.google.android.material.appbar.CollapsingToolbarLayout>
 
   </com.google.android.material.appbar.AppBarLayout>

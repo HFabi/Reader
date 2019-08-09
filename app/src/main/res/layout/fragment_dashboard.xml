@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Home"
-        style="@style/Reader.Toolbar"
+        style="@style/Reader.Toolbar.White"
         />
 
     <androidx.core.widget.NestedScrollView

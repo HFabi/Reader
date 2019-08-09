@@ -8,7 +8,7 @@ import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
 @Component(
-    modules = [AndroidInjectionModule::class, ApplicationModule::class, ActivityBuilder::class, DataModule::class]
+    modules = [AndroidInjectionModule::class, ApplicationModule::class, ActivityBuilder::class, ServiceBuilder::class, DataModule::class]
 )
 @Singleton
 interface ApplicationComponent : AndroidInjector<ReaderApplication> {

@@ -17,7 +17,7 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
       app:title="@string/settings"
-      style="@style/Reader.Toolbar"
+      style="@style/Reader.Toolbar.White"
       />
 
   <TextView

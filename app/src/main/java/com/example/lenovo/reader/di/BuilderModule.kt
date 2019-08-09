@@ -20,6 +20,7 @@ import com.example.lenovo.reader.fragments.search.SearchFragment
 import com.example.lenovo.reader.fragments.search.SearchModule
 import com.example.lenovo.reader.fragments.settings.SettingsFragment
 import com.example.lenovo.reader.fragments.settings.SettingsModule
+import com.example.lenovo.reader.services.DownloadArticleService
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -73,5 +74,13 @@ abstract class FragmentBuilder {
   @FragmentScope
   @ContributesAndroidInjector(modules = [])
   abstract fun bottomNavigationFragmentInjector(): BottomMenuFragment
+
+}
+
+@Module
+abstract class ServiceBuilder {
+
+  @ContributesAndroidInjector(modules = [])
+  abstract fun downloadArticleServiceInjector(): DownloadArticleService
 
 }

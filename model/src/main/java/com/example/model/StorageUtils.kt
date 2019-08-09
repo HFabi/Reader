@@ -9,7 +9,8 @@ import java.util.Date
 fun generateUniqueFileName(url: String, localPath: String): String {
   val type = url.substringAfterLast(".")
   val date = Date().time.toString()
-  return "$localPath/$date.$type"
+  return "$localPath/$date"
+//  return "$localPath/$date.$type"
 }
 
 fun generateUniqueDirectoryName(): String {

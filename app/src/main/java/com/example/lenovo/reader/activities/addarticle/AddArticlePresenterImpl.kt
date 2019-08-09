@@ -1,14 +1,15 @@
 package com.example.lenovo.reader.activities.addarticle
 
+import android.content.Intent
 import android.util.Log
-import com.example.lenovo.reader.activities.addarticle.interactors.AddArticleInteractor
 import com.example.lenovo.reader.activities.addarticle.interactors.GetCategoriesInteractor
-import com.example.lenovo.reader.activities.base.BasePresenter
 import com.example.lenovo.reader.activities.base.BasePresenterImpl
 import com.example.lenovo.reader.navigation.Router
+import com.example.lenovo.reader.services.DownloadArticleService
 import com.example.model.bind
+import com.example.model.models.Category
 import com.example.model.schedule
-import io.reactivex.disposables.CompositeDisposable
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -19,11 +20,11 @@ class AddArticlePresenterImpl @Inject constructor() : BasePresenterImpl(), AddAr
   @Inject
   lateinit var view: AddArticleView
   @Inject
-  lateinit var addArticleInteractor: AddArticleInteractor
-  @Inject
   lateinit var getCategoriesInteractor: GetCategoriesInteractor
   @Inject
   lateinit var router: Router
+  @Inject
+  lateinit var addArticleActivity: AddArticleActivity
 
   override fun onResume() {
     getCategoriesInteractor.execute()
@@ -31,24 +32,21 @@ class AddArticlePresenterImpl @Inject constructor() : BasePresenterImpl(), AddAr
       .schedule()
       .subscribe(
         { categories -> view.setCategories(categories) },
-        {})
+        {error -> Timber.d(error)})
   }
 
   override fun onSubmitClicked(url: String) {
-    val categories = view.getSelectedCategoryIdentifier()
-    if (urlIsValid(url)) {
-      addArticleInteractor.execute(url, categories)
-        .bind(compositeDisposable)
-        .schedule()
-        .subscribe(
-          { Log.d("TAGs", "Added in Presenter successfully") }, { error -> error.printStackTrace() }
-        )
-    }
+    startService(url, view.getSelectedCategoryIdentifier())
     navigateToDashboard()
   }
 
-  fun urlIsValid(url: String): Boolean {
-    return url.isNotEmpty()
+  private fun startService(url: String, categories: List<Category>?) {
+    addArticleActivity.startService(Intent(addArticleActivity, DownloadArticleService::class.java).apply {
+      putExtra("url", url)
+      categories?.let {
+        putParcelableArrayListExtra("categories", ArrayList<Category>())
+      }
+    })
   }
 
   override fun navigateToDashboard() {
@@ -61,3 +59,10 @@ class AddArticlePresenterImpl @Inject constructor() : BasePresenterImpl(), AddAr
   }
 
 }
+
+//      addArticleInteractor.execute(url, categories)
+//        .bind(compositeDisposable)
+//        .schedule()
+//        .subscribe(
+//          { Log.d("TAGs", "Added in Presenter successfully") }, { error -> error.printStackTrace() }
+//        )

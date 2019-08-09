@@ -6,18 +6,19 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lenovo.reader.R
+import com.example.lenovo.reader.R.drawable
 import com.example.lenovo.reader.activities.mainactivity.MainActivity
 import com.example.lenovo.reader.annotations.Layout
 import com.example.lenovo.reader.fragments.articlelist.adapters.ExcerptArticleAdapter
 import com.example.lenovo.reader.fragments.base.BaseFragment
 import com.example.lenovo.reader.fragments.base.BasePresenter
+import com.example.lenovo.reader.fragments.dashboard.DrawableItemDecorator
 import com.example.lenovo.reader.navigation.Router
-import com.example.lenovo.reader.pxFromDp
 import com.example.model.models.Category
 import com.example.model.models.ExcerptArticle
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -121,7 +122,7 @@ class ArticleListFragment : BaseFragment(), ArticleListView {
       }
     })
 
-    filter_chipgroup.onFilterChangeListener = {categories ->
+    filter_chipgroup.onFilterChangeListener = { categories ->
       presenter.loadExcerptArticles(categories)
     }
 
@@ -142,12 +143,17 @@ class ArticleListFragment : BaseFragment(), ArticleListView {
     }
     article_list_recyclerview.adapter = excerptArticleAdapter
     article_list_recyclerview.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+//    article_list_recyclerview.addItemDecoration(
+//      ExcerptArticleItemDecorator(
+//        pxFromDp(
+//          8.0f,
+//          context!!
+//        ).toInt()
+//      )
+//    )
     article_list_recyclerview.addItemDecoration(
-      ExcerptArticleItemDecorator(
-        pxFromDp(
-          8.0f,
-          context!!
-        ).toInt()
+      DrawableItemDecorator(
+        ContextCompat.getDrawable(context!!, drawable.divider)
       )
     )
   }
