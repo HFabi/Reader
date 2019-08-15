@@ -14,15 +14,17 @@ class ArticleControllerImpl @Inject constructor() : ArticleController {
 
   @Inject
   lateinit var htmlParser: HtmlParser
+//  @Inject
+//  lateinit var downloadController: DownloadController
   @Inject
-  lateinit var downloadController: DownloadController
+  lateinit var storageController: StorageController
 
   var downloadTaskList: MutableList<DownloadTask> = mutableListOf()
 
   override fun processArticle(article: Article): Single<Article> {
     return Single.fromCallable {
 
-      article.localPath = downloadController.providePath(generateUniqueDirectoryName())
+      article.localPath = storageController.providePath(generateUniqueDirectoryName())
 
       // replace img with local paths
       val (parsedHtml, downloadTasks) = htmlParser.replaceImagePaths(article.content, article.localPath)
@@ -37,7 +39,7 @@ class ArticleControllerImpl @Inject constructor() : ArticleController {
       // start Service with download task list
       //.flatMapObservable { (article, downloadTaskList) ->
       //articlesDbDataSource.addArticle(article)
-      //.andThen(downloadController.load(downloadTaskList))
+      //.andThen(downloadController.download(downloadTaskList))
       //}
 //      Pair(article, downloadTaskList)
       article
@@ -47,7 +49,7 @@ class ArticleControllerImpl @Inject constructor() : ArticleController {
 
 
 //      .flatMap { (article, downloadTaskList) ->
-//      downloadController.load(downloadTaskList)
+//      downloadController.download(downloadTaskList)
 //        .map { r -> article }
 //      }
 

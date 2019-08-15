@@ -66,4 +66,17 @@ class SettingsFragment : BaseFragment(), SettingsView {
       .show()
   }
 
+  // Speicher
+  // freier Speicherplatz
+  // für Bilder verwendeter Speicherplatz
+  // Gesamtgroeße der Dateien
+
+  // Speicherplatz sparen
+  // Ist diese Option aktiv, werden keine Bilder heruntergeladen
+
+  // Information
+  // Datenschutz/Impressum
+  // Open-Source-Lizenzen/verwendete Libraries
+  // App Version
+
 }

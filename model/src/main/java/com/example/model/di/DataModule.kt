@@ -13,6 +13,8 @@ import com.example.model.controllers.DownloadController
 import com.example.model.controllers.DownloadControllerImpl
 import com.example.model.controllers.HtmlParser
 import com.example.model.controllers.HtmlParserImpl
+import com.example.model.controllers.StorageController
+import com.example.model.controllers.StorageControllerImpl
 import com.example.model.datasources.db.ArticleCategoryDao
 import com.example.model.datasources.db.ArticleDao
 import com.example.model.datasources.db.ArticlesDbDataSource
@@ -41,7 +43,6 @@ import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.create
 import timber.log.Timber
 import javax.inject.Named
 import javax.inject.Singleton
@@ -169,7 +170,13 @@ class DataModule {
 
   @Provides
   @Singleton
-  fun provideUserPreferencesDataStore(userPreferencesDataStore: UserPreferencesDataStoreImpl) : UserPreferencesDataStore {
+  fun provideUserPreferencesDataStore(userPreferencesDataStore: UserPreferencesDataStoreImpl): UserPreferencesDataStore {
     return userPreferencesDataStore
+  }
+
+  @Provides
+  @Singleton
+  fun provideStorageController(storageControllerImpl: StorageControllerImpl): StorageController {
+    return storageControllerImpl
   }
 }

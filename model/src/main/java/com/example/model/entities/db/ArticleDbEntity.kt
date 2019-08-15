@@ -22,5 +22,6 @@ data class ArticleDbEntity(
   var content: String,
   var localPath: String,
   var nextPageUrl: String,
-  var addedAt: Date
+  var addedAt: Date,
+  var color: Int = -1
 )

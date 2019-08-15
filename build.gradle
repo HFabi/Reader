@@ -55,6 +55,7 @@ ext {
   retrofitMoshiAdapterVersion = '2.5.0'
   okHttpLoggingVersion = '3.14.0'
   roomVersion = '2.1.0-alpha06'
+  paletteVersion = '1.0.0'
 
   //Test library versions
   junitVersion = '4.12'
@@ -98,7 +99,9 @@ ext {
 
       room: "androidx.room:room-runtime:$roomVersion",
       roomProcessor: "androidx.room:room-compiler:$roomVersion",
-      roomRxJava: "androidx.room:room-rxjava2:$roomVersion"
+      roomRxJava: "androidx.room:room-rxjava2:$roomVersion",
+
+      palette: "androidx.palette:palette:$paletteVersion"
   ]
 
   testLibs = [

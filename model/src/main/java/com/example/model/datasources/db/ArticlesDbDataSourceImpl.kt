@@ -1,5 +1,6 @@
 package com.example.model.datasources.db
 
+import com.example.model.controllers.StorageController
 import com.example.model.models.Article
 import com.example.model.models.Category
 import com.example.model.models.ExcerptArticle
@@ -29,6 +30,8 @@ class ArticlesDbDataSourceImpl @Inject constructor() : ArticlesDbDataSource {
   lateinit var categoryTransformer: CategoryTransformer
   @Inject
   lateinit var articleCategoryTransformer: ArticleCategoryTransformer
+  @Inject
+  lateinit var storageController: StorageController
 
   private val articlesPerPage: Int = 10
 
@@ -100,7 +103,9 @@ class ArticlesDbDataSourceImpl @Inject constructor() : ArticlesDbDataSource {
   }
 
   override fun deleteArticle(articleId: Long): Single<Boolean> {
-    return articleDao.deleteArticle(articleId)
+    return getArticleById(articleId)
+      .flatMapCompletable { article -> storageController.deleteAlbum(article.localPath) }
+      .andThen(articleDao.deleteArticle(articleId))
       .map { changedRows -> changedRows > 0 }
   }
 }

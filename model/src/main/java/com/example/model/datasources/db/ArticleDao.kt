@@ -23,7 +23,7 @@ interface ArticleDao {
   @Query("SELECT * FROM articles WHERE id = (:id)")
   fun getArticleById(id: Long): Single<ArticleDbEntity>
 
-  @Query("SELECT id, title, addedAt, leadImagePath FROM articles ORDER BY addedAt DESC LIMIT 8")
+  @Query("SELECT id, title, addedAt, leadImagePath, color FROM articles ORDER BY addedAt DESC LIMIT 8")
   fun getLastAddedArticles(): Single<List<LastAddedArticleDbEntity>>
 
   @Insert(onConflict = OnConflictStrategy.ABORT)
@@ -35,7 +35,7 @@ interface ArticleDao {
 //  fun getExcerptArticles(count: Int, skip: Int, searchString: String): Single<List<ExcerptArticleDbEntity>>
 
 
-  @Query("SELECT articles.id, articles.title, articles.addedAt, articles.leadImagePath  FROM articles JOIN articles_fts ON (articles.id = articles_fts.docid) WHERE articles_fts MATCH :searchString LIMIT (:count) OFFSET (:skip)")
+  @Query("SELECT articles.id, articles.title, articles.addedAt, articles.leadImagePath, articles.color  FROM articles JOIN articles_fts ON (articles.id = articles_fts.docid) WHERE articles_fts MATCH :searchString LIMIT (:count) OFFSET (:skip)")
   fun getExcerptArticles(count: Int, skip: Int, searchString: String): Single<List<ExcerptArticleDbEntity>>
 
 

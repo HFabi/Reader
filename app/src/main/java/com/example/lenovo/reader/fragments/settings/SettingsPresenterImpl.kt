@@ -3,6 +3,7 @@ package com.example.lenovo.reader.fragments.settings
 import com.example.lenovo.reader.controllers.DayNightController
 import com.example.lenovo.reader.controllers.DayNightControllerImpl.Companion.DAYNIGHT_AUTO
 import com.example.lenovo.reader.fragments.base.BasePresenterImpl
+import com.example.lenovo.reader.fragments.settings.interactors.GetStorageInfoInteractor
 import com.example.lenovo.reader.navigation.Router
 import com.example.model.bind
 import com.example.model.schedule
@@ -17,9 +18,15 @@ class SettingsPresenterImpl @Inject constructor() : BasePresenterImpl(), Setting
   lateinit var router: Router
   @Inject
   lateinit var dayNightController: DayNightController
+  @Inject
+  lateinit var getStorageInfoInteractor: GetStorageInfoInteractor
 
   override fun onResume() {
     loadDayNightMode()
+    getStorageInfoInteractor.execute()
+      .bind(compositeDisposable)
+      .schedule()
+      .subscribe()
   }
 
   override fun loadDayNightMode() {
@@ -31,15 +38,7 @@ class SettingsPresenterImpl @Inject constructor() : BasePresenterImpl(), Setting
       }, { error -> error.printStackTrace() })
   }
 
-//  override fun updateDayNightMode(selectedIndex: Int) {
-//    dayNightController.applyDayNightMode(selectedIndex)
-//      .bind(compositeDisposable)
-//      .schedule()
-//      .subscribe({ view.updateDayNightMode(selectedIndex)}, { error -> error.printStackTrace() })
-//  }
-
   override fun updateDayNightMode(selectedIndex: Int) {
-//    view.updateDayNightMode(selectedIndex)
     dayNightController.applyDayNightMode(selectedIndex)
       .bind(compositeDisposable)
       .schedule()

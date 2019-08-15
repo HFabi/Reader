@@ -9,5 +9,6 @@ data class LastAddedArticleDbEntity(
   var id: Long,
   var title: String,
   var addedAt: Date,
-  var leadImagePath: String
+  var leadImagePath: String,
+  var color: Int = -1
 )

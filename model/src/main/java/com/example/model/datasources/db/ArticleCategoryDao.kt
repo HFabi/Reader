@@ -29,12 +29,12 @@ interface ArticleCategoryDao {
   fun remove(articleCategoryDbEntity: ArticleCategoryDbEntity): Completable
 
   @Query(
-    "SELECT id, title, addedAt, leadImagePath FROM articles LIMIT (:count) OFFSET (:skip)"
+    "SELECT id, title, addedAt, leadImagePath, color FROM articles LIMIT (:count) OFFSET (:skip)"
   )
   fun getExcerptArticles(count: Int, skip: Int): Single<List<ExcerptArticleDbEntity>>
 
   @Query(
-    "SELECT DISTINCT articles.id, title, addedAt, leadImagePath FROM articles JOIN articles_categories ON articles.id=articles_categories.articleId WHERE categoryId IN (:categoryIds) LIMIT (:count) OFFSET (:skip)"
+    "SELECT DISTINCT articles.id, title, addedAt, leadImagePath, color FROM articles JOIN articles_categories ON articles.id=articles_categories.articleId WHERE categoryId IN (:categoryIds) LIMIT (:count) OFFSET (:skip)"
   )
   fun getExcerptArticles(count: Int, skip: Int, categoryIds: List<Long>): Single<List<ExcerptArticleDbEntity>>
 

@@ -44,7 +44,7 @@ class AddArticlePresenterImpl @Inject constructor() : BasePresenterImpl(), AddAr
     addArticleActivity.startService(Intent(addArticleActivity, DownloadArticleService::class.java).apply {
       putExtra("url", url)
       categories?.let {
-        putParcelableArrayListExtra("categories", ArrayList<Category>())
+        putParcelableArrayListExtra("categories", ArrayList<Category>(categories))
       }
     })
   }

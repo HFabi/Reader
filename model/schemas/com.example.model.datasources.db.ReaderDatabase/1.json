@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "3d355c4527724975866f6fb7e74425c7",
+    "identityHash": "19e1672d24f6367b15a9802e23928dd6",
     "entities": [
       {
         "tableName": "articles",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `domain` TEXT NOT NULL, `url` TEXT NOT NULL, `title` TEXT NOT NULL, `author` TEXT NOT NULL, `datePublished` INTEGER, `leadImagePath` TEXT NOT NULL, `excerpt` TEXT NOT NULL, `content` TEXT NOT NULL, `localPath` TEXT NOT NULL, `nextPageUrl` TEXT NOT NULL, `addedAt` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `domain` TEXT NOT NULL, `url` TEXT NOT NULL, `title` TEXT NOT NULL, `author` TEXT NOT NULL, `datePublished` INTEGER, `leadImagePath` TEXT NOT NULL, `excerpt` TEXT NOT NULL, `content` TEXT NOT NULL, `localPath` TEXT NOT NULL, `nextPageUrl` TEXT NOT NULL, `addedAt` INTEGER NOT NULL, `color` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -77,6 +77,12 @@
           {
             "fieldPath": "addedAt",
             "columnName": "addedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "color",
+            "columnName": "color",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -220,7 +226,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"3d355c4527724975866f6fb7e74425c7\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"19e1672d24f6367b15a9802e23928dd6\")"
     ]
   }
 }

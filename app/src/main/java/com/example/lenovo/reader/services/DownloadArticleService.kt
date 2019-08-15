@@ -1,12 +1,19 @@
 package com.example.lenovo.reader.services
 
-import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.IBinder
 import android.util.Log
+import androidx.core.app.NotificationCompat
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.lenovo.reader.DOWNLOAD_ARTICLE_NAME
+import com.example.lenovo.reader.controllers.ExtractImageColorController
 import com.example.model.controllers.DownloadController
 import com.example.model.controllers.HtmlParser
+import com.example.model.controllers.StorageController
 import com.example.model.datasources.db.ArticlesDbDataSource
 import com.example.model.datasources.web.ArticlesWebDataSource
 import com.example.model.generateUniqueDirectoryName
@@ -33,6 +40,11 @@ class DownloadArticleService @Inject constructor() : DaggerIntentService(DOWNLOA
   lateinit var htmlParser: HtmlParser
   @Inject
   lateinit var downloadController: DownloadController
+//  @Inject
+//  lateinit var extractImageColorController: ExtractImageColorController
+  @Inject
+  lateinit var storageController: StorageController
+
 
   var downloadTaskList: MutableList<DownloadTask> = mutableListOf()
 
@@ -41,6 +53,7 @@ class DownloadArticleService @Inject constructor() : DaggerIntentService(DOWNLOA
       val url: String = intent.getStringExtra("url")
       var categories: List<Category>? = null
       if (intent.hasExtra("categories")) {
+        Log.d("SERVICE","has extra categories")
         categories = intent.getParcelableArrayListExtra<Category>("categories")
       }
       loadArticle(url, categories)
@@ -70,14 +83,27 @@ class DownloadArticleService @Inject constructor() : DaggerIntentService(DOWNLOA
     return super.onBind(intent)
   }
 
+//  private fun loadArticle(url: String, categories: List<Category>?) {
+//    articlesWebDataSource.getArticle(url)
+//      .flatMap(this::extractImages)
+//      .flatMapCompletable { article -> saveArticle(article, categories) }
+//      .andThen(downloadController.download(downloadTaskList))
+//      .subscribe(
+//        { downloadResult -> Log.d("", "DownloadResult " + downloadResult) }
+//      )
+//  }
+
   private fun loadArticle(url: String, categories: List<Category>?) {
     articlesWebDataSource.getArticle(url)
       .flatMap(this::extractImages)
       .flatMapCompletable { article -> saveArticle(article, categories) }
-      .andThen(downloadController.load(downloadTaskList))
+      .andThen(downloadController.downloadAll(downloadTaskList))
       .subscribe(
         { downloadResult -> Log.d("", "DownloadResult " + downloadResult) }
       )
+    //TODO: extract color from lead image and save it in article entity
+    //TODO: broadcast to reload recycler
+    //
   }
 
   private fun saveArticle(article: Article, categories: List<Category>?): Completable {
@@ -90,7 +116,7 @@ class DownloadArticleService @Inject constructor() : DaggerIntentService(DOWNLOA
 
   private fun extractImages(article: Article): Single<Article> {
     return Single.fromCallable {
-      article.localPath = downloadController.providePath(generateUniqueDirectoryName())
+      article.localPath = storageController.providePath(generateUniqueDirectoryName())
       // replace img with local paths
       val (parsedHtml, downloadTasks) = htmlParser.replaceImagePaths(article.content, article.localPath)
       downloadTaskList.addAll(downloadTasks)
@@ -105,7 +131,8 @@ class DownloadArticleService @Inject constructor() : DaggerIntentService(DOWNLOA
   }
 
   private fun showServiceInForeground(recipientName: String) {
-    val builder = Notification.Builder(this)
+    createNotificationChannel()
+    val builder = NotificationCompat.Builder(this, "Channel_ID")
 //            .setSmallIcon(R.drawable.ic_file_upload_white_18dp)
 //            .setContentTitle(getString(R.string.start_upload_ticker))
 //            .setTicker(getString(R.string.start_upload_ticker))
@@ -113,5 +140,26 @@ class DownloadArticleService @Inject constructor() : DaggerIntentService(DOWNLOA
 //            .setProgress(100, 10, true)
     val notification = builder.build()
     startForeground(1, notification)
+  }
+
+  private fun createNotificationChannel() {
+    // Create the NotificationChannel, but only on API 26+ because
+    // the NotificationChannel class is new and not in the support library
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      val name = "channel_name"
+      val descriptionText = "channel_description"
+      val importance = NotificationManager.IMPORTANCE_DEFAULT
+      val channel = NotificationChannel("Channel_ID", name, importance).apply {
+        description = descriptionText
+      }
+      // Register the channel with the system
+      val notificationManager: NotificationManager =
+        getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+      notificationManager.createNotificationChannel(channel)
+    }
+  }
+
+  private fun sendBroadcast() {
+//    LocalBroadcastManager.getInstance(this).registerReceiver()
   }
 }
