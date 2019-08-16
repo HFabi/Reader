@@ -9,7 +9,7 @@ buildscript {
   dependencies {
     classpath 'com.android.tools.build:gradle:3.4.2'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.1.0-alpha01"
+    classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.2.0-alpha01"
   }
 }
 
@@ -32,29 +32,29 @@ ext {
   appVersionName = "1.0"
 
   //Android
-  androidCompileSDKVersion = 28
+  androidCompileSDKVersion = 29
   androidMinSDKVersion = 21
   androidTargetSDKVersion = androidCompileSDKVersion
 
   //Library versions
   constraintLayoutVersion = '1.1.3'
-  daggerVersion = '2.21'
+  daggerVersion = '2.24'
   coreKtxVersion = '1.1.0-alpha04'
-  appcompatVersion = '1.1.0-alpha05'
-  rxJavaVersion = '2.2.6'
+  appcompatVersion = '1.1.0-rc01'
+  rxJavaVersion = '2.2.11'
   rxAndroidVersion = '2.1.1'
-  materialVersion = '1.1.0-alpha07'
-  retrofitVersion = '2.5.0'
+  materialVersion = '1.1.0-alpha09'
+  retrofitVersion = '2.6.1'
   okHttpVersion = '3.12.0'
   picassoVersion = '2.71828'
   timberVersion = '4.7.1'
-  navigationVersion = '2.1.0-alpha04'
+  navigationVersion = '2.2.0-alpha01'
   retrofitVersion = '2.5.0'
   moshiVersion = '1.8.0'
   okHttpVersion = '3.14.0'
   retrofitMoshiAdapterVersion = '2.5.0'
   okHttpLoggingVersion = '3.14.0'
-  roomVersion = '2.1.0-alpha06'
+  roomVersion = '2.1.0'
   paletteVersion = '1.0.0'
 
   //Test library versions

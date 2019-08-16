@@ -1,7 +1,6 @@
 package com.example.lenovo.reader.fragments.article
 
 import android.content.Intent
-import android.os.Build
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
@@ -29,7 +28,6 @@ import com.example.model.models.Category
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_article.article_appbarlayout
 import kotlinx.android.synthetic.main.fragment_article.article_chipgroup
-import kotlinx.android.synthetic.main.fragment_article.article_collapstingtoolbarlayout
 import kotlinx.android.synthetic.main.fragment_article.article_iamgeview
 import kotlinx.android.synthetic.main.fragment_article.article_nestedscrollview
 import kotlinx.android.synthetic.main.fragment_article.article_subtitle
@@ -42,7 +40,9 @@ import javax.inject.Inject
 @Layout(R.layout.fragment_article)
 class ArticleFragment : BaseFragment(), ArticleView {
 
-  val args: ArticleFragmentArgs by navArgs()
+  val args: ArticleFragmentArgs by lazy {
+    ArticleFragmentArgs.fromBundle(requireArguments())
+  }
 
   @Inject
   lateinit var presenter: ArticlePresenter
@@ -59,6 +59,7 @@ class ArticleFragment : BaseFragment(), ArticleView {
     view: View,
     savedInstanceState: Bundle?
   ) {
+    requireContext()
     super.onViewCreated(view, savedInstanceState)
     setUpToolbar(article_toolbar, true)
     setUpAdaptiveToolbarElevation(article_appbarlayout, article_nestedscrollview, pxFromDp(30.0f, context!!))
@@ -202,18 +203,18 @@ class ArticleFragment : BaseFragment(), ArticleView {
       // Note that system bars will only be "visible" if none of the
       // LOW_PROFILE, HIDE_NAVIGATION, or FULLSCREEN flags are set.
       if (visibility and View.SYSTEM_UI_FLAG_FULLSCREEN == 0) {
-        Log.d("WIND","if - - -")
+        Log.d("WIND", "if - - -")
         // TODO: The system bars are visible. Make any desired
         // adjustments to your UI, such as showing the action bar or
         // other navigational controls.
         activity?.window?.decorView?.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
         article_toolbar.visibility = View.VISIBLE
-        if(VERSION.SDK_INT >= VERSION_CODES.M) {
-          if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+        if (VERSION.SDK_INT >= VERSION_CODES.M) {
+          if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
             // if light
             activity?.window?.decorView?.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
           }
-          if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+          if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             // ifDark
             activity?.window?.clearFlags(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
           }
@@ -227,7 +228,7 @@ class ArticleFragment : BaseFragment(), ArticleView {
         //bug tobar light/dark not correct restored
 
       } else {
-        Log.d("WIND","else - - ")
+        Log.d("WIND", "else - - ")
         // TODO: The system bars are NOT visible. Make any desired
         //TODO hide actionbar
         article_toolbar.visibility = View.GONE
