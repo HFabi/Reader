@@ -6,7 +6,7 @@ import com.example.model.models.FavoriteArticle
 import com.example.model.models.LastAddedArticle
 
 interface DashboardPresenter : BasePresenter {
-
+  fun reloadLastAddedArticles()
 }
 
 interface DashboardView {

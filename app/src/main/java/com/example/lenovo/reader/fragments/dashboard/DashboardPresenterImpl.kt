@@ -28,4 +28,13 @@ class DashboardPresenterImpl @Inject constructor() : BasePresenterImpl(), Dashbo
           view.updateLastAddedArticles(articles)
         }
   }
+
+  override fun reloadLastAddedArticles() {
+    getLastAddedArticlesInteractor.execute(10)
+      .schedule()
+      .bind(compositeDisposable)
+      .subscribe { articles ->
+        view.updateLastAddedArticles(articles)
+      }
+  }
 }

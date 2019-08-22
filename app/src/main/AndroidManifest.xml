@@ -31,8 +31,12 @@
         android:windowSoftInputMode="stateVisible">
     </activity>
     <service
-        android:name=".services.DownloadArticleService"
-        android:exported="false"/>
+        android:name=".services.DownloadArticleService" android:exported="true"/>
+<!--    <receiver android:name=".receivers.AddArticleBroadcastReceiver" android:exported="true">-->
+<!--      <intent-filter>-->
+<!--        <action android:name="com.example.lenovo.reader.ADD_ARTICLE_COMPLETE"/>-->
+<!--      </intent-filter>-->
+<!--    </receiver>-->
   </application>
 
 </manifest>

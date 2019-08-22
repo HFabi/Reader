@@ -50,7 +50,6 @@ class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleVi
 
       Timber.d("ADAPTER item" + item.id)
 
-
       view.item_last_added_cardview.setCardBackgroundColor(getRandomColor(view.context))
 
       view.setOnClickListener {
@@ -58,7 +57,6 @@ class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleVi
       }
       if (!item.imagePath.isEmpty()) {
         Log.d("ViewHolder", "Path in bind to   " + item.imagePath)
-        // file://
         Picasso.get()
           .load("file://" + item.imagePath)
           .resize(pxFromDp(200.0f, view.context).toInt(), pxFromDp(160.0f, view.context).toInt())
@@ -75,7 +73,6 @@ class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleVi
         in 0.3f..0.6f -> ContextCompat.getColor(context, R.color.colorRegentStBlue)
         else -> ContextCompat.getColor(context, R.color.colorSeaPink)
       }
-
     }
   }
 }

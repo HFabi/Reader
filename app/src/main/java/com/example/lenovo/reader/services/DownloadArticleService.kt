@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.lenovo.reader.DOWNLOAD_ARTICLE_NAME
 import com.example.model.controllers.DownloadController
 import com.example.model.controllers.HtmlParser
@@ -96,7 +97,11 @@ class DownloadArticleService @Inject constructor() : DaggerIntentService(DOWNLOA
       .flatMapCompletable { article -> saveArticle(article, categories) }
       .andThen(downloadController.downloadAll(downloadTaskList))
       .subscribe(
-        { downloadResult -> Log.d("", "DownloadResult " + downloadResult) }
+        { downloadResult ->
+          Log.d("", "DownloadResult " + downloadResult)
+          // TODO send only on last not always
+          sendBroadcast()
+        }
       )
     //TODO: extract color from lead image and save it in article entity
     //TODO: broadcast to reload recycler
@@ -160,6 +165,12 @@ class DownloadArticleService @Inject constructor() : DaggerIntentService(DOWNLOA
   }
 
   private fun sendBroadcast() {
-//    LocalBroadcastManager.getInstance(this).registerReceiver()
+    Log.d("SERVICE", "Sending Broadcast")
+    val addArticleCompletedIntent = Intent().apply {
+      action = "com.example.lenovo.reader.ADD_ARTICLE_COMPLETE"
+//      putExtra()
+    }
+    sendBroadcast(addArticleCompletedIntent)
+//    LocalBroadcastManager.getInstance(this).sendBroadcast(addArticleCompletedIntent)
   }
 }
