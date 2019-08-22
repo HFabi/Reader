@@ -74,7 +74,10 @@ class ArticlesDbDataSourceImpl @Inject constructor() : ArticlesDbDataSource {
       .toList()
   }
 
-  override fun getExcerptArticles(page: Int, categoryIds: List<Long>): Single<List<ExcerptArticle>> {
+  override fun getExcerptArticles(
+    page: Int,
+    categoryIds: List<Long>
+  ): Single<List<ExcerptArticle>> {
     val skip = articlesPerPage * page
     return articleCategoryDao.getExcerptArticles(articlesPerPage, skip, categoryIds)
       .flatMapObservable { list -> Observable.fromIterable(list) }

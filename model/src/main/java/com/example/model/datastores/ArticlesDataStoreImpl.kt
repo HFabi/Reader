@@ -57,8 +57,6 @@ class ArticlesDataStoreImpl @Inject constructor() : ArticlesDataStore {
   }
 
   override fun deleteArticle(articleId: Long): Single<Boolean> {
-    // TODO: delete category?
-    // TODO: delete images, resources from file directory,
     return articlesDbDataSource.deleteArticle(articleId)
   }
 }

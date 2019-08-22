@@ -111,7 +111,7 @@ abstract class BaseFragment : DaggerFragment() {
       val layoutParams =
         Toolbar.LayoutParams(Toolbar.LayoutParams.MATCH_PARENT, Toolbar.LayoutParams.MATCH_PARENT).apply {
           marginStart = 0
-          marginEnd = pxFromDp(16f, context!!).toInt()
+          marginEnd = pxFromDp(16f, requireContext()).toInt()
         }
       setCustomView(customView, layoutParams)
       setDisplayShowCustomEnabled(true)
@@ -121,13 +121,12 @@ abstract class BaseFragment : DaggerFragment() {
   }
 
   fun setUpAdaptiveToolbarElevation(bar: View, scrollableView: View) {
-//    setUpAdaptiveToolbarElevation(bar, scrollableView, context!!.resources.getDimension(R.dimen.toolbar_delay))
-    setUpAdaptiveToolbarElevation(bar, scrollableView, pxFromDp(8.0f, context!!))
+    setUpAdaptiveToolbarElevation(bar, scrollableView, pxFromDp(8.0f, requireContext()))
   }
 
   fun setUpAdaptiveToolbarElevation(bar: View, scrollableView: View, delayInPx: Float) {
     if (bar is Toolbar || bar is AppBarLayout) {
-      val elevation = context!!.resources.getDimension(R.dimen.toolbar_elevation)
+      val elevation = requireContext().resources.getDimension(R.dimen.toolbar_elevation)
       if (scrollableView is RecyclerView) {
         scrollChangeListener = OnScrollChangedListener {
           bar.elevation = if (scrollableView.computeVerticalScrollOffset() > delayInPx) elevation else 0f

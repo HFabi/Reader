@@ -6,10 +6,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.model.entities.db.ArticleCategoryDbEntity
-import com.example.model.entities.db.ArticleDbEntity
 import com.example.model.entities.db.CategoryDbEntity
 import com.example.model.entities.db.ExcerptArticleDbEntity
-import com.example.model.models.Category
 import io.reactivex.Completable
 import io.reactivex.Single
 
@@ -36,7 +34,11 @@ interface ArticleCategoryDao {
   @Query(
     "SELECT DISTINCT articles.id, title, addedAt, leadImagePath, color FROM articles JOIN articles_categories ON articles.id=articles_categories.articleId WHERE categoryId IN (:categoryIds) LIMIT (:count) OFFSET (:skip)"
   )
-  fun getExcerptArticles(count: Int, skip: Int, categoryIds: List<Long>): Single<List<ExcerptArticleDbEntity>>
+  fun getExcerptArticles(
+    count: Int,
+    skip: Int,
+    categoryIds: List<Long>
+  ): Single<List<ExcerptArticleDbEntity>>
 
 //  @Query(
 //    "SELECT articles.id, title, addedAt, leadImagePath FROM articles WHERE title LIKE (:searchString) LIMIT (:count) OFFSET (:skip)"
@@ -48,16 +50,12 @@ interface ArticleCategoryDao {
   )
   fun getCategoriesForArticle(articleId: Long): Single<List<CategoryDbEntity>>
 
-
 }
-
-
 
 //  @Query(
 //    "SELECT articles.id, title, addedAt, leadImagePath FROM articles LEFT OUTER JOIN articles_categories ON articles.id=articles_categories.articleId LEFT OUTER JOIN categories ON articles_categories.categoryId = categories.id WHERE categoryId IN (:categoryIds) LIMIT (:count) OFFSET (:skip)"
 //  )
 //  fun getExcerptArticles(count: Int, skip: Int, categoryIds: List<Long>): Single<List<ExcerptArticleDbEntity>>
-
 
 //  @Query(
 //    "SELECT articles.id, title, addedAt, leadImagePath FROM articles LEFT OUTER JOIN articles_categories ON articles.id=articles_categories.articleId LEFT OUTER JOIN categories ON articles_categories.categoryId = categories.id LIMIT (:count) OFFSET (:skip)"

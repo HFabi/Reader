@@ -1,7 +1,6 @@
 package com.example.lenovo.reader.view
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.drawable.InsetDrawable
 import android.util.AttributeSet
 import android.util.Log
@@ -66,7 +65,11 @@ class CategoryShowChipGroup : ChipGroup {
     init()
   }
 
-  constructor(context: Context, attributeSet: AttributeSet?, a: Int) : super(context, attributeSet, a) {
+  constructor(context: Context, attributeSet: AttributeSet?, a: Int) : super(
+    context,
+    attributeSet,
+    a
+  ) {
     init()
   }
 
@@ -179,12 +182,15 @@ class CategoryShowChipGroup : ChipGroup {
       setPaddingRelative(36, 0, 36, 0)
       background = InsetDrawable(context.getDrawable(R.drawable.bg_editchip), 5, 6, 5, 6)
     }
-    val params = ChipGroup.LayoutParams(ChipGroup.LayoutParams.WRAP_CONTENT, pxFromDp(36f, context!!).toInt()).apply {
-      topMargin = 0
-    }
+    val params =
+      ChipGroup.LayoutParams(ChipGroup.LayoutParams.WRAP_CONTENT, pxFromDp(36f, context!!).toInt())
+        .apply {
+          topMargin = 0
+        }
     addView(editText, 1, params)
     editText.requestFocus()
-    context?.getSystemService<InputMethodManager>()?.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT)
+    context?.getSystemService<InputMethodManager>()
+      ?.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT)
     editText.setOnEditorActionListener { textview, actionId, event ->
       if (actionId == EditorInfo.IME_ACTION_DONE) {
         onActionDone(textview)
@@ -215,7 +221,8 @@ class CategoryShowChipGroup : ChipGroup {
     val categoryName = textview.text.toString().trim()
     if (categoryName.isEmpty()) {
       // category is empty
-      context?.getSystemService<InputMethodManager>()?.hideSoftInputFromWindow(textview.windowToken, 0)
+      context?.getSystemService<InputMethodManager>()
+        ?.hideSoftInputFromWindow(textview.windowToken, 0)
       removeViewAt(1)
     } else if (categoryNamesList.contains(categoryName.toLowerCase())) {
       // category already exists -> set existing tag checked
@@ -223,11 +230,13 @@ class CategoryShowChipGroup : ChipGroup {
         chip.isChecked = true
         handleCheckedChange(chip)
       }
-      context?.getSystemService<InputMethodManager>()?.hideSoftInputFromWindow(textview.windowToken, 0)
+      context?.getSystemService<InputMethodManager>()
+        ?.hideSoftInputFromWindow(textview.windowToken, 0)
       removeViewAt(1)
     } else {
       // category is new
-      context?.getSystemService<InputMethodManager>()?.hideSoftInputFromWindow(textview.windowToken, 0)
+      context?.getSystemService<InputMethodManager>()
+        ?.hideSoftInputFromWindow(textview.windowToken, 0)
       removeViewAt(1)
       addCategory(Category(Date().time, categoryName), true)
     }

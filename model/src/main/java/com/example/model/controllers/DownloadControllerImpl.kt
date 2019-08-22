@@ -5,11 +5,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import com.example.model.models.DownloadResult
 import com.example.model.models.DownloadTask
-import io.reactivex.Emitter
 import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.SingleOnSubscribe
-
 import timber.log.Timber
 import java.io.File
 import java.io.InputStream
@@ -20,7 +17,8 @@ import javax.inject.Named
 /**
  * @author appcom interactive GmbH on 2019-05-03
  */
-class DownloadControllerImpl @Inject constructor(@Named("Application") var context: Context) : DownloadController {
+class DownloadControllerImpl @Inject constructor(@Named("Application") var context: Context) :
+  DownloadController {
 
   @Inject
   lateinit var storageController: StorageController
@@ -43,7 +41,7 @@ class DownloadControllerImpl @Inject constructor(@Named("Application") var conte
         emitter.onSuccess(bitmap)
       }
     }
-    return a.flatMap { bitmap -> storageController.writeImageToFile(bitmap, File(imagePath))  }
+    return a.flatMap { bitmap -> storageController.writeImageToFile(bitmap, File(imagePath)) }
       .map { b -> DownloadResult() }
   }
 
@@ -68,7 +66,6 @@ class DownloadControllerImpl @Inject constructor(@Named("Application") var conte
   }
 
 }
-
 
 //  override fun download(url: String, imagePath: String): Single<DownloadResult> {
 //    return Single.create { emitter ->

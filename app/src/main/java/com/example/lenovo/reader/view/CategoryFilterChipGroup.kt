@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.example.lenovo.reader.R
 import com.example.model.models.Category
 import com.google.android.material.chip.Chip
@@ -34,7 +35,11 @@ class CategoryFilterChipGroup : ChipGroup {
     init()
   }
 
-  constructor(context: Context, attributeSet: AttributeSet, a: Int) : super(context, attributeSet, a) {
+  constructor(context: Context, attributeSet: AttributeSet, a: Int) : super(
+    context,
+    attributeSet,
+    a
+  ) {
     init()
   }
 
@@ -42,14 +47,15 @@ class CategoryFilterChipGroup : ChipGroup {
     allCategoriesString = context.getString(R.string.categories_all)
   }
 
-  private val onAllCategoriesChipClickListener: View.OnClickListener = View.OnClickListener { view ->
-    if (getCheckedCategoryIds().size < itemList.size - 1) {
-      setChipsChecked(true)
-    } else {
-      setChipsChecked(false)
+  private val onAllCategoriesChipClickListener: View.OnClickListener =
+    View.OnClickListener { view ->
+      if (getCheckedCategoryIds().size < itemList.size - 1) {
+        setChipsChecked(true)
+      } else {
+        setChipsChecked(false)
+      }
+      onFilterChangeListener?.invoke(getCheckedCategoryIds())
     }
-    onFilterChangeListener?.invoke(getCheckedCategoryIds())
-  }
 
   private val onClickListener: View.OnClickListener = View.OnClickListener { view ->
     val chip = view as Chip
@@ -115,8 +121,9 @@ class CategoryFilterChipGroup : ChipGroup {
       R.layout.chip_category_action, this, false
     ) as Chip).apply {
       text = category.name
-      chipBackgroundColor = ColorStateList.valueOf(resources.getColor(android.R.color.black))
-      setTextColor(resources.getColor(android.R.color.white))
+      chipBackgroundColor =
+        ColorStateList.valueOf(ContextCompat.getColor(context, android.R.color.black))
+      setTextColor(ContextCompat.getColor(context, android.R.color.white))
       setOnClickListener(onAllCategoriesChipClickListener)
     }
   }

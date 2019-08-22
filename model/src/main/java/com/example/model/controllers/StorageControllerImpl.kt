@@ -14,7 +14,8 @@ import java.io.FileOutputStream
 import javax.inject.Inject
 import javax.inject.Named
 
-class StorageControllerImpl @Inject constructor(@Named("Application") var context: Context) : StorageController {
+class StorageControllerImpl @Inject constructor(@Named("Application") var context: Context) :
+  StorageController {
 
   private val imageQuality: Int = 100
 
@@ -23,7 +24,7 @@ class StorageControllerImpl @Inject constructor(@Named("Application") var contex
   }
 
   override fun writeImageToFile(bitmap: Bitmap, file: File): Single<Boolean> {
-    return Single.create{emitter ->
+    return Single.create { emitter ->
       var stream: FileOutputStream? = null
       var savedSuccessfully: Boolean = true
       try {
@@ -52,8 +53,8 @@ class StorageControllerImpl @Inject constructor(@Named("Application") var contex
 
   override fun provideStorageInfo(): Single<StorageInfo> {
     return Single.create { emitter ->
-      val totalSpace = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES).totalSpace
-      val freeSpace = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES).freeSpace
+      val totalSpace = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)?.totalSpace ?: 0
+      val freeSpace = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)?.freeSpace ?: 0
 
       val path = Environment.getExternalStorageDirectory()
       val stat: StatFs = StatFs(path.path)
@@ -94,7 +95,10 @@ class StorageControllerImpl @Inject constructor(@Named("Application") var contex
     parentFile.delete()
   }
 
-  private fun getPrivateAlbumStorageDir(albumName: String, createIfNotExists: Boolean = true): File? {
+  private fun getPrivateAlbumStorageDir(
+    albumName: String,
+    createIfNotExists: Boolean = true
+  ): File? {
     val file = File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), albumName)
     if (!file.exists() && createIfNotExists) {
       Timber.d(String.format("Create album %s", albumName))
@@ -103,7 +107,8 @@ class StorageControllerImpl @Inject constructor(@Named("Application") var contex
     return file
   }
 
-  private fun isExternalStorageWritable(): Boolean = Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
+  private fun isExternalStorageWritable(): Boolean =
+    Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
 
   private fun isExternalStorageReadable(): Boolean {
     return Environment.getExternalStorageState() in

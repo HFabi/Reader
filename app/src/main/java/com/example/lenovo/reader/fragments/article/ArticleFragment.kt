@@ -62,7 +62,7 @@ class ArticleFragment : BaseFragment(), ArticleView {
     requireContext()
     super.onViewCreated(view, savedInstanceState)
     setUpToolbar(article_toolbar, true)
-    setUpAdaptiveToolbarElevation(article_appbarlayout, article_nestedscrollview, pxFromDp(30.0f, context!!))
+    setUpAdaptiveToolbarElevation(article_appbarlayout, article_nestedscrollview, pxFromDp(30.0f, requireContext()))
     // Remove any title
     article_toolbar.title = ""
     Log.d("AAAA", "Passed id: " + args.articleId)
@@ -141,7 +141,7 @@ class ArticleFragment : BaseFragment(), ArticleView {
     if (article.leadImagePath.isEmpty()) {
       article_appbarlayout.setExpanded(false, false)
       val lp = article_appbarlayout.getLayoutParams() as CoordinatorLayout.LayoutParams
-      lp.height = getActionBarHeight(context!!)
+      lp.height = getActionBarHeight(requireContext())
     } else {
       article_appbarlayout.setExpanded(true, false)
       val lp = article_appbarlayout.getLayoutParams() as CoordinatorLayout.LayoutParams

@@ -1,19 +1,14 @@
 package com.example.lenovo.reader.activities.mainactivity
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupWithNavController
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.activities.base.BaseActivity
 import com.example.lenovo.reader.activities.base.BasePresenter
-import com.example.lenovo.reader.fragments.articlelist.ArticleListFragment
-import com.example.lenovo.reader.fragments.dashboard.DashboardFragment
-import com.example.lenovo.reader.fragments.settings.SettingsFragment
 import com.example.lenovo.reader.navigation.Router
 import kotlinx.android.synthetic.main.activity_main.main_bottom_navigation
 import javax.inject.Inject
@@ -65,8 +60,8 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
 //    }
 
     val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-    navController.addOnDestinationChangedListener(NavController.OnDestinationChangedListener{
-      controller, destination, arguments ->  // kein erneutes Aufrufen der SEite, auf der man sich bereits befindet
+    navController.addOnDestinationChangedListener(NavController.OnDestinationChangedListener { controller, destination, arguments ->
+      // kein erneutes Aufrufen der SEite, auf der man sich bereits befindet
     })
 //    main_bottom_navigation.setupWithNavController(navController)
 //    NavigationUI.setupWithNavController(main_bottom_navigation)

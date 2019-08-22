@@ -44,7 +44,7 @@ class SearchFragment : BaseFragment(), SearchView {
     toolbarSearchView?.let {
       setUpCustomToolbar(search_toolbar, true, it)
     }
-    setUpAdaptiveToolbarElevation(search_toolbar, search_recyclerview, pxFromDp(30.0f, context!!))
+    setUpAdaptiveToolbarElevation(search_toolbar, search_recyclerview, pxFromDp(30.0f, requireContext()))
   }
 
   override fun onResume() {

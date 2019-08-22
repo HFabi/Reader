@@ -11,7 +11,14 @@ import com.example.model.entities.db.CategoryDbEntity
 /**
  * @author appcom interactive GmbH on 04.04.19
  */
-@Database(entities = arrayOf(ArticleDbEntity::class, CategoryDbEntity::class, ArticleCategoryDbEntity::class, ArticleFtsDbEntity::class), version = 1)
+@Database(
+  entities = arrayOf(
+    ArticleDbEntity::class,
+    CategoryDbEntity::class,
+    ArticleCategoryDbEntity::class,
+    ArticleFtsDbEntity::class
+  ), version = 1
+)
 @TypeConverters(Converters::class)
 abstract class ReaderDatabase : RoomDatabase() {
 

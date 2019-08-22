@@ -53,7 +53,7 @@ class SettingsFragment : BaseFragment(), SettingsView {
 
   override fun showDayNightSelectionDialog() {
     var tempSelectedThemeIndex = currentDayNightMode
-    AlertDialog.Builder(context!!)
+    AlertDialog.Builder(requireContext())
       .setTitle(getString(string.settings_theme_dialog_title))
       .setSingleChoiceItems(themeStrings, currentDayNightMode, { dialogInterface, selection ->
         tempSelectedThemeIndex = selection

@@ -1,11 +1,11 @@
 package com.example.lenovo.reader.fragments.dashboard.adapters
 
 import android.content.Context
-import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.example.lenovo.reader.R
 import com.example.lenovo.reader.fragments.base.BaseAdapter
 import com.example.lenovo.reader.fragments.base.BaseViewHolder
@@ -48,7 +48,7 @@ class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleVi
       view.item_last_added_date_textView.text = SimpleDateFormat("MMMM yy").format(item.addedAt)
       view.item_last_added_subtitle_textView.text = item.title
 
-      Timber.d("ADAPTER item"+item.id)
+      Timber.d("ADAPTER item" + item.id)
 
 
       view.item_last_added_cardview.setCardBackgroundColor(getRandomColor(view.context))
@@ -57,7 +57,7 @@ class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleVi
         onClickListener?.invoke(item, view.item_last_added_imageview)
       }
       if (!item.imagePath.isEmpty()) {
-        Log.d("ViewHolder","Path in bind to   "+item.imagePath)
+        Log.d("ViewHolder", "Path in bind to   " + item.imagePath)
         // file://
         Picasso.get()
           .load("file://" + item.imagePath)
@@ -66,21 +66,15 @@ class LastAddedArticleAdapter : BaseAdapter<LastAddedArticle, LastAddedArticleVi
           .centerCrop()
           .into(view.item_last_added_imageview)
       }
-      view.item_last_added_imageview.transitionName="transition"+item.id
+      view.item_last_added_imageview.transitionName = "transition" + item.id
     }
 
     fun getRandomColor(context: Context): Int {
-      return when(Math.random()) {
-        in 0.0f..0.3f -> context.resources.getColor(R.color.colorYellowOrange)
-        in 0.3f..0.6f ->    context.resources.getColor(R.color.colorRegentStBlue)
-        else -> context.resources.getColor(R.color.colorSeaPink)
+      return when (Math.random()) {
+        in 0.0f..0.3f -> ContextCompat.getColor(context, R.color.colorYellowOrange)
+        in 0.3f..0.6f -> ContextCompat.getColor(context, R.color.colorRegentStBlue)
+        else -> ContextCompat.getColor(context, R.color.colorSeaPink)
       }
-
-
-
-
-
-
 
     }
   }

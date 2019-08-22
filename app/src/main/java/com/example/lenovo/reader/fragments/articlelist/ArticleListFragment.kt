@@ -79,7 +79,7 @@ class ArticleListFragment : BaseFragment(), ArticleListView {
     Log.d("GGG", "Called onPrepareOptionsMenu" + b)
 
     val filterItem: MenuItem = menu.findItem(R.id.action_article_list_filter)
-    filterItem.icon = context!!.getDrawable(
+    filterItem.icon = requireContext().getDrawable(
       if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_HIDDEN)
         R.drawable.ic_filter_list_black_24dp else R.drawable.ic_filter_list_color_24dp
     )
@@ -133,7 +133,6 @@ class ArticleListFragment : BaseFragment(), ArticleListView {
     filter_chipgroup.onActiveStateChangeListener = { isActive ->
       filter_clear_button.visibility = if (isActive) View.VISIBLE else View.GONE
     }
-
   }
 
   fun setUpList() {
@@ -142,18 +141,11 @@ class ArticleListFragment : BaseFragment(), ArticleListView {
       router.goToArticle(this, excerptArticle.id)
     }
     article_list_recyclerview.adapter = excerptArticleAdapter
-    article_list_recyclerview.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-//    article_list_recyclerview.addItemDecoration(
-//      ExcerptArticleItemDecorator(
-//        pxFromDp(
-//          8.0f,
-//          context!!
-//        ).toInt()
-//      )
-//    )
+    article_list_recyclerview.layoutManager =
+      LinearLayoutManager(context, RecyclerView.VERTICAL, false)
     article_list_recyclerview.addItemDecoration(
       DrawableItemDecorator(
-        ContextCompat.getDrawable(context!!, drawable.divider)
+        ContextCompat.getDrawable(requireContext(), drawable.divider)
       )
     )
   }

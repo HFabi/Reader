@@ -14,7 +14,7 @@ class ArticleControllerImpl @Inject constructor() : ArticleController {
 
   @Inject
   lateinit var htmlParser: HtmlParser
-//  @Inject
+  //  @Inject
 //  lateinit var downloadController: DownloadController
   @Inject
   lateinit var storageController: StorageController
@@ -27,7 +27,10 @@ class ArticleControllerImpl @Inject constructor() : ArticleController {
       article.localPath = storageController.providePath(generateUniqueDirectoryName())
 
       // replace img with local paths
-      val (parsedHtml, downloadTasks) = htmlParser.replaceImagePaths(article.content, article.localPath)
+      val (parsedHtml, downloadTasks) = htmlParser.replaceImagePaths(
+        article.content,
+        article.localPath
+      )
       downloadTaskList.addAll(downloadTasks)
       article.content = parsedHtml
 
@@ -46,7 +49,6 @@ class ArticleControllerImpl @Inject constructor() : ArticleController {
     }
   }
 }
-
 
 //      .flatMap { (article, downloadTaskList) ->
 //      downloadController.download(downloadTaskList)

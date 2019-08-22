@@ -6,11 +6,10 @@ import com.example.model.models.Category
 /**
  * @author appcom interactive GmbH on 2019-07-25
  */
-interface AddArticlePresenter: BasePresenter {
+interface AddArticlePresenter : BasePresenter {
   fun onSubmitClicked(url: String)
   fun navigateToDashboard()
   fun navigateBack()
-
 }
 
 interface AddArticleView {

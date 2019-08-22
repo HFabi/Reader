@@ -1,9 +1,6 @@
 package com.example.lenovo.reader.controllers
 
-import android.util.Log
-import androidx.palette.graphics.Palette
 import com.example.model.controllers.DownloadController
-import io.reactivex.Single
 import javax.inject.Inject
 
 class ExtractImageColorControllerImpl @Inject constructor() : ExtractImageColorController {

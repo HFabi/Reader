@@ -5,7 +5,6 @@ import com.example.model.models.Article
 import com.example.model.transformers.ArticleTransformer
 import io.reactivex.Single
 import timber.log.Timber
-import java.util.Date
 import javax.inject.Inject
 
 /**

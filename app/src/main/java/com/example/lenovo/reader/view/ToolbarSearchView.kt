@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.EditorInfo
-import android.widget.EditText
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
@@ -30,7 +29,12 @@ class ToolbarSearchView : AppCompatEditText {
 
   private fun init() {
     drawable = context.getDrawable(R.drawable.ic_close_black_24dp)
-    drawable?.setBounds(0, 0, drawable?.getIntrinsicWidth() ?: 0, drawable?.getIntrinsicHeight() ?: 0);
+    drawable?.setBounds(
+      0,
+      0,
+      drawable?.getIntrinsicWidth() ?: 0,
+      drawable?.getIntrinsicHeight() ?: 0
+    );
     doAfterTextChanged { text -> onTextChange(text.toString()) }
     setBackgroundColor(ContextCompat.getColor(context, android.R.color.transparent))
     hint = context.getString(R.string.hint_search_articles)
@@ -43,7 +47,7 @@ class ToolbarSearchView : AppCompatEditText {
       setFocusable(false)
     else
       setFocusableInTouchMode(true)
-    Log.d("CALL","Call Cosntructor")
+    Log.d("CALL", "Call Cosntructor")
 
 //    focusable=View.FOCUSABLE
 //    focusableInTouchMode="true"
@@ -91,12 +95,12 @@ class ToolbarSearchView : AppCompatEditText {
       // getRawX original location of event on screen
       val drawableWidth: Int = compoundDrawables[2]?.bounds?.width() ?: 0
       if (event.getRawX() >= right - drawableWidth) {
-        Log.d("ONTOUCH","click icon triggerred")
+        Log.d("ONTOUCH", "click icon triggerred")
         clearEditText()
         return true
       }
     }
-    Log.d("ONTOUCH","false")
+    Log.d("ONTOUCH", "false")
     return super.onTouchEvent(event)
   }
 

@@ -8,9 +8,7 @@ import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.lenovo.reader.DOWNLOAD_ARTICLE_NAME
-import com.example.lenovo.reader.controllers.ExtractImageColorController
 import com.example.model.controllers.DownloadController
 import com.example.model.controllers.HtmlParser
 import com.example.model.controllers.StorageController
@@ -40,11 +38,10 @@ class DownloadArticleService @Inject constructor() : DaggerIntentService(DOWNLOA
   lateinit var htmlParser: HtmlParser
   @Inject
   lateinit var downloadController: DownloadController
-//  @Inject
+  //  @Inject
 //  lateinit var extractImageColorController: ExtractImageColorController
   @Inject
   lateinit var storageController: StorageController
-
 
   var downloadTaskList: MutableList<DownloadTask> = mutableListOf()
 
@@ -53,7 +50,7 @@ class DownloadArticleService @Inject constructor() : DaggerIntentService(DOWNLOA
       val url: String = intent.getStringExtra("url")
       var categories: List<Category>? = null
       if (intent.hasExtra("categories")) {
-        Log.d("SERVICE","has extra categories")
+        Log.d("SERVICE", "has extra categories")
         categories = intent.getParcelableArrayListExtra<Category>("categories")
       }
       loadArticle(url, categories)
@@ -118,7 +115,10 @@ class DownloadArticleService @Inject constructor() : DaggerIntentService(DOWNLOA
     return Single.fromCallable {
       article.localPath = storageController.providePath(generateUniqueDirectoryName())
       // replace img with local paths
-      val (parsedHtml, downloadTasks) = htmlParser.replaceImagePaths(article.content, article.localPath)
+      val (parsedHtml, downloadTasks) = htmlParser.replaceImagePaths(
+        article.content,
+        article.localPath
+      )
       downloadTaskList.addAll(downloadTasks)
       article.content = parsedHtml
 

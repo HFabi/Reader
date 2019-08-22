@@ -72,11 +72,11 @@ class DashboardFragment : BaseFragment(), DashboardView {
       ArticleItemDecorator(
         pxFromDp(
           8.0f,
-          context!!
+          requireContext()
         ).toInt(),
         pxFromDp(
           4.0f,
-          context!!
+          requireContext()
         ).toInt()
       )
     )

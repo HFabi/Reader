@@ -25,7 +25,11 @@ class SearchTextView : LinearLayout {
     init()
   }
 
-  constructor(context: Context, attributeSet: AttributeSet, a: Int) : super(context, attributeSet, a) {
+  constructor(context: Context, attributeSet: AttributeSet, a: Int) : super(
+    context,
+    attributeSet,
+    a
+  ) {
     init()
   }
 

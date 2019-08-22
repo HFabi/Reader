@@ -1,13 +1,8 @@
 package com.example.lenovo.reader.view
 
 import android.content.Context
-import android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT
-import android.content.Context.INPUT_METHOD_SERVICE
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
-
-
 
 /**
  * @author appcom interactive GmbH on 2019-07-04

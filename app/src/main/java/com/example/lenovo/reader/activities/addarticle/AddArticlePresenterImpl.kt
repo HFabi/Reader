@@ -1,7 +1,6 @@
 package com.example.lenovo.reader.activities.addarticle
 
 import android.content.Intent
-import android.util.Log
 import com.example.lenovo.reader.activities.addarticle.interactors.GetCategoriesInteractor
 import com.example.lenovo.reader.activities.base.BasePresenterImpl
 import com.example.lenovo.reader.navigation.Router
@@ -32,7 +31,7 @@ class AddArticlePresenterImpl @Inject constructor() : BasePresenterImpl(), AddAr
       .schedule()
       .subscribe(
         { categories -> view.setCategories(categories) },
-        {error -> Timber.d(error)})
+        { error -> Timber.d(error) })
   }
 
   override fun onSubmitClicked(url: String) {
@@ -41,12 +40,16 @@ class AddArticlePresenterImpl @Inject constructor() : BasePresenterImpl(), AddAr
   }
 
   private fun startService(url: String, categories: List<Category>?) {
-    addArticleActivity.startService(Intent(addArticleActivity, DownloadArticleService::class.java).apply {
-      putExtra("url", url)
-      categories?.let {
-        putParcelableArrayListExtra("categories", ArrayList<Category>(categories))
-      }
-    })
+    addArticleActivity.startService(
+      Intent(
+        addArticleActivity,
+        DownloadArticleService::class.java
+      ).apply {
+        putExtra("url", url)
+        categories?.let {
+          putParcelableArrayListExtra("categories", ArrayList<Category>(categories))
+        }
+      })
   }
 
   override fun navigateToDashboard() {

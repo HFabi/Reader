@@ -1,7 +1,6 @@
 package com.example.model.datasources.db
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -10,9 +9,6 @@ import com.example.model.entities.db.ExcerptArticleDbEntity
 import com.example.model.entities.db.LastAddedArticleDbEntity
 import io.reactivex.Completable
 import io.reactivex.Single
-import androidx.room.Transaction
-
-
 
 /**
  * @author appcom interactive GmbH on 04.04.19
@@ -34,10 +30,12 @@ interface ArticleDao {
 //  )
 //  fun getExcerptArticles(count: Int, skip: Int, searchString: String): Single<List<ExcerptArticleDbEntity>>
 
-
   @Query("SELECT articles.id, articles.title, articles.addedAt, articles.leadImagePath, articles.color  FROM articles JOIN articles_fts ON (articles.id = articles_fts.docid) WHERE articles_fts MATCH :searchString LIMIT (:count) OFFSET (:skip)")
-  fun getExcerptArticles(count: Int, skip: Int, searchString: String): Single<List<ExcerptArticleDbEntity>>
-
+  fun getExcerptArticles(
+    count: Int,
+    skip: Int,
+    searchString: String
+  ): Single<List<ExcerptArticleDbEntity>>
 
   // FTS 5
   // SELECT * FROM movies MATCH 'pul*' ORDER BY rank;
@@ -47,7 +45,6 @@ interface ArticleDao {
 
   // FTS 4
   //
-
 
   // @Query("SELECT * FROM articles WHERE isFavorite = 1 ORDER BY addedAt LIMIT 8")
   // fun getFavoriteArticles(): Single<List<ArticleDbEntity>>

@@ -24,11 +24,10 @@ fun getStatusBarHeight(context: Context): Int {
 }
 
 fun getActionBarHeight(context: Context): Int {
-  var actionBarHeight = 0
   val styledAttributes = context.getTheme().obtainStyledAttributes(
     intArrayOf(android.R.attr.actionBarSize)
   )
-  actionBarHeight = styledAttributes.getDimension(0, 0f).toInt()
+  val actionBarHeight = styledAttributes.getDimension(0, 0f).toInt()
   styledAttributes.recycle()
   return actionBarHeight
 }
